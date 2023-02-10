@@ -2,8 +2,35 @@
   - firstname: ["Daniel", "D."]
     url: https://homepages.cwi.nl/~dadush/ 
 
-"Vegh":
-  url: https://personal.lse.ac.uk/veghl/
+"Végh":
+  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
+    url: https://personal.lse.ac.uk/veghl/
+
+"V\'{e}gh":
+  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
+    url: https://personal.lse.ac.uk/veghl/
+
+
+"V{\'{e}}gh":
+  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
+    url: https://personal.lse.ac.uk/veghl/
 
 "Koh":
-  url: https://personal.lse.ac.uk/kohz3/
+  - firstname: ["Zhuan Khye"]
+    url: https://personal.lse.ac.uk/kohz3/
+
+"Loho":
+  - firstname: ["Georg"]
+    url: https://lohomath.github.io
+
+"Ekbatani":
+  - firstname: ["Farbod"]
+    url: https://www.linkedin.com/in/farbod-ekbatani-5219311b6/?originalSubdomain=uk
+
+"Weltge":
+  - firstname: ["Stefan"]
+    url: https://weltge.de
+
+"Held":
+  - firstname: ["Stephan"]
+    url: http://www.or.uni-bonn.de/~held/Stephan_Held.html
