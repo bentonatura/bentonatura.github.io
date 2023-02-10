@@ -18,10 +18,10 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I received my PhD student in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under supervision of <a href="http://personal.lse.ac.uk/veghl/)" target="_blank">L&aacute;szl&oacute;
+I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under supervision of <a href="http://personal.lse.ac.uk/veghl/)" target="_blank">L&aacute;szl&oacute;
 V&eacute;gh</a>. I was funded by his <a href="https://erc.europa.eu/" target="_blank">ERC</a> grant <a href="http://personal.lse.ac.uk/veghl/scaleopt.html" target="_blank">ScaleOpt</a>. 
 
-Both my Bachelor's and Master's degrees were received from the [University of Bonn](https://www.uni-bonn.de/en/university/) under supervision of <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
+Both my Bachelor's and Master's degree were received from the [University of Bonn](https://www.uni-bonn.de/en/university/) under supervision of <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
 My research interests are in Operational Research, Combinatorial Optimization, Convex Optimization and Game Theory.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
