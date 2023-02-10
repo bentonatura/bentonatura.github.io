@@ -1,6 +1,12 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
+"SICOMP":
+  # url: https://aapt.scitation.org/journal/ajp
   color: "#00369f"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"Math. Prog.":
+  color: "#00369f"
+
+"Surv. Comb.":
+  color: "#00369f"
+
+"FOCS":
+  # url: https://journals.aps.org/
