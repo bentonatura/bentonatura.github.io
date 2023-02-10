@@ -3,16 +3,7 @@
     url: https://homepages.cwi.nl/~dadush/ 
 
 "Végh":
-  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
-    url: https://personal.lse.ac.uk/veghl/
-
-"V\'{e}gh":
-  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
-    url: https://personal.lse.ac.uk/veghl/
-
-
-"V{\'{e}}gh":
-  - firstname: ["László A.","László~A.","L\'{a}szl\'{o} A.","L\'{a}szl\'{o}~A.","L{\'{a}}szl{\'{o}}~A."]
+  - firstname: ["László A."]
     url: https://personal.lse.ac.uk/veghl/
 
 "Koh":
@@ -34,3 +25,19 @@
 "Held":
   - firstname: ["Stephan"]
     url: http://www.or.uni-bonn.de/~held/Stephan_Held.html
+
+"Allamigeon":
+  - firstname: ["Xavier"]
+    url: http://www.cmap.polytechnique.fr/~allamigeon/
+
+"Jiang":
+  - firstname: ["Shunhua"]
+    url: https://www.cs.columbia.edu/~jiangsh/
+
+"Weinstein":
+  - firstname: ["Omri"]
+    url: https://omriweinstein.huji.ac.il
+  
+"Huiberts":
+  - firstname: ["Sophie"]
+    url: https://sophie.huiberts.me
