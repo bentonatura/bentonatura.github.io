@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Postdoctoral Fellow | Mathematics and Computer Science | <a href='https://icerm.brown.edu'>ICERM</a> & <a href='https://www.isye.gatech.edu'>Georgia Tech</a>.
+subtitle: Postdoctoral Fellow | <a href='https://icerm.brown.edu'>ICERM</a> & <a href='https://www.isye.gatech.edu'>Georgia Tech</a>.
 
 profile:
   align: right
