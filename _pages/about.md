@@ -15,7 +15,7 @@ profile:
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: false # includes social icons at the bottom of the page
 ---
 
 I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under supervision of <a href="http://personal.lse.ac.uk/veghl/)" target="_blank">L&aacute;szl&oacute;
