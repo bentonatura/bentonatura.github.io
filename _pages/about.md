@@ -14,6 +14,7 @@ profile:
     <p>Atlanta, Georgia 30318</p>
 
 news: true  # includes a list of news items
+events: true # includes a list of upcmoming events
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---

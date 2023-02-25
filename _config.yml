@@ -157,12 +157,24 @@ collections:
       layout: post
     output: true
     permalink: /news/:path/
+  events:
+    defaults:
+      layout: post
+    output: true
+    permalink: /events/:path/
   projects:
     output: true
     permalink: /projects/:path/
 
+
+
 news_scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+
+events_scrollable: true # adds a vertical scroll bar if there are more than 3  event items 
+
 news_limit: 10 # leave blank to include all the news in the `_news` folder
+
+events_limit: 10 # leave blank to include all the events in the `_events` folder 
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
