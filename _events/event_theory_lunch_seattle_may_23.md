@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2023-03-01 07:59:00-0400
+date: 2023-05-26 07:59:00-0400
 inline: true 
 ---
 
-[ACORN 2023](https://sites.gatech.edu/acorn/) at [Georgia Tech](https://www.gatech.edu).
+[Theory Lunch](https://theory.cs.washington.edu) at [University of Washington](https://theory.cs.washington.edu).
