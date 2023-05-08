@@ -9,6 +9,7 @@ profile:
   image: profile_greyscale.jpg
   image_circular: false # crops the image to make it circular
   address: >
+    <p>bento.surname@isye.gatech.edu</p>
     <p>Groseclose 312</p>
     <p>755 Ferst Dr NW</p>
     <p>Atlanta, Georgia 30318</p>
