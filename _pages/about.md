@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Postdoctoral Fellow | <a href='https://simons.berkeley.edu/people/bento-natura'>UC-Berkeley</a> & <a href='https://www.isye.gatech.edu/users/bento-natura'>Georgia Tech</a>.
+subtitle: Postdoctoral Fellow | <a href='https://simons.berkeley.edu/people/bento-natura'>UC Berkeley</a> & <a href='https://www.isye.gatech.edu/users/bento-natura'>Georgia Tech</a>.
 
 profile:
   align: right
