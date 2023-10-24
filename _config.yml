@@ -168,13 +168,13 @@ collections:
 
 
 
-news_scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+news_scrollable: false # adds a vertical scroll bar if there are more than 3 news items
 
-events_scrollable: true # adds a vertical scroll bar if there are more than 3  event items 
+events_scrollable: false # adds a vertical scroll bar if there are more than 3  event items 
 
-news_limit: 10 # leave blank to include all the news in the `_news` folder
+news_limit: 5 # leave blank to include all the news in the `_news` folder
 
-events_limit: 10 # leave blank to include all the events in the `_events` folder 
+events_limit: 5 # leave blank to include all the events in the `_events` folder 
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
