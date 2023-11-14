@@ -42,18 +42,18 @@ layout: default
 
           <!-- News -->
           {% if page.news -%}
-            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
+            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a></h2>
             {%- include news.html %}
           {%- endif %}
 
           {% if page.events -%}
-          <h2><a href="{{ '/events/' | relative_url }}" style="color: inherit;">events</a></h2>
+          <h2><a href="{{ '/events/' | relative_url }}" style="color: inherit;">Events</a></h2>
           {%- include events.html %}
         {%- endif %}
 
           <!-- Selected papers -->
           {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
+            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">Selected Works</a></h2>
             {%- include selected_papers.html %}
           {%- endif %}
 
