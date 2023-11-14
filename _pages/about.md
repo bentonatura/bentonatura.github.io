@@ -19,7 +19,7 @@ events: true # includes a list of upcmoming events
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
-I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under the supervision of <a href="http://personal.lse.ac.uk/veghl)" target="_blank">L&aacute;szl&oacute;
+I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under the supervision of <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute;
 V&eacute;gh</a>, funded by his <a href="https://erc.europa.eu/" target="_blank">ERC</a> grant <a href="http://personal.lse.ac.uk/veghl/scaleopt.html" target="_blank">ScaleOpt</a>. 
 
 I also hold a Bachelor's and Master's degree in Mathematics from the [University of Bonn](https://www.uni-bonn.de/en/university/), where I was supervised by <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
