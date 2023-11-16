@@ -563,8 +563,30 @@ footer.sticky-bottom {
           }
         }
       
-        a.venue{
+        a.conference{
           background-color: var(--global-theme-color);
+          color: white; 
+          font-weight: bold;
+          text-transform: none;
+          &:hover {
+            background-color: white;
+            border-color: var(--global-theme-color);
+          }
+        }
+      
+        a.journal{
+          background-color: #00369f;
+          color: white; 
+          font-weight: bold;
+          text-transform: none;
+          &:hover {
+            background-color: white;
+            border-color: var(--global-theme-color);
+          }
+        }
+      
+        a.preprint{
+          background-color: #228B22;
           color: white; 
           font-weight: bold;
           text-transform: none;

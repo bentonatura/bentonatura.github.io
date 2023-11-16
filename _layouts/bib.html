@@ -2,7 +2,7 @@
 ---
 <!-- _layouts/bib.html -->
       <div class="row">
-        <!-- <div class="col-sm-2 {% if entry.preview %}preview{% else %}abbr{% endif %}">
+        <!-- <div class="col-sm-2 {% if entry.preview %}preview{% else %}conference{% endif %}">
         {%- if entry.preview -%}
           {% if entry.preview contains '://' -%}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
@@ -13,15 +13,15 @@
             class="preview z-depth-1 rounded"
             alt=entry.preview -%}
           {%- endif -%}
-        {%- elsif entry.abbr -%}
-          {%- if site.data.venues[entry.abbr] -%}
+        {%- elsif entry.conference -%}
+          {%- if site.data.venues[entry.conference] -%}
             {%- assign venue_style = nil -%}
-            {%- if site.data.venues[entry.abbr].color != blank -%}
-              {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
+            {%- if site.data.venues[entry.conference].color != blank -%}
+              {%- assign venue_style = site.data.venues[entry.conference].color | prepend: 'style="background-color:' | append: '"' -%}
             {%- endif -%}
-            <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
+            <conference class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.conference].url}}">{{entry.conference}}</a></conference>
           {%- else -%}
-            <abbr class="badge">{{entry.abbr}}</abbr>
+            <conference class="badge">{{entry.conference}}</conference>
           {%- endif -%}
         {%- endif -%}
         </div> -->
@@ -136,21 +136,47 @@
           <!-- Links/Buttons -->
           <div class="links">
           
-          {%- if entry.abbr -%}
-            <span class="abbr">
-            {%- if site.data.venues[entry.abbr] -%}
+          {%- if entry.conference -%}
+            {%- if site.data.venues[entry.conference] -%}
               {%- assign venue_style = nil -%}
-              {%- if site.data.venues[entry.abbr].color != blank -%}
-                {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
+              {%- if site.data.venues[entry.conference].color != blank -%}
+                {%- assign venue_style = site.data.venues[entry.conference].color | prepend: 'style="background-color:' | append: '"' -%}
               {%- endif -%}
-              <!-- <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr> -->
-              <a class="venue btn btn-sm z-depth-0" role="button"> {{entry.abbr}} </a>
+              <!-- <conference class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.conference].url}}">{{entry.conference}}</a></conference> -->
+              <a class="conference btn btn-sm z-depth-0" role="button"> {{entry.conference}} </a>
             {%- else -%}
-            <a class="venue btn btn-sm z-depth-0" role="button"> {{entry.abbr}} </a>
-              <!-- <abbr class="badge">{{entry.abbr}}</abbr> -->
+            <a class="conference btn btn-sm z-depth-0" role="button"> {{entry.conference}} </a>
+              <!-- <conference class="badge">{{entry.conference}}</conference> -->
             {%- endif -%}
-            </span>
           {%- endif -%}
+          
+          {%- if entry.journal -%}
+          {%- if site.data.venues[entry.journal] -%}
+            {%- assign venue_style = nil -%}
+            {%- if site.data.venues[entry.journal].color != blank -%}
+              {%- assign venue_style = site.data.venues[entry.journal].color | prepend: 'style="background-color:' | append: '"' -%}
+            {%- endif -%}
+            <!-- <journal class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.journal].url}}">{{entry.journal}}</a></journal> -->
+            <a class="journal btn btn-sm z-depth-0" role="button"> {{entry.journal}} </a>
+          {%- else -%}
+          <a class="journal btn btn-sm z-depth-0" role="button"> {{entry.journal}} </a>
+            <!-- <journal class="badge">{{entry.journal}}</journal> -->
+          {%- endif -%}
+        {%- endif -%}
+          
+        {%- if entry.preprint -%}
+        {%- if site.data.venues[entry.preprint] -%}
+          {%- assign venue_style = nil -%}
+          {%- if site.data.venues[entry.preprint].color != blank -%}
+            {%- assign venue_style = site.data.venues[entry.preprint].color | prepend: 'style="background-color:' | append: '"' -%}
+          {%- endif -%}
+          <!-- <preprint class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.preprint].url}}">{{entry.preprint}}</a></preprint> -->
+          <a class="preprint btn btn-sm z-depth-0" role="button"> {{entry.preprint}} </a>
+        {%- else -%}
+        <a class="preprint btn btn-sm z-depth-0" role="button"> {{entry.preprint}} </a>
+          <!-- <preprint class="badge">{{entry.preprint}}</preprint> -->
+        {%- endif -%}
+      {%- endif -%}
           
           {%- if entry.abstract %}
             <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
