@@ -1,11 +1,16 @@
-"SICOMP":
+"Submitted":
+  color: "#228B22"
+"SIAM Journal on Computing":
   # url: https://aapt.scitation.org/journal/ajp
   color: "#00369f"
 
-"Math. Prog.":
+"Mathematical Programming":
   color: "#00369f"
 
-"Surv. Comb.":
+"Surveys in Combinatorics":
+  color: "#00369f"
+
+"Mathematics of Operations Research":
   color: "#00369f"
 
 "FOCS":

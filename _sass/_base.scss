@@ -101,6 +101,7 @@ blockquote {
   .address {
     margin-bottom: 5px;
     margin-top: 5px;
+    font-size: .8rem;
     font-family: monospace;
     p {
       display: inline-block;
@@ -468,6 +469,7 @@ footer.sticky-bottom {
 
 .publications {
   margin-top: 2rem;
+  margin-left: 1rem;
   h1 {
     color: var(--global-theme-color);
     font-size: 2rem;
@@ -554,11 +556,25 @@ footer.sticky-bottom {
           padding-right: 1rem;
           padding-top: 0.25rem;
           padding-bottom: 0.25rem;
+          text-transform: none;
           &:hover {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
           }
         }
+      
+        a.venue{
+          background-color: var(--global-theme-color);
+          color: white; 
+          font-weight: bold;
+          text-transform: none;
+          &:hover {
+            background-color: white;
+            border-color: var(--global-theme-color);
+          }
+        }
+      
+        
       }
       .badges {
         span {
