@@ -137,46 +137,16 @@
           <div class="links">
           
           {%- if entry.conference -%}
-            {%- if site.data.venues[entry.conference] -%}
-              {%- assign venue_style = nil -%}
-              {%- if site.data.venues[entry.conference].color != blank -%}
-                {%- assign venue_style = site.data.venues[entry.conference].color | prepend: 'style="background-color:' | append: '"' -%}
-              {%- endif -%}
-              <!-- <conference class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.conference].url}}">{{entry.conference}}</a></conference> -->
-              <a class="conference btn btn-sm z-depth-0" role="button"> {{entry.conference}} </a>
-            {%- else -%}
             <a class="conference btn btn-sm z-depth-0" role="button"> {{entry.conference}} </a>
-              <!-- <conference class="badge">{{entry.conference}}</conference> -->
-            {%- endif -%}
           {%- endif -%}
           
           {%- if entry.journal -%}
-          {%- if site.data.venues[entry.journal] -%}
-            {%- assign venue_style = nil -%}
-            {%- if site.data.venues[entry.journal].color != blank -%}
-              {%- assign venue_style = site.data.venues[entry.journal].color | prepend: 'style="background-color:' | append: '"' -%}
-            {%- endif -%}
-            <!-- <journal class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.journal].url}}">{{entry.journal}}</a></journal> -->
             <a class="journal btn btn-sm z-depth-0" role="button"> {{entry.journal}} </a>
-          {%- else -%}
-          <a class="journal btn btn-sm z-depth-0" role="button"> {{entry.journal}} </a>
-            <!-- <journal class="badge">{{entry.journal}}</journal> -->
-          {%- endif -%}
         {%- endif -%}
           
         {%- if entry.preprint -%}
-        {%- if site.data.venues[entry.preprint] -%}
-          {%- assign venue_style = nil -%}
-          {%- if site.data.venues[entry.preprint].color != blank -%}
-            {%- assign venue_style = site.data.venues[entry.preprint].color | prepend: 'style="background-color:' | append: '"' -%}
-          {%- endif -%}
-          <!-- <preprint class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.preprint].url}}">{{entry.preprint}}</a></preprint> -->
           <a class="preprint btn btn-sm z-depth-0" role="button"> {{entry.preprint}} </a>
-        {%- else -%}
-        <a class="preprint btn btn-sm z-depth-0" role="button"> {{entry.preprint}} </a>
-          <!-- <preprint class="badge">{{entry.preprint}}</preprint> -->
         {%- endif -%}
-      {%- endif -%}
           
           {%- if entry.abstract %}
             <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
