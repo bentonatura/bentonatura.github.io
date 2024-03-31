@@ -1,6 +1,5 @@
 ---
-permalink: /genflow/
-redirect_to:
-  - https://news.ycombinator.com 
+ layout:     redirect
+ permalink:  /genflow/
+ redirect:   https://bentonatura.com/assets/pdf/genflow.pdf
 ---
-<!-- _pages/publications.md -->
