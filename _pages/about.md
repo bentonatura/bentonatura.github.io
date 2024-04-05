@@ -29,9 +29,9 @@ I also hold a Bachelor's and Master's degree in Mathematics from the [University
 
 My current research interests are focused on the areas of algorithms, optimization, and game theory.
 
-<span style="font-weight:bold">
-I am on the 2023/24 academic job market.
-</span>
+<!-- <span style="font-weight:bold"> -->
+<!-- I am on the 2023/24 academic job market. -->
+<!-- </span> -->
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
