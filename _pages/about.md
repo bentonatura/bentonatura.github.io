@@ -19,8 +19,10 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
+I am an Assistant Professor in [Industrial Engineering and Operations Research (IEOR)](https://ieor.columbia.edu) at [Columbia University](https://ieor.columbia.edu).
 
-From 2022 to 2024 I spent two years as a Postdoctoral Researcher at [Georgia Tech](https://www.isye.gatech.edu)
+
+From 2022 to 2024 I spent two years as a Postdoctoral Researcher at [Georgia Tech](https://www.isye.gatech.edu). 
 In Fall 2023, I was a PostDoc at the [Simons Institute](https://simons.berkeley.edu/homepage) at UC Berkeley for a program in [Data Structures and Optimization for Fast Algorithms](https://simons.berkeley.edu/programs/data-structures-optimization-fast-algorithms). In Spring 2023, I was a PostDoc at [ICERM](https://icerm.brown.edu) at Brown University for a program in [Discrete Optimization](https://icerm.brown.edu/programs/sp-s23/).
 
 I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under the supervision of <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute;
