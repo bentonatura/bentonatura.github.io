@@ -4,7 +4,7 @@ permalink: /preprints/
 title: Preprints 
 description: 
 years: [2023] 
-nav: true
+nav: false 
 nav_order: 3
 ---
 <!-- _pages/publications.md -->

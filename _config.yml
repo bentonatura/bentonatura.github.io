@@ -164,6 +164,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  teaching:
+    output: true
+    permalink: /teaching/:path/
 
 
 
@@ -171,9 +174,9 @@ news_scrollable: false # adds a vertical scroll bar if there are more than 3 new
 
 events_scrollable: false # adds a vertical scroll bar if there are more than 3  event items 
 
-news_limit: 5 # leave blank to include all the news in the `_news` folder
+news_limit: 4 # leave blank to include all the news in the `_news` folder
 
-events_limit: 7 # leave blank to include all the events in the `_events` folder 
+events_limit: 5 # leave blank to include all the events in the `_events` folder 
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -351,6 +354,8 @@ enable_darkmode:            true   # enables switching between light/dark modes
 enable_navbar_social:       true   # enables displaying social links in the
                                    # navbar on the about page
 enable_project_categories:  true   # enables categorization of projects into
+                                   # multiple categories
+enable_teaching_categories:  true   # enables categorization of projects into
                                    # multiple categories
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
 enable_progressbar:         true   # enables a horizontal progress bar linked to the vertical scroll position
