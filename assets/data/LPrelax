@@ -1,0 +1,14 @@
+Maximize
+6 w1 + 5 w2
+
+Subject To
+4 w1 + 5 w2 <= 16
+8 w1 + 5 w2 <= 20
+
+Bounds
+w1 >= 1
+w1 <= 2
+w2 <= 3
+w2 >= 3
+
+END
