@@ -8,7 +8,7 @@ middle_name:
 last_name: Natura 
 email: bn2392@columbia.edu 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Bento Natura's academic homepage.
 footer_text:  Created with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   # Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
@@ -51,7 +51,6 @@ footer_fixed: true
 # Dimensions
 max_width: 800px
 
-# TODO: add layout settings (single page vs. multi-page)
 
 # -----------------------------------------------------------------------------
 # Open Graph & Schema.org
@@ -104,7 +103,7 @@ google_analytics: 400539826  # your Google Analytics measurement ID (format: G-X
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
-bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
+bing_site_verification:  # your bing-site-verification ID (Bing Webmaster)
 
 # -----------------------------------------------------------------------------
 # Blog
@@ -136,15 +135,13 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+disqus_shortname: # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
-# If you have blog posts published on medium.com or other exteranl sources,
+# If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
+external_sources: []
 
 # -----------------------------------------------------------------------------
 # Collections
@@ -253,7 +250,7 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['formatting', 'images', 'links', 'math', 'code'] # this tags will be dispalyed on the front page of your blog
+display_tags: [] # these tags will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
@@ -285,7 +282,7 @@ scholar:
 
   query: "@*"
 
-badges: # Display different badges for your pulications
+badges: # Display different badges for your publications
   altmetric_badge: true # Altmetric badge (https://www.altmetric.com/products/altmetric-badges/)
   dimensions_badge: false # Dimensions badge (https://badge.dimensions.ai/)
 
