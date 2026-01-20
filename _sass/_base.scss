@@ -7,7 +7,7 @@
 body {
   font-family: 'EB Garamond', 'Palatino Linotype', Palatino, Georgia, serif;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,7 +40,7 @@ hr {
 table {
   td,
   th {
-    font-size: 1rem;
+    font-size: inherit;
     padding: 1px 1rem 1px 0;
   }
 
