@@ -1,0 +1,22 @@
+<!-- _includes/teaching.liquid -->
+<div class="grid-sizer"></div>
+<div class="grid-item">
+  {% if teaching.redirect %}
+    <a href="{{ teaching.redirect }}">
+  {% else %}
+    <a href="{{ teaching.url | relative_url }}">
+  {% endif %}
+      <div class="card hoverable">
+        {% if teaching.img %}
+          {% include figure.liquid
+            path=teaching.img
+            alt="teaching thumbnail"
+          %}
+        {% endif %}
+        <div class="card-body">
+          <h2 class="card-title">{{ teaching.title }}</h2>
+          <p class="card-text">{{ teaching.description }}</p>
+        </div>
+      </div>
+    </a>
+</div>

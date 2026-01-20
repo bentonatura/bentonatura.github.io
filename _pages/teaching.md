@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Teaching 
+title: Teaching
 permalink: /teaching/
-description: 
-nav: true 
+description:
+nav: true
 nav_order: 2
-display_categories: [Spring 2026,Spring 2025]
-horizontal: false 
+display_categories: [Spring 2026, Spring 2025]
+horizontal: false
 ---
 
 <!-- pages/teaching.md -->
@@ -22,14 +22,14 @@ horizontal: false
   <div class="container">
     <div class="row row-cols-2">
     {%- for project in sorted_teaching -%}
-      {% include teaching_horizontal.html %}
+      {% include teaching_horizontal.liquid %}
     {%- endfor %}
     </div>
   </div>
   {%- else -%}
   <div class="grid">
     {%- for teaching in sorted_teaching -%}
-      {% include teaching.html %}
+      {% include teaching.liquid %}
     {%- endfor %}
   </div>
   {%- endif -%}
@@ -43,14 +43,14 @@ horizontal: false
   <div class="container">
     <div class="row row-cols-2">
     {%- for project in sorted_teaching -%}
-      {% include teaching_horizontal.html %}
+      {% include teaching_horizontal.liquid %}
     {%- endfor %}
     </div>
   </div>
   {%- else -%}
   <div class="grid">
     {%- for project in sorted_teaching -%}
-      {% include teaching.html %}
+      {% include teaching.liquid %}
     {%- endfor %}
   </div>
   {%- endif -%}

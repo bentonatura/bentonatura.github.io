@@ -1,59 +1,59 @@
-"Olver":
+olver:
   - firstname: ["Neil", "N."]
     url: https://nolver.net/home/
 
-"Dadush":
+dadush:
   - firstname: ["Daniel", "D."]
-    url: https://homepages.cwi.nl/~dadush/ 
+    url: https://homepages.cwi.nl/~dadush/
 
-"Végh":
-  - firstname: ["László A."]
+vegh:
+  - firstname: ["László A.", "Laszlo A."]
     url: https://personal.lse.ac.uk/veghl/
 
-"Koh":
+koh:
   - firstname: ["Zhuan Khye"]
     url: https://personal.lse.ac.uk/kohz3/
 
-"Loho":
+loho:
   - firstname: ["Georg"]
     url: https://lohomath.github.io
 
-"Ekbatani":
+ekbatani:
   - firstname: ["Farbod"]
     url: https://www.linkedin.com/in/farbod-ekbatani-5219311b6/?originalSubdomain=uk
 
-"Weltge":
+weltge:
   - firstname: ["Stefan"]
     url: https://weltge.de
 
-"Held":
+held:
   - firstname: ["Stephan"]
     url: http://www.or.uni-bonn.de/~held/Stephan_Held.html
 
-"Allamigeon":
+allamigeon:
   - firstname: ["Xavier"]
     url: http://www.cmap.polytechnique.fr/~allamigeon/
 
-"Jiang":
+jiang:
   - firstname: ["Shunhua"]
     url: https://www.cs.columbia.edu/~jiangsh/
 
-"Weinstein":
+weinstein:
   - firstname: ["Omri"]
     url: https://omriweinstein.huji.ac.il
-  
-"Huiberts":
+
+huiberts:
   - firstname: ["Sophie"]
     url: https://sophie.huiberts.me
 
-"Neuwohner":
+neuwohner:
   - firstname: ["Meike"]
     url: https://www.hcm.uni-bonn.de/people/phd-students/profile/meike-neuwohner/
 
-"Daboul":
+daboul:
   - firstname: ["Siad"]
     url: https://www.linkedin.com/in/siad-daboul-9028561b8?originalSubdomain=de
 
-"Rotter":
+rotter:
   - firstname: ["Daniel"]
-    url: 
+    url:

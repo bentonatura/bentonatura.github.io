@@ -1,0 +1,9 @@
+# this file contains the social media links and usernames of the author
+# the socials will be displayed in the order they are defined here
+# for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
+email: bn2392@columbia.edu
+linkedin_username: bento-natura
+scholar_userid: 4rDjvrsAAAAJ
+orcid_id: 0000-0002-8068-3280
+dblp_url: https://dblp.org/pid/255/7588.html
+rss_icon: false
