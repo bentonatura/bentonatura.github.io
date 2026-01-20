@@ -330,3 +330,22 @@
 {% if site.newsletter.enabled %}
   <script defer src="{{ '/assets/js/newsletter.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
+
+<!-- Show more/less toggle for news and events -->
+<script>
+  function toggleShowMore(button, className) {
+    const items = document.querySelectorAll('.' + className);
+    const isHidden = items[0].style.display === 'none';
+
+    items.forEach(item => {
+      item.style.display = isHidden ? 'table-row' : 'none';
+    });
+
+    const icon = button.querySelector('i');
+    if (isHidden) {
+      button.innerHTML = 'Show less <i class="ti ti-chevron-up"></i>';
+    } else {
+      button.innerHTML = 'Show more <i class="ti ti-chevron-down"></i>';
+    }
+  }
+</script>

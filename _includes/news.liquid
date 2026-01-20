@@ -1,21 +1,16 @@
 <div class="news">
   {% if site.news != blank %}
     {% assign news_size = site.news | size %}
-    <div
-      class="table-responsive"
-      {% if include.limit and page.announcements.scrollable and news_size > 3 %}
-        style="max-height: 60vw"
-      {% endif %}
-    >
+    {% assign news = site.news | reverse %}
+    {% if include.limit and page.announcements.limit %}
+      {% assign news_limit = page.announcements.limit %}
+    {% else %}
+      {% assign news_limit = news_size %}
+    {% endif %}
+    <div class="table-responsive">
       <table class="table table-sm table-borderless">
-        {% assign news = site.news | reverse %}
-        {% if include.limit and page.announcements.limit %}
-          {% assign news_limit = page.announcements.limit %}
-        {% else %}
-          {% assign news_limit = news_size %}
-        {% endif %}
         {% for item in news limit: news_limit %}
-          <tr>
+          <tr {% if forloop.index > 5 and news_size > 5 %}class="news-hidden" style="display: none;"{% endif %}>
             <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
             <td>
               {% if item.inline %}
@@ -28,6 +23,13 @@
         {% endfor %}
       </table>
     </div>
+    {% if news_size > 5 %}
+      <div class="text-center mt-2">
+        <button class="btn btn-link show-more-btn" data-target="news" onclick="toggleShowMore(this, 'news-hidden')">
+          Show more <i class="ti ti-chevron-down"></i>
+        </button>
+      </div>
+    {% endif %}
   {% else %}
     <p>No news so far...</p>
   {% endif %}
