@@ -211,16 +211,25 @@ ul.task-list input[type="checkbox"] {
 
 .profile {
   width: 100%;
+  overflow: visible;
 
   .more-info {
     margin-bottom: 5px;
     margin-top: 5px;
-    font-family: monospace;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
 
     p {
       display: inline-block;
       margin: 0;
     }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -235,12 +244,22 @@ ul.task-list input[type="checkbox"] {
 @media (min-width: 576px) {
   .profile {
     width: 30%;
+    min-width: 200px;
 
     .address {
       p {
         display: block;
       }
     }
+  }
+}
+
+@media (max-width: 575px) {
+  .profile {
+    float: none !important;
+    width: 100%;
+    margin: 0 auto 1rem auto;
+    text-align: center;
   }
 }
 
