@@ -17,11 +17,17 @@
             <section>
                 <h1>Lecture 3</h1>
                 <h3>Convex Optimization</h3>
+                <aside class="notes">
+                    Convexity is the single most important concept in optimization. Convex problems have the remarkable property that any local minimum is also a global minimum. This makes them tractable both theoretically and computationally.
+                </aside>
             </section>
             <section>
                 <h2>Convex Sets</h2>
                 <p>A set \(C\) is convex if:</p>
                 <p>\[\forall x, y \in C, \forall \theta \in [0,1]: \theta x + (1-\theta)y \in C\]</p>
+                <aside class="notes">
+                    Draw pictures! A set is convex if the line segment between any two points in the set stays in the set. Examples: balls, halfspaces, polyhedra. Non-examples: donuts, stars. Intersection of convex sets is convex - this is very useful.
+                </aside>
             </section>
             <section>
                 <h2>Convex Functions</h2>
@@ -30,19 +36,29 @@
                     <li>First-order conditions</li>
                     <li>Second-order conditions</li>
                 </ul>
+                <aside class="notes">
+                    A function is convex if its epigraph is a convex set. Equivalently, the function lies below any chord. First-order condition: f(y) >= f(x) + gradient dot (y-x). Second-order: Hessian is positive semidefinite. Common examples: norms, quadratics with PSD matrix, log-sum-exp.
+                </aside>
             </section>
             <section>
                 <h2>Optimization Problems</h2>
                 <p>\[\min_{x} f(x) \quad \text{s.t.} \quad g_i(x) \leq 0, \; h_j(x) = 0\]</p>
+                <aside class="notes">
+                    A problem is convex if: objective is convex, inequality constraints are convex, equality constraints are affine. The feasible set is then convex. KKT conditions are necessary AND sufficient for convex problems. This is why convex optimization is so powerful.
+                </aside>
             </section>
             <section>
                 <h2>Summary</h2>
                 <p>Next: Lecture 4</p>
+                <aside class="notes">
+                    We've established the theoretical foundation. Convexity = tractability. Next lecture we'll see how to actually solve these problems using gradient descent and its variants.
+                </aside>
             </section>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
@@ -50,7 +66,7 @@
                 mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
                 config: 'TeX-AMS_HTML-full'
             },
-            plugins: [RevealMath]
+            plugins: [RevealMath, RevealNotes]
         });
     </script>
 </body>

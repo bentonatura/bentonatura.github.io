@@ -17,11 +17,17 @@
             <section>
                 <h1>Lecture 4</h1>
                 <h3>Gradient Methods</h3>
+                <aside class="notes">
+                    Today we move from theory to algorithms. Gradient descent is the workhorse of continuous optimization. Simple to implement, easy to analyze, and surprisingly effective. It's also the foundation of deep learning optimization.
+                </aside>
             </section>
             <section>
                 <h2>Gradient Descent</h2>
                 <p>Update rule:</p>
                 <p>\[x_{k+1} = x_k - \alpha \nabla f(x_k)\]</p>
+                <aside class="notes">
+                    The gradient points in the direction of steepest ascent, so we move in the opposite direction. Alpha is the step size or learning rate - choosing it well is crucial. Too small = slow convergence. Too large = divergence or oscillation.
+                </aside>
             </section>
             <section>
                 <h2>Convergence Analysis</h2>
@@ -30,6 +36,9 @@
                     <li>Convergence rate</li>
                     <li>Condition number</li>
                 </ul>
+                <aside class="notes">
+                    For L-smooth functions, step size 1/L guarantees convergence. Rate is O(1/k) for convex, O(exp(-k)) for strongly convex. The condition number kappa = L/mu determines how fast we converge - ill-conditioned problems are slow. This motivates preconditioning and second-order methods.
+                </aside>
             </section>
             <section>
                 <h2>Variants</h2>
@@ -38,15 +47,22 @@
                     <li>Momentum methods</li>
                     <li>Adaptive methods (Adam, AdaGrad)</li>
                 </ul>
+                <aside class="notes">
+                    SGD uses random subset of data - crucial for large-scale ML. Momentum adds a "velocity" term to escape local minima and accelerate convergence. Adam combines momentum with adaptive per-parameter learning rates. These are the methods actually used in practice for training neural networks.
+                </aside>
             </section>
             <section>
                 <h2>Summary</h2>
                 <p>Next: Lecture 5</p>
+                <aside class="notes">
+                    Gradient methods are first-order: they only use gradient information. They're simple but can be slow for ill-conditioned problems. Next lecture: interior point methods, which use second-order information and achieve much faster convergence for structured problems.
+                </aside>
             </section>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
@@ -54,7 +70,7 @@
                 mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
                 config: 'TeX-AMS_HTML-full'
             },
-            plugins: [RevealMath]
+            plugins: [RevealMath, RevealNotes]
         });
     </script>
 </body>

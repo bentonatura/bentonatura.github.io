@@ -6,7 +6,6 @@
     <title>Lecture 1</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <style>
         .reveal h1, .reveal h2 { color: #2c3e50; }
         .reveal { font-size: 32px; }
@@ -18,6 +17,9 @@
             <section>
                 <h1>Lecture 1</h1>
                 <h3>Introduction to the Course</h3>
+                <aside class="notes">
+                    Welcome everyone to the first lecture. Today we'll cover the course structure, expectations, and give an overview of what we'll learn this semester.
+                </aside>
             </section>
             <section>
                 <h2>Overview</h2>
@@ -26,6 +28,9 @@
                     <li>Prerequisites</li>
                     <li>Grading policy</li>
                 </ul>
+                <aside class="notes">
+                    Go through syllabus highlights. Mention office hours and TA sessions. Emphasize that prerequisites are important - students should be comfortable with basic calculus and linear algebra.
+                </aside>
             </section>
             <section>
                 <h2>Key Concepts</h2>
@@ -35,20 +40,30 @@
                     <li>Algorithmic techniques</li>
                     <li>Practical applications</li>
                 </ul>
+                <aside class="notes">
+                    This course bridges theory and practice. Mathematical foundations give us the tools to analyze algorithms. We'll see real-world applications in machine learning, operations research, and engineering.
+                </aside>
             </section>
             <section>
                 <h2>Example Formula</h2>
                 <p>The optimization problem:</p>
-                <p><span class="katex-display">\[\min_{x \in \mathbb{R}^n} f(x) \quad \text{subject to} \quad Ax = b\]</span></p>
+                <p>\[\min_{x \in \mathbb{R}^n} f(x) \quad \text{subject to} \quad Ax = b\]</p>
+                <aside class="notes">
+                    This is the general form of a constrained optimization problem. f(x) is the objective function we want to minimize. The constraint Ax = b represents linear equality constraints. We'll spend several weeks understanding how to solve problems of this form efficiently.
+                </aside>
             </section>
             <section>
                 <h2>Questions?</h2>
                 <p>Next: Lecture 2</p>
+                <aside class="notes">
+                    Open the floor for questions. Remind students about the first homework assignment. Mention that Lecture 2 will review essential linear algebra concepts.
+                </aside>
             </section>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
@@ -56,7 +71,7 @@
                 mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
                 config: 'TeX-AMS_HTML-full'
             },
-            plugins: [RevealMath]
+            plugins: [RevealMath, RevealNotes]
         });
     </script>
 </body>
