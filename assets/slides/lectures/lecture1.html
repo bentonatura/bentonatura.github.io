@@ -72,6 +72,19 @@
                 config: 'TeX-AMS_HTML-full'
             },
             plugins: [RevealMath, RevealNotes]
+        }).then(() => {
+            // Send notes to parent cockpit
+            function sendNotes() {
+                const currentSlide = Reveal.getCurrentSlide();
+                const notes = currentSlide.querySelector('aside.notes');
+                window.parent.postMessage({
+                    type: 'slideNotes',
+                    notes: notes ? notes.innerHTML : ''
+                }, '*');
+            }
+            Reveal.on('slidechanged', sendNotes);
+            Reveal.on('ready', sendNotes);
+            sendNotes();
         });
     </script>
 </body>
