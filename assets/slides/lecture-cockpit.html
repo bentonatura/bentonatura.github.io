@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Cockpit</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            font-family: system-ui, sans-serif;
+        }
+        
+        :root {
+            --split: 50%;
+        }
+
+        /* Layout Container */
+        .container {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+        }
+        
+        .vertical {
+            grid-template-columns: var(--split) 1fr;
+            grid-template-rows: 100%;
+        }
+        
+        .horizontal {
+            grid-template-columns: 100%;
+            grid-template-rows: var(--split) 1fr;
+        }
+        
+        .three-column {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100%;
+        }
+        
+        .grid-2x2 {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+        }
+        
+        /* Frame Wrapper */
+        .frame-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Control Area Trigger Zone */
+        .control-trigger {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100px;
+            z-index: 99;
+            pointer-events: none;
+        }
+        
+        /* Control Panel Container */
+        .control-panel {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            cursor: move;
+            user-select: none;
+        }
+        
+        .control-panel.dragging {
+            transition: none;
+            cursor: grabbing;
+        }
+        
+        .frame-wrapper:hover .control-trigger {
+            pointer-events: auto;
+        }
+        
+        .control-trigger:hover ~ .control-panel,
+        .control-panel:hover {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .control-panel .main-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-panel .actions-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-panel .actions-row.vertical {
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        .control-panel .actions-row.vertical button {
+            width: 100%;
+        }
+        
+        .control-panel select,
+        .control-panel button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0 16px;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+            height: 36px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+            font-weight: 500;
+            width: auto;
+        }
+        
+        .control-panel .actions-row button {
+            min-width: fit-content;
+        }
+        
+        .control-panel select:first-child {
+            min-width: 150px;
+            font-size: 13px;
+            padding: 0 20px;
+        }
+        
+        .control-panel button:hover,
+        .control-panel select:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .control-panel select option {
+            background: #333;
+            color: white;
+        }
+        
+        .control-panel .label {
+            font-size: 10px;
+            opacity: 0.7;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        /* Whiteboard Container Wrapper */
+        .wb-container {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wb-wrapper {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            transition: width 0.3s, height 0.3s;
+            position: relative;
+            overflow: hidden; /* Acts as scissors to crop iframe */
+        }
+        
+        .wb-wrapper iframe {
+            width: 100%;
+            height: 125%;
+            display: block;
+            border: none;
+            margin-left: 0;
+            /* margin-top dynamically adjusted via JS */
+        }
+
+        /* Dock & Trigger Zone */
+        .trigger-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 20px;
+            pointer-events: none;
+        }
+        
+        .trigger-zone > * {
+            pointer-events: auto;
+        }
+        
+        .dock {
+            background: rgba(20, 25, 40, 0.9);
+            color: #fff;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .trigger-zone:hover .dock,
+        .trigger-zone:focus-within .dock {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* UI Components */
+        button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        button:hover {
+            background: #3b82f6;
+        }
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 140px;
+            background: transparent;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            margin-top: -5px;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        select {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 11px;
+            outline: none;
+            cursor: pointer;
+            height: 28px;
+        }
+        
+        select option {
+            background: #333;
+            color: white;
+        }
+
+        .divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        
+        .label {
+            font-size: 10px;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="pdf-file-input" accept="application/pdf" style="display: none;">
+    <iframe id="frame-custom-url" style="display: none;" data-name="Custom"></iframe>
+    
+    <div class="container vertical" id="layout">
+        <div class="frame-wrapper" id="wrapper-1">
+            <div class="control-trigger"></div>
+            <div class="control-panel">
+                <select onchange="handleFrameChange(0, this.value)">
+                    <option value="pdf">PDF</option>
+                    <option value="whiteboard">Whiteboard</option>
+                    <option value="quarto" selected>Quarto</option>
+                    <option value="custom-url">Custom URL</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="frame-wrapper" id="wrapper-2">
+            <div class="control-trigger"></div>
+            <div class="control-panel">
+                <select onchange="handleFrameChange(1, this.value)">
+                    <option value="pdf">PDF</option>
+                    <option value="whiteboard" selected>Whiteboard</option>
+                    <option value="quarto">Quarto</option>
+                    <option value="custom-url">Custom URL</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="frame-wrapper" id="wrapper-3" style="display: none;">
+            <div class="control-trigger"></div>
+            <div class="control-panel">
+                <select onchange="handleFrameChange(2, this.value)">
+                    <option value="pdf">PDF</option>
+                    <option value="whiteboard">Whiteboard</option>
+                    <option value="quarto" selected>Quarto</option>
+                    <option value="custom-url">Custom URL</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="frame-wrapper" id="wrapper-4" style="display: none;">
+            <div class="control-trigger"></div>
+            <div class="control-panel">
+                <select onchange="handleFrameChange(3, this.value)">
+                    <option value="pdf">PDF</option>
+                    <option value="whiteboard">Whiteboard</option>
+                    <option value="quarto">Quarto</option>
+                    <option value="custom-url">Custom URL</option>
+                    <option value="none" selected>None</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="trigger-zone">
+        <div class="dock">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="label">Layout</span>
+                <select id="layout-select" onchange="changeLayout(this.value)">
+                    <option value="vertical">2 Column</option>
+                    <option value="horizontal">2 Row</option>
+                    <option value="three-column">3 Column</option>
+                    <option value="grid-2x2">2x2 Grid</option>
+                </select>
+            </div>
+            
+            <div class="divider"></div>
+
+            <input type="range" min="0" max="100" value="50" id="slider" oninput="updateSplit(this.value)">
+        </div>
+    </div>
+
+    <script>
+        const layout = document.getElementById('layout');
+        const slider = document.getElementById('slider');
+        const layoutSelect = document.getElementById('layout-select');
+        const pdfFileInput = document.getElementById('pdf-file-input');
+        
+        const wrappers = [
+            document.getElementById('wrapper-1'),
+            document.getElementById('wrapper-2'),
+            document.getElementById('wrapper-3'),
+            document.getElementById('wrapper-4')
+        ];
+        
+        // Whiteboard aspect ratios
+        const WB_RATIOS = {
+            none: null,
+            ipad_landscape: 2752 / 2064,  // iPad Pro 13" landscape
+            ipad_portrait: 2064 / 2752     // iPad Pro 13" portrait
+        };
+        
+        let currentLayout = 'vertical';
+        let frameContents = ['quarto', 'whiteboard', 'quarto', 'none'];
+        let wbRatios = [WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape];
+        let wbCropOffsets = [0, 0, 0, 0]; // Track crop offset per frame (in pixels)
+        let pdfToolbarsHidden = [true, true, true, true]; // Track toolbar state per frame
+        
+        // Template URLs
+        const TEMPLATES = {
+            whiteboard: 'https://zoom.us/wb/db/htKYyO2fR06d1h-kZLkKyA/p/116531303809024',
+            quarto: 'https://quarto.org/docs/presentations/revealjs/demo/#/interactive-slides-1'
+        };
+
+        function updateSplit(val) {
+            let snap = parseInt(val);
+            if (snap < 5) snap = 0;
+            if (snap > 95) snap = 100;
+            if (snap > 45 && snap < 55) snap = 50;
+            document.documentElement.style.setProperty('--split', snap + '%');
+            
+            // Trigger whiteboard resize after split changes
+            setTimeout(() => resizeAllWhiteboards(), 50);
+        }
+
+        function changeLayout(newLayout) {
+            layout.classList.remove('vertical', 'horizontal', 'three-column', 'grid-2x2');
+            layout.classList.add(newLayout);
+            currentLayout = newLayout;
+            
+            // Count current non-none frames
+            const activeFrames = frameContents.filter(content => content !== 'none').length;
+            
+            if (newLayout === 'three-column') {
+                slider.style.display = 'none';
+                wrappers[0].style.display = 'block';
+                wrappers[1].style.display = 'block';
+                wrappers[2].style.display = 'block';
+                wrappers[3].style.display = 'none';
+                
+                // If we have more than 3 active frames, move the 4th to the first available slot
+                if (activeFrames > 3 && frameContents[3] !== 'none') {
+                    // Find first available slot in wrappers 0-2
+                    for (let i = 0; i < 3; i++) {
+                        if (frameContents[i] === 'none') {
+                            frameContents[i] = frameContents[3];
+                            frameContents[3] = 'none';
+                            break;
+                        }
+                    }
+                }
+            } else if (newLayout === 'grid-2x2') {
+                slider.style.display = 'none';
+                wrappers[0].style.display = 'block';
+                wrappers[1].style.display = 'block';
+                wrappers[2].style.display = 'block';
+                wrappers[3].style.display = 'block';
+            } else {
+                // 2-column layouts (vertical/horizontal)
+                slider.style.display = 'block';
+                wrappers[0].style.display = 'block';
+                wrappers[1].style.display = 'block';
+                wrappers[2].style.display = 'none';
+                wrappers[3].style.display = 'none';
+                
+                // If we have more than 2 active frames, move them to the first two slots
+                if (activeFrames > 2) {
+                    const activeContents = [];
+                    const inactiveContents = [];
+                    
+                    frameContents.forEach(content => {
+                        if (content !== 'none') {
+                            activeContents.push(content);
+                        } else {
+                            inactiveContents.push(content);
+                        }
+                    });
+                    
+                    // Keep only first 2 active frames, rest become 'none'
+                    frameContents = [
+                        activeContents[0] || 'none',
+                        activeContents[1] || 'none',
+                        activeContents[2] || 'none',
+                        activeContents[3] || 'none'
+                    ];
+                }
+            }
+            
+            updateAllFrames();
+            
+            // Force refresh control triggers after layout change
+            setTimeout(() => {
+                wrappers.forEach(wrapper => {
+                    const trigger = wrapper.querySelector('.control-trigger');
+                    const panel = wrapper.querySelector('.control-panel');
+                    if (trigger && panel) {
+                        // Force reflow to reset hover states
+                        trigger.style.display = 'none';
+                        trigger.offsetHeight; // Force reflow
+                        trigger.style.display = '';
+                    }
+                });
+            }, 50);
+        }
+        
+        function createFrame(contentType, wrapperIndex) {
+            const wrapper = wrappers[wrapperIndex];
+            
+            // Clear wrapper content except control trigger and control panel
+            const controlTrigger = wrapper.querySelector('.control-trigger');
+            const controlPanel = wrapper.querySelector('.control-panel');
+            const selector = controlPanel ? controlPanel.querySelector('select') : null;
+            
+            wrapper.innerHTML = '';
+            if (controlTrigger) wrapper.appendChild(controlTrigger);
+            if (controlPanel) {
+                // Clear panel but preserve selector
+                controlPanel.innerHTML = '';
+                
+                // Create main row with selector
+                const mainRow = document.createElement('div');
+                mainRow.className = 'main-row';
+                if (selector) mainRow.appendChild(selector);
+                controlPanel.appendChild(mainRow);
+                
+                wrapper.appendChild(controlPanel);
+            }
+            
+            if (contentType === 'none') return;
+            
+            if (contentType === 'pdf') {
+                const iframe = document.createElement('iframe');
+                iframe.src = '';
+                wrapper.appendChild(iframe);
+                
+                // Add action buttons in a column
+                if (controlPanel) {
+                    const actionsRow = document.createElement('div');
+                    actionsRow.className = 'actions-row vertical';
+                    
+                    const loadBtn = document.createElement('button');
+                    loadBtn.textContent = '📄 Load PDF';
+                    loadBtn.onclick = () => reloadPdf(wrapperIndex);
+                    actionsRow.appendChild(loadBtn);
+                    
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.innerHTML = `<span id="pdf-toggle-text-${wrapperIndex}">Show Controls</span>`;
+                    toggleBtn.onclick = () => togglePdfToolbar(wrapperIndex);
+                    actionsRow.appendChild(toggleBtn);
+                    
+                    controlPanel.appendChild(actionsRow);
+                }
+            } else if (contentType === 'whiteboard') {
+                const container = document.createElement('div');
+                container.className = 'wb-container';
+                const wbWrapper = document.createElement('div');
+                wbWrapper.className = 'wb-wrapper';
+                const iframe = document.createElement('iframe');
+                iframe.src = TEMPLATES.whiteboard;
+                iframe.style.marginTop = `-${wbCropOffsets[wrapperIndex]}px`;
+                wbWrapper.appendChild(iframe);
+                container.appendChild(wbWrapper);
+                wrapper.appendChild(container);
+                
+                // Add format selector, crop slider, and custom URL button
+                if (controlPanel) {
+                    const actionsRow = document.createElement('div');
+                    actionsRow.className = 'actions-row';
+                    
+                    const formatSelect = document.createElement('select');
+                    formatSelect.onchange = (e) => updateWbFormat(wrapperIndex, e.target.value);
+                    formatSelect.innerHTML = `
+                        <option value="none" ${wbRatios[wrapperIndex] === WB_RATIOS.none ? 'selected' : ''}>Default (No Padding)</option>
+                        <option value="ipad_landscape" ${wbRatios[wrapperIndex] === WB_RATIOS.ipad_landscape ? 'selected' : ''}>iPad Pro 13" Landscape</option>
+                        <option value="ipad_portrait" ${wbRatios[wrapperIndex] === WB_RATIOS.ipad_portrait ? 'selected' : ''}>iPad Pro 13" Portrait</option>
+                    `;
+                    actionsRow.appendChild(formatSelect);
+                    controlPanel.appendChild(actionsRow);
+                    
+                    // Add crop slider
+                    const cropRow = document.createElement('div');
+                    cropRow.className = 'actions-row';
+                    cropRow.style.width = '100%';
+                    cropRow.style.display = 'flex';
+                    cropRow.style.alignItems = 'center';
+                    cropRow.style.gap = '8px';
+                    
+                    const cropLabel = document.createElement('span');
+                    cropLabel.className = 'label';
+                    cropLabel.textContent = 'Crop Top';
+                    cropRow.appendChild(cropLabel);
+                    
+                    const cropSlider = document.createElement('input');
+                    cropSlider.type = 'range';
+                    cropSlider.min = '0';
+                    cropSlider.max = '400';
+                    cropSlider.value = wbCropOffsets[wrapperIndex];
+                    cropSlider.style.flex = '1';
+                    cropSlider.oninput = (e) => updateWbCrop(wrapperIndex, parseInt(e.target.value));
+                    cropRow.appendChild(cropSlider);
+                    
+                    const cropValue = document.createElement('span');
+                    cropValue.id = `crop-value-${wrapperIndex}`;
+                    cropValue.style.color = 'white';
+                    cropValue.style.fontSize = '11px';
+                    cropValue.style.minWidth = '35px';
+                    cropValue.textContent = `${wbCropOffsets[wrapperIndex]}px`;
+                    cropRow.appendChild(cropValue);
+                    
+                    controlPanel.appendChild(cropRow);
+                    
+                    const customRow = document.createElement('div');
+                    customRow.className = 'actions-row';
+                    
+                    const customBtn = document.createElement('button');
+                    customBtn.textContent = '🔗 Custom Whiteboard';
+                    customBtn.onclick = () => loadCustomWhiteboard(wrapperIndex);
+                    customRow.appendChild(customBtn);
+                    
+                    controlPanel.appendChild(customRow);
+                }
+            } else if (contentType === 'quarto') {
+                const iframe = document.createElement('iframe');
+                iframe.src = TEMPLATES.quarto;
+                iframe.setAttribute('allow', 'popups');
+                iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-popups-to-escape-sandbox');
+                wrapper.appendChild(iframe);
+            } else if (contentType === 'custom-url') {
+                const iframe = document.createElement('iframe');
+                wrapper.appendChild(iframe);
+                
+                // Add button in actions row
+                if (controlPanel) {
+                    const actionsRow = document.createElement('div');
+                    actionsRow.className = 'actions-row';
+                    
+                    const changeBtn = document.createElement('button');
+                    changeBtn.textContent = '🔗 Change URL';
+                    changeBtn.onclick = () => reloadCustomUrl(wrapperIndex);
+                    actionsRow.appendChild(changeBtn);
+                    
+                    controlPanel.appendChild(actionsRow);
+                }
+            }
+        }
+        
+        function handleFrameChange(wrapperIndex, contentType) {
+            // If PDF is selected, trigger file picker
+            if (contentType === 'pdf') {
+                pdfFileInput.dataset.targetWrapper = wrapperIndex;
+                pdfFileInput.click();
+            }
+            
+            // If Custom URL is selected, prompt for URL
+            if (contentType === 'custom-url') {
+                const input = prompt('Enter URL or search terms:', '');
+                if (input) {
+                    frameContents[wrapperIndex] = 'custom-url';
+                    createFrame('custom-url', wrapperIndex);
+                    const iframe = wrappers[wrapperIndex].querySelector('iframe');
+                    if (iframe) {
+                        // Check if input looks like a URL (contains :// or starts with www.)
+                        const isUrl = input.includes('://') || input.startsWith('www.');
+                        
+                        if (isUrl) {
+                            // Add https:// if no protocol specified
+                            iframe.src = input.startsWith('www.') ? 'https://' + input : input;
+                        } else {
+                            // Treat as search terms and create Google search URL
+                            const searchQuery = encodeURIComponent(input);
+                            iframe.src = `https://www.google.com/search?igu=1&q=${searchQuery}`;
+                        }
+                    }
+                } else {
+                    // If cancelled, reset dropdown
+                    const select = wrappers[wrapperIndex].querySelector('select');
+                    if (select) select.value = frameContents[wrapperIndex];
+                    return;
+                }
+            } else {
+                frameContents[wrapperIndex] = contentType;
+                createFrame(contentType, wrapperIndex);
+            }
+            
+            // Update select value
+            const controlPanel = wrappers[wrapperIndex].querySelector('.control-panel');
+            const select = controlPanel ? controlPanel.querySelector('select') : null;
+            if (select) select.value = contentType;
+            
+            resizeAllWhiteboards();
+        }
+        
+        function updateAllFrames() {
+            frameContents.forEach((contentType, index) => {
+                if (wrappers[index].style.display !== 'none') {
+                    createFrame(contentType, index);
+                    const controlPanel = wrappers[index].querySelector('.control-panel');
+                    const select = controlPanel ? controlPanel.querySelector('select') : null;
+                    if (select) select.value = contentType;
+                }
+            });
+            resizeAllWhiteboards();
+        }
+        
+        function resizeAllWhiteboards() {
+            wrappers.forEach((wrapper, index) => {
+                if (frameContents[index] === 'whiteboard' && wrapper.style.display !== 'none') {
+                    const container = wrapper.querySelector('.wb-container');
+                    const wbWrapper = wrapper.querySelector('.wb-wrapper');
+                    
+                    if (!container || !wbWrapper) return;
+                    
+                    const contW = container.clientWidth;
+                    const contH = container.clientHeight;
+                    const ratio = wbRatios[index];
+
+                    // If ratio is null (default/none), fill the entire container
+                    if (ratio === null) {
+                        wbWrapper.style.width = contW + 'px';
+                        wbWrapper.style.height = contH + 'px';
+                    } else {
+                        const contRatio = contW / contH;
+                        if (contRatio > ratio) {
+                            wbWrapper.style.height = contH + 'px';
+                            wbWrapper.style.width = (contH * ratio) + 'px';
+                        } else {
+                            wbWrapper.style.width = contW + 'px';
+                            wbWrapper.style.height = (contW / ratio) + 'px';
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateWbFormat(wrapperIndex, format) {
+            wbRatios[wrapperIndex] = WB_RATIOS[format];
+            resizeAllWhiteboards();
+        }
+        
+        // Update whiteboard crop offset
+        function updateWbCrop(wrapperIndex, offset) {
+            wbCropOffsets[wrapperIndex] = offset;
+            const iframe = wrappers[wrapperIndex].querySelector('.wb-wrapper iframe');
+            const valueDisplay = document.getElementById(`crop-value-${wrapperIndex}`);
+            
+            if (iframe) {
+                iframe.style.marginTop = `-${offset}px`;
+            }
+            if (valueDisplay) {
+                valueDisplay.textContent = `${offset}px`;
+            }
+        }
+        
+        // Load custom whiteboard URL
+        function loadCustomWhiteboard(wrapperIndex) {
+            const input = prompt('Enter whiteboard URL:', '');
+            if (input) {
+                const iframe = wrappers[wrapperIndex].querySelector('.wb-wrapper iframe');
+                if (iframe) {
+                    iframe.src = input.startsWith('www.') ? 'https://' + input : input;
+                }
+            }
+        }
+        
+        // Reload PDF for existing PDF frame
+        function reloadPdf(wrapperIndex) {
+            pdfFileInput.dataset.targetWrapper = wrapperIndex;
+            pdfFileInput.click();
+        }
+        
+        // Reload Custom URL for existing Custom URL frame
+        function reloadCustomUrl(wrapperIndex) {
+            const input = prompt('Enter URL or search terms:', '');
+            if (input) {
+                const iframe = wrappers[wrapperIndex].querySelector('iframe');
+                if (iframe) {
+                    // Check if input looks like a URL (contains :// or starts with www.)
+                    const isUrl = input.includes('://') || input.startsWith('www.');
+                    
+                    if (isUrl) {
+                        // Add https:// if no protocol specified
+                        iframe.src = input.startsWith('www.') ? 'https://' + input : input;
+                    } else {
+                        // Treat as search terms and create Google search URL
+                        const searchQuery = encodeURIComponent(input);
+                        iframe.src = `https://www.google.com/search?igu=1&q=${searchQuery}`;
+                    }
+                }
+            }
+        }
+
+        // PDF file picker handler
+        pdfFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                const targetWrapper = parseInt(pdfFileInput.dataset.targetWrapper || 0);
+                const fileURL = URL.createObjectURL(file);
+                const pdfFrame = wrappers[targetWrapper].querySelector('iframe');
+                
+                if (pdfFrame) {
+                    pdfFrame.src = `pdfjs/web/viewer.html?file=${encodeURIComponent(fileURL)}#zoom=page-width`;
+                    pdfFrame.addEventListener('load', () => {
+                        if (pdfToolbarsHidden[targetWrapper]) {
+                            hidePdfToolbar(targetWrapper);
+                        }
+                    }, { once: true });
+                }
+            }
+        });
+        
+        // Toggle PDF toolbar visibility
+        function togglePdfToolbar(wrapperIndex) {
+            pdfToolbarsHidden[wrapperIndex] = !pdfToolbarsHidden[wrapperIndex];
+            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
+            const toggleText = document.getElementById(`pdf-toggle-text-${wrapperIndex}`);
+            
+            if (pdfToolbarsHidden[wrapperIndex]) {
+                hidePdfToolbar(wrapperIndex);
+                if (toggleText) toggleText.textContent = 'Show Controls';
+            } else {
+                showPdfToolbar(wrapperIndex);
+                if (toggleText) toggleText.textContent = 'Hide Controls';
+            }
+        }
+        
+        // Hide PDF.js toolbars
+        function hidePdfToolbar(wrapperIndex) {
+            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
+            if (!pdfFrame) return;
+            
+            try {
+                const frameDoc = pdfFrame.contentDocument;
+                if (!frameDoc) return;
+                
+                const toolbar = frameDoc.querySelector('#toolbarContainer');
+                const secondaryToolbar = frameDoc.querySelector('#secondaryToolbarButtonContainer');
+                const sidebarContainer = frameDoc.querySelector('#sidebarContainer');
+                const viewerContainer = frameDoc.querySelector('#viewerContainer');
+                const mainContainer = frameDoc.querySelector('#mainContainer');
+                const viewer = frameDoc.querySelector('#viewer');
+                
+                if (toolbar) toolbar.style.display = 'none';
+                if (secondaryToolbar) secondaryToolbar.style.display = 'none';
+                if (sidebarContainer) sidebarContainer.style.display = 'none';
+                
+                if (viewerContainer) {
+                    viewerContainer.style.top = '0';
+                    viewerContainer.style.left = '0';
+                    viewerContainer.style.right = '0';
+                    viewerContainer.style.bottom = '0';
+                    viewerContainer.style.padding = '0';
+                    viewerContainer.style.margin = '0';
+                    viewerContainer.style.backgroundColor = '#ffffff';
+                }
+                
+                if (mainContainer) {
+                    mainContainer.style.top = '0';
+                    mainContainer.style.left = '0';
+                    mainContainer.style.margin = '0';
+                    mainContainer.style.padding = '0';
+                    mainContainer.style.backgroundColor = '#ffffff';
+                }
+                
+                if (viewer) {
+                    viewer.style.margin = '0';
+                    viewer.style.padding = '0';
+                    viewer.style.backgroundColor = '#ffffff';
+                }
+                
+                // Set body background to white
+                if (frameDoc.body) {
+                    frameDoc.body.style.backgroundColor = '#ffffff';
+                }
+            } catch (e) {
+                console.log('Could not access PDF.js frame:', e);
+            }
+        }
+        
+        // Show PDF.js toolbars
+        function showPdfToolbar(wrapperIndex) {
+            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
+            if (!pdfFrame) return;
+            
+            try {
+                const frameDoc = pdfFrame.contentDocument;
+                if (!frameDoc) return;
+                
+                const toolbar = frameDoc.querySelector('#toolbarContainer');
+                const secondaryToolbar = frameDoc.querySelector('#secondaryToolbarButtonContainer');
+                const sidebarContainer = frameDoc.querySelector('#sidebarContainer');
+                const viewerContainer = frameDoc.querySelector('#viewerContainer');
+                const mainContainer = frameDoc.querySelector('#mainContainer');
+                const viewer = frameDoc.querySelector('#viewer');
+                
+                if (toolbar) toolbar.style.display = '';
+                if (secondaryToolbar) secondaryToolbar.style.display = '';
+                if (sidebarContainer) sidebarContainer.style.display = '';
+                
+                if (viewerContainer) {
+                    viewerContainer.style.top = '';
+                    viewerContainer.style.left = '';
+                    viewerContainer.style.right = '';
+                    viewerContainer.style.bottom = '';
+                    viewerContainer.style.padding = '';
+                    viewerContainer.style.margin = '';
+                }
+                
+                if (mainContainer) {
+                    mainContainer.style.top = '';
+                    mainContainer.style.left = '';
+                    mainContainer.style.margin = '';
+                    mainContainer.style.padding = '';
+                }
+                
+                if (viewer) {
+                    viewer.style.margin = '';
+                    viewer.style.padding = '';
+                }
+            } catch (e) {
+                console.log('Could not access PDF.js frame:', e);
+            }
+        }
+
+        // Whiteboard resize on window changes
+        window.addEventListener('resize', resizeAllWhiteboards);
+
+        // Drag functionality for control panels
+        let draggedPanel = null;
+        let dragOffset = { x: 0, y: 0 };
+        
+        document.addEventListener('mousedown', (e) => {
+            const panel = e.target.closest('.control-panel');
+            if (panel && e.target.closest('.control-panel') && !e.target.closest('select, button, input')) {
+                draggedPanel = panel;
+                const rect = panel.getBoundingClientRect();
+                dragOffset.x = e.clientX - rect.left;
+                dragOffset.y = e.clientY - rect.top;
+                panel.classList.add('dragging');
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (draggedPanel) {
+                const wrapper = draggedPanel.closest('.frame-wrapper');
+                const wrapperRect = wrapper.getBoundingClientRect();
+                
+                let newLeft = e.clientX - wrapperRect.left - dragOffset.x;
+                let newTop = e.clientY - wrapperRect.top - dragOffset.y;
+                
+                // Keep panel within wrapper bounds
+                const panelRect = draggedPanel.getBoundingClientRect();
+                newLeft = Math.max(0, Math.min(newLeft, wrapperRect.width - panelRect.width));
+                newTop = Math.max(0, Math.min(newTop, wrapperRect.height - panelRect.height));
+                
+                draggedPanel.style.left = newLeft + 'px';
+                draggedPanel.style.top = newTop + 'px';
+                draggedPanel.style.transform = 'none';
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('mouseup', (e) => {
+            if (draggedPanel) {
+                draggedPanel.classList.remove('dragging');
+                draggedPanel = null;
+            }
+        });
+
+        // Init
+        updateSplit(50);
+        updateAllFrames();
+    </script>
+</body>
+</html>
