@@ -438,7 +438,6 @@
         let frameContents = ['quarto', 'whiteboard', 'quarto', 'none'];
         let wbRatios = [WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape, WB_RATIOS.ipad_landscape];
         let wbCropOffsets = [0, 0, 0, 0]; // Track crop offset per frame (in pixels)
-        let pdfToolbarsHidden = [true, true, true, true]; // Track toolbar state per frame
         
         // Template URLs
         const TEMPLATES = {
@@ -566,22 +565,17 @@
                 const iframe = document.createElement('iframe');
                 iframe.src = '';
                 wrapper.appendChild(iframe);
-                
-                // Add action buttons in a column
+
+                // Add load button
                 if (controlPanel) {
                     const actionsRow = document.createElement('div');
-                    actionsRow.className = 'actions-row vertical';
-                    
+                    actionsRow.className = 'actions-row';
+
                     const loadBtn = document.createElement('button');
                     loadBtn.textContent = '📄 Load PDF';
                     loadBtn.onclick = () => reloadPdf(wrapperIndex);
                     actionsRow.appendChild(loadBtn);
-                    
-                    const toggleBtn = document.createElement('button');
-                    toggleBtn.innerHTML = `<span id="pdf-toggle-text-${wrapperIndex}">Show Controls</span>`;
-                    toggleBtn.onclick = () => togglePdfToolbar(wrapperIndex);
-                    actionsRow.appendChild(toggleBtn);
-                    
+
                     controlPanel.appendChild(actionsRow);
                 }
             } else if (contentType === 'whiteboard') {
@@ -823,137 +817,20 @@
             }
         }
 
-        // PDF file picker handler
+        // PDF file picker handler - uses native browser PDF rendering
         pdfFileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file && file.type === 'application/pdf') {
                 const targetWrapper = parseInt(pdfFileInput.dataset.targetWrapper || 0);
                 const fileURL = URL.createObjectURL(file);
                 const pdfFrame = wrappers[targetWrapper].querySelector('iframe');
-                
+
                 if (pdfFrame) {
-                    pdfFrame.src = `pdfjs/web/viewer.html?file=${encodeURIComponent(fileURL)}#zoom=page-width`;
-                    pdfFrame.addEventListener('load', () => {
-                        if (pdfToolbarsHidden[targetWrapper]) {
-                            hidePdfToolbar(targetWrapper);
-                        }
-                    }, { once: true });
+                    // Use native browser PDF rendering
+                    pdfFrame.src = fileURL;
                 }
             }
         });
-        
-        // Toggle PDF toolbar visibility
-        function togglePdfToolbar(wrapperIndex) {
-            pdfToolbarsHidden[wrapperIndex] = !pdfToolbarsHidden[wrapperIndex];
-            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
-            const toggleText = document.getElementById(`pdf-toggle-text-${wrapperIndex}`);
-            
-            if (pdfToolbarsHidden[wrapperIndex]) {
-                hidePdfToolbar(wrapperIndex);
-                if (toggleText) toggleText.textContent = 'Show Controls';
-            } else {
-                showPdfToolbar(wrapperIndex);
-                if (toggleText) toggleText.textContent = 'Hide Controls';
-            }
-        }
-        
-        // Hide PDF.js toolbars
-        function hidePdfToolbar(wrapperIndex) {
-            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
-            if (!pdfFrame) return;
-            
-            try {
-                const frameDoc = pdfFrame.contentDocument;
-                if (!frameDoc) return;
-                
-                const toolbar = frameDoc.querySelector('#toolbarContainer');
-                const secondaryToolbar = frameDoc.querySelector('#secondaryToolbarButtonContainer');
-                const sidebarContainer = frameDoc.querySelector('#sidebarContainer');
-                const viewerContainer = frameDoc.querySelector('#viewerContainer');
-                const mainContainer = frameDoc.querySelector('#mainContainer');
-                const viewer = frameDoc.querySelector('#viewer');
-                
-                if (toolbar) toolbar.style.display = 'none';
-                if (secondaryToolbar) secondaryToolbar.style.display = 'none';
-                if (sidebarContainer) sidebarContainer.style.display = 'none';
-                
-                if (viewerContainer) {
-                    viewerContainer.style.top = '0';
-                    viewerContainer.style.left = '0';
-                    viewerContainer.style.right = '0';
-                    viewerContainer.style.bottom = '0';
-                    viewerContainer.style.padding = '0';
-                    viewerContainer.style.margin = '0';
-                    viewerContainer.style.backgroundColor = '#ffffff';
-                }
-                
-                if (mainContainer) {
-                    mainContainer.style.top = '0';
-                    mainContainer.style.left = '0';
-                    mainContainer.style.margin = '0';
-                    mainContainer.style.padding = '0';
-                    mainContainer.style.backgroundColor = '#ffffff';
-                }
-                
-                if (viewer) {
-                    viewer.style.margin = '0';
-                    viewer.style.padding = '0';
-                    viewer.style.backgroundColor = '#ffffff';
-                }
-                
-                // Set body background to white
-                if (frameDoc.body) {
-                    frameDoc.body.style.backgroundColor = '#ffffff';
-                }
-            } catch (e) {
-                console.log('Could not access PDF.js frame:', e);
-            }
-        }
-        
-        // Show PDF.js toolbars
-        function showPdfToolbar(wrapperIndex) {
-            const pdfFrame = wrappers[wrapperIndex].querySelector('iframe');
-            if (!pdfFrame) return;
-            
-            try {
-                const frameDoc = pdfFrame.contentDocument;
-                if (!frameDoc) return;
-                
-                const toolbar = frameDoc.querySelector('#toolbarContainer');
-                const secondaryToolbar = frameDoc.querySelector('#secondaryToolbarButtonContainer');
-                const sidebarContainer = frameDoc.querySelector('#sidebarContainer');
-                const viewerContainer = frameDoc.querySelector('#viewerContainer');
-                const mainContainer = frameDoc.querySelector('#mainContainer');
-                const viewer = frameDoc.querySelector('#viewer');
-                
-                if (toolbar) toolbar.style.display = '';
-                if (secondaryToolbar) secondaryToolbar.style.display = '';
-                if (sidebarContainer) sidebarContainer.style.display = '';
-                
-                if (viewerContainer) {
-                    viewerContainer.style.top = '';
-                    viewerContainer.style.left = '';
-                    viewerContainer.style.right = '';
-                    viewerContainer.style.bottom = '';
-                    viewerContainer.style.padding = '';
-                    viewerContainer.style.margin = '';
-                }
-                
-                if (mainContainer) {
-                    mainContainer.style.top = '';
-                    mainContainer.style.left = '';
-                    mainContainer.style.margin = '';
-                    mainContainer.style.padding = '';
-                }
-                
-                if (viewer) {
-                    viewer.style.margin = '';
-                    viewer.style.padding = '';
-                }
-            } catch (e) {
-                console.log('Could not access PDF.js frame:', e);
-            }
-        }
 
         // Whiteboard resize on window changes
         window.addEventListener('resize', resizeAllWhiteboards);
