@@ -336,13 +336,116 @@
             opacity: 0.7;
             text-transform: uppercase;
         }
+
+        /* Password Screen */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .password-screen.hidden {
+            display: none;
+        }
+
+        .password-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 50px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .password-box h1 {
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .password-box p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 30px 0;
+            font-size: 14px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .password-input:focus {
+            border-color: #3b82f6;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .password-btn:hover {
+            background: #2563eb;
+        }
+
+        .password-error {
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .password-error.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <!-- Password Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-box">
+            <h1>Lecture Cockpit</h1>
+            <p>Enter password to access</p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Password" onkeypress="if(event.key==='Enter')checkPassword()">
+            <button class="password-btn" onclick="checkPassword()">Enter</button>
+            <div class="password-error" id="passwordError">Incorrect password</div>
+        </div>
+    </div>
+
     <input type="file" id="pdf-file-input" accept="application/pdf" style="display: none;">
     <iframe id="frame-custom-url" style="display: none;" data-name="Custom"></iframe>
-    
-    <div class="container vertical" id="layout">
+
+    <div class="container vertical" id="layout" style="display: none;">
         <div class="frame-wrapper" id="wrapper-1">
             <div class="control-trigger"></div>
             <div class="control-panel">
@@ -396,7 +499,7 @@
         </div>
     </div>
 
-    <div class="trigger-zone">
+    <div class="trigger-zone" id="triggerZone" style="display: none;">
         <div class="dock">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="label">Layout</span>
@@ -407,12 +510,41 @@
                     <option value="grid-2x2">2x2 Grid</option>
                 </select>
             </div>
-            
+
             <div class="divider"></div>
 
             <input type="range" min="0" max="100" value="50" id="slider" oninput="updateSplit(this.value)">
         </div>
     </div>
+
+    <script>
+        // Password protection - change this password
+        const CORRECT_PASSWORD = 'lecture';
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('passwordError');
+            const screen = document.getElementById('passwordScreen');
+            const layout = document.getElementById('layout');
+            const triggerZone = document.getElementById('triggerZone');
+
+            if (input.value === CORRECT_PASSWORD) {
+                screen.classList.add('hidden');
+                layout.style.display = 'grid';
+                triggerZone.style.display = 'flex';
+                initCockpit();
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function initCockpit() {
+            updateSplit(50);
+            updateAllFrames();
+        }
+    </script>
 
     <script>
         const layout = document.getElementById('layout');
@@ -442,8 +574,20 @@
         // Template URLs
         const TEMPLATES = {
             whiteboard: 'https://zoom.us/wb/db/htKYyO2fR06d1h-kZLkKyA/p/116531303809024',
-            quarto: 'https://quarto.org/docs/presentations/revealjs/demo/#/interactive-slides-1'
+            quarto: 'lectures/lecture1.html'
         };
+
+        // Available lectures
+        const LECTURES = {
+            'lecture1': { name: 'Lecture 1: Introduction', url: 'lectures/lecture1.html' },
+            'lecture2': { name: 'Lecture 2: Linear Algebra', url: 'lectures/lecture2.html' },
+            'lecture3': { name: 'Lecture 3: Convex Optimization', url: 'lectures/lecture3.html' },
+            'lecture4': { name: 'Lecture 4: Gradient Methods', url: 'lectures/lecture4.html' },
+            'lecture5': { name: 'Lecture 5: Interior Point', url: 'lectures/lecture5.html' }
+        };
+
+        let selectedLectures = ['lecture1', 'lecture1', 'lecture1', 'lecture1']; // Track selected lecture per frame
+        let customUrlCropOffsets = [0, 0, 0, 0]; // Track crop offset for custom URLs per frame
 
         function updateSplit(val) {
             let snap = parseInt(val);
@@ -649,25 +793,87 @@
                 }
             } else if (contentType === 'quarto') {
                 const iframe = document.createElement('iframe');
-                iframe.src = TEMPLATES.quarto;
+                iframe.src = LECTURES[selectedLectures[wrapperIndex]].url;
                 iframe.setAttribute('allow', 'popups');
                 iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-popups-to-escape-sandbox');
                 wrapper.appendChild(iframe);
-            } else if (contentType === 'custom-url') {
-                const iframe = document.createElement('iframe');
-                wrapper.appendChild(iframe);
-                
-                // Add button in actions row
+
+                // Add lecture selector
                 if (controlPanel) {
                     const actionsRow = document.createElement('div');
                     actionsRow.className = 'actions-row';
-                    
+
+                    const lectureSelect = document.createElement('select');
+                    lectureSelect.onchange = (e) => changeLecture(wrapperIndex, e.target.value);
+                    Object.keys(LECTURES).forEach(key => {
+                        const option = document.createElement('option');
+                        option.value = key;
+                        option.textContent = LECTURES[key].name;
+                        if (key === selectedLectures[wrapperIndex]) option.selected = true;
+                        lectureSelect.appendChild(option);
+                    });
+                    actionsRow.appendChild(lectureSelect);
+
+                    controlPanel.appendChild(actionsRow);
+                }
+            } else if (contentType === 'custom-url') {
+                const container = document.createElement('div');
+                container.className = 'wb-container';
+                const urlWrapper = document.createElement('div');
+                urlWrapper.className = 'wb-wrapper custom-url-wrapper';
+                urlWrapper.style.width = '100%';
+                urlWrapper.style.height = '100%';
+                const iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '125%';
+                iframe.style.marginTop = `-${customUrlCropOffsets[wrapperIndex]}px`;
+                urlWrapper.appendChild(iframe);
+                container.appendChild(urlWrapper);
+                wrapper.appendChild(container);
+
+                // Add button and crop slider
+                if (controlPanel) {
+                    const actionsRow = document.createElement('div');
+                    actionsRow.className = 'actions-row';
+
                     const changeBtn = document.createElement('button');
                     changeBtn.textContent = '🔗 Change URL';
                     changeBtn.onclick = () => reloadCustomUrl(wrapperIndex);
                     actionsRow.appendChild(changeBtn);
-                    
+
                     controlPanel.appendChild(actionsRow);
+
+                    // Add crop slider
+                    const cropRow = document.createElement('div');
+                    cropRow.className = 'actions-row';
+                    cropRow.style.width = '100%';
+                    cropRow.style.display = 'flex';
+                    cropRow.style.alignItems = 'center';
+                    cropRow.style.gap = '8px';
+
+                    const cropLabel = document.createElement('span');
+                    cropLabel.className = 'label';
+                    cropLabel.textContent = 'Crop Top';
+                    cropRow.appendChild(cropLabel);
+
+                    const cropSlider = document.createElement('input');
+                    cropSlider.type = 'range';
+                    cropSlider.min = '0';
+                    cropSlider.max = '400';
+                    cropSlider.value = customUrlCropOffsets[wrapperIndex];
+                    cropSlider.style.flex = '1';
+                    cropSlider.oninput = (e) => updateCustomUrlCrop(wrapperIndex, parseInt(e.target.value));
+                    cropRow.appendChild(cropSlider);
+
+                    const cropValue = document.createElement('span');
+                    cropValue.id = `custom-crop-value-${wrapperIndex}`;
+                    cropValue.style.color = 'white';
+                    cropValue.style.fontSize = '11px';
+                    cropValue.style.minWidth = '35px';
+                    cropValue.textContent = `${customUrlCropOffsets[wrapperIndex]}px`;
+                    cropRow.appendChild(cropValue);
+
+                    controlPanel.appendChild(cropRow);
                 }
             }
         }
@@ -685,11 +891,11 @@
                 if (input) {
                     frameContents[wrapperIndex] = 'custom-url';
                     createFrame('custom-url', wrapperIndex);
-                    const iframe = wrappers[wrapperIndex].querySelector('iframe');
+                    const iframe = wrappers[wrapperIndex].querySelector('.custom-url-wrapper iframe');
                     if (iframe) {
                         // Check if input looks like a URL (contains :// or starts with www.)
                         const isUrl = input.includes('://') || input.startsWith('www.');
-                        
+
                         if (isUrl) {
                             // Add https:// if no protocol specified
                             iframe.src = input.startsWith('www.') ? 'https://' + input : input;
@@ -770,7 +976,7 @@
             wbCropOffsets[wrapperIndex] = offset;
             const iframe = wrappers[wrapperIndex].querySelector('.wb-wrapper iframe');
             const valueDisplay = document.getElementById(`crop-value-${wrapperIndex}`);
-            
+
             if (iframe) {
                 iframe.style.marginTop = `-${offset}px`;
             }
@@ -778,7 +984,30 @@
                 valueDisplay.textContent = `${offset}px`;
             }
         }
-        
+
+        // Update custom URL crop offset
+        function updateCustomUrlCrop(wrapperIndex, offset) {
+            customUrlCropOffsets[wrapperIndex] = offset;
+            const iframe = wrappers[wrapperIndex].querySelector('.custom-url-wrapper iframe');
+            const valueDisplay = document.getElementById(`custom-crop-value-${wrapperIndex}`);
+
+            if (iframe) {
+                iframe.style.marginTop = `-${offset}px`;
+            }
+            if (valueDisplay) {
+                valueDisplay.textContent = `${offset}px`;
+            }
+        }
+
+        // Change lecture for quarto frame
+        function changeLecture(wrapperIndex, lectureKey) {
+            selectedLectures[wrapperIndex] = lectureKey;
+            const iframe = wrappers[wrapperIndex].querySelector('iframe');
+            if (iframe && LECTURES[lectureKey]) {
+                iframe.src = LECTURES[lectureKey].url;
+            }
+        }
+
         // Load custom whiteboard URL
         function loadCustomWhiteboard(wrapperIndex) {
             const input = prompt('Enter whiteboard URL:', '');
@@ -800,11 +1029,11 @@
         function reloadCustomUrl(wrapperIndex) {
             const input = prompt('Enter URL or search terms:', '');
             if (input) {
-                const iframe = wrappers[wrapperIndex].querySelector('iframe');
+                const iframe = wrappers[wrapperIndex].querySelector('.custom-url-wrapper iframe') || wrappers[wrapperIndex].querySelector('iframe');
                 if (iframe) {
                     // Check if input looks like a URL (contains :// or starts with www.)
                     const isUrl = input.includes('://') || input.startsWith('www.');
-                    
+
                     if (isUrl) {
                         // Add https:// if no protocol specified
                         iframe.src = input.startsWith('www.') ? 'https://' + input : input;
@@ -878,9 +1107,8 @@
             }
         });
 
-        // Init
-        updateSplit(50);
-        updateAllFrames();
+        // Focus password input on load
+        document.getElementById('passwordInput').focus();
     </script>
 </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <style>
+        .reveal h1, .reveal h2 { color: #2c3e50; }
+        .reveal { font-size: 32px; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Lecture 1</h1>
+                <h3>Introduction to the Course</h3>
+            </section>
+            <section>
+                <h2>Overview</h2>
+                <ul>
+                    <li>Course objectives</li>
+                    <li>Prerequisites</li>
+                    <li>Grading policy</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Key Concepts</h2>
+                <p>We will cover fundamental concepts including:</p>
+                <ul>
+                    <li>Mathematical foundations</li>
+                    <li>Algorithmic techniques</li>
+                    <li>Practical applications</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Example Formula</h2>
+                <p>The optimization problem:</p>
+                <p><span class="katex-display">\[\min_{x \in \mathbb{R}^n} f(x) \quad \text{subject to} \quad Ax = b\]</span></p>
+            </section>
+            <section>
+                <h2>Questions?</h2>
+                <p>Next: Lecture 2</p>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+                config: 'TeX-AMS_HTML-full'
+            },
+            plugins: [RevealMath]
+        });
+    </script>
+</body>
+</html>
