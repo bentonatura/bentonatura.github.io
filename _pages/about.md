@@ -6,7 +6,7 @@ subtitle: Assistant Professor | <a href='https://ieor.columbia.edu'>Columbia Uni
 
 profile:
   align: right
-  image: columbia_photo_shoot/20240912_Dini_2190_compressed.jpg
+  image: columbia_photo_shoot/20240912_Dini_2190.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>bn2392@columbia.edu</p>
