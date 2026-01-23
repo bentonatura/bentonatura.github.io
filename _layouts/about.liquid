@@ -45,7 +45,7 @@ layout: default
     {% if page.news %}{% assign show_news = true %}{% endif %}
     {% if page.announcements and page.announcements.enabled %}{% assign show_news = true %}{% endif %}
     {% if show_news %}
-      <h2>
+      <h2 id="news">
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
       {% include news.liquid limit=true %}
@@ -53,7 +53,7 @@ layout: default
 
     <!-- Events -->
     {% if page.events %}
-      <h2>
+      <h2 id="events">
         <a href="{{ '/events/' | relative_url }}" style="color: inherit">Events</a>
       </h2>
       {% include events.liquid %}
@@ -61,7 +61,7 @@ layout: default
 
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
+      <h2 id="posts">
         <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
       </h2>
       {% include latest_posts.liquid %}
@@ -69,7 +69,7 @@ layout: default
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
+      <h2 id="selected-works">
         <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Works</a>
       </h2>
       {% include selected_papers.liquid %}
