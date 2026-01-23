@@ -828,15 +828,9 @@ footer.sticky-bottom {
     list-style: none;
     padding: 0;
     margin-top: 0;
-    overflow: visible;
 
     li {
       margin-bottom: 1rem;
-      overflow: visible;
-
-      .row {
-        overflow: visible;
-      }
 
       .preview {
       }
