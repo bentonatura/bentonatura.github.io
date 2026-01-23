@@ -828,17 +828,6 @@ footer.sticky-bottom {
     font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 60px;
-      height: 2px;
-      background: var(--global-accent-color);
-    }
   }
 
   ol.bibliography {
@@ -955,45 +944,39 @@ footer.sticky-bottom {
           color: var(--global-highlight-color);
         }
         a.conference {
-          background: linear-gradient(135deg, #0891b2, #06b6d4);
+          background: #0891b2;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
-          box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3);
           &:hover {
             background: white;
             border: 1px solid #0891b2;
             color: #0891b2;
-            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
           }
         }
         a.journal {
-          background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+          background: #7c3aed;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
-          box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
           &:hover {
             background: white;
             border: 1px solid #7c3aed;
             color: #7c3aed;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
           }
         }
         a.preprint {
-          background: linear-gradient(135deg, #228B22, #2ea82e);
+          background: #228B22;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
-          box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
           &:hover {
             background: white;
             border: 1px solid #228B22;
             color: #228B22;
-            box-shadow: 0 4px 12px rgba(34, 139, 34, 0.2);
           }
         }
       }
