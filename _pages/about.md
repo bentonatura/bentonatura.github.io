@@ -35,3 +35,5 @@ I also hold a Bachelor's and Master's degree in Mathematics from the [University
 
 My current research interests are focused on the areas of algorithms, optimization, and game theory.
 
+Feel free to reach out if you'd like to chat about research or potential collaborations.
+
