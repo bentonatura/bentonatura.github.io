@@ -303,9 +303,9 @@ ul.task-list input[type="checkbox"] {
 .news,
 .events {
   th {
-    color: var(--global-text-color-light);
-    font-weight: 500;
-    font-style: italic;
+    color: var(--global-accent-color);
+    font-weight: 600;
+    font-style: normal;
     white-space: nowrap;
   }
 
@@ -837,7 +837,7 @@ footer.sticky-bottom {
       top: 0;
       width: 60px;
       height: 2px;
-      background: var(--global-theme-color);
+      background: var(--global-accent-color);
     }
   }
 
@@ -907,8 +907,9 @@ footer.sticky-bottom {
         }
 
         > em {
-          border-bottom: 1px solid;
+          border-bottom: 2px solid var(--global-accent-color);
           font-style: normal;
+          font-weight: 600;
         }
 
         > span.more-authors {
@@ -954,31 +955,31 @@ footer.sticky-bottom {
           color: var(--global-highlight-color);
         }
         a.conference {
-          background: linear-gradient(135deg, var(--global-theme-color), var(--global-hover-color));
+          background: linear-gradient(135deg, #0891b2, #06b6d4);
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
-          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+          box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3);
           &:hover {
             background: white;
-            border: 1px solid var(--global-theme-color);
-            color: var(--global-theme-color);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            border: 1px solid #0891b2;
+            color: #0891b2;
+            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
           }
         }
         a.journal {
-          background: linear-gradient(135deg, #00369f, #0047cc);
+          background: linear-gradient(135deg, #7c3aed, #8b5cf6);
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
-          box-shadow: 0 2px 8px rgba(0, 54, 159, 0.3);
+          box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
           &:hover {
             background: white;
-            border: 1px solid #00369f;
-            color: #00369f;
-            box-shadow: 0 4px 12px rgba(0, 54, 159, 0.2);
+            border: 1px solid #7c3aed;
+            color: #7c3aed;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
           }
         }
         a.preprint {
