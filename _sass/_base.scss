@@ -52,24 +52,15 @@ table {
 a,
 table.table a {
   color: var(--global-theme-color);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease-in-out;
 
   &:hover {
-    color: var(--global-hover-color);
-    text-decoration: none;
-    border-bottom-color: var(--global-hover-color);
+    color: var(--global-theme-color);
+    text-decoration: underline;
   }
 
   &:hover:after :not(.nav-item.dropdown) {
     width: 100%;
   }
-}
-
-// Remove underline effect from buttons and nav items
-.btn, .nav-link, .navbar a {
-  border-bottom: none !important;
 }
 
 .table-dark {
@@ -239,8 +230,6 @@ ul.task-list input[type="checkbox"] {
   img {
     max-width: 100%;
     height: auto;
-    border: 3px solid var(--global-bg-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -271,37 +260,6 @@ ul.task-list input[type="checkbox"] {
     width: 100%;
     margin: 0 auto 1rem auto;
     text-align: center;
-  }
-}
-
-// News and Events sections styling
-.news,
-.events {
-  background-color: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-
-  table {
-    margin-bottom: 0;
-  }
-
-  th {
-    color: var(--global-theme-color);
-    font-weight: 500;
-  }
-}
-
-// Section headers on about page
-.about {
-  > article > h2 {
-    color: var(--global-text-color);
-    font-size: 1.5rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--global-theme-color);
   }
 }
 
@@ -808,16 +766,8 @@ footer.sticky-bottom {
     }
   }
 
-  h2.year {
-    color: var(--global-text-color);
-    border-bottom: 1px solid var(--global-divider-color);
-    padding-bottom: 0.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
   h2.bibliography {
-    color: var(--global-text-color);
+    color: var(--global-divider-color);
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
