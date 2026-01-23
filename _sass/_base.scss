@@ -277,11 +277,11 @@ ul.task-list input[type="checkbox"] {
       width: auto;
       vertical-align: -0.2em;
       margin-left: 0;
-      filter: grayscale(100%) contrast(1000%) brightness(0.3);
+      filter: brightness(0);
       transition: filter 0.2s ease;
 
       &:hover {
-        filter: grayscale(0%);
+        filter: none;
       }
     }
   }
