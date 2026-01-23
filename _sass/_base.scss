@@ -899,13 +899,10 @@ footer.sticky-bottom {
           padding-top: 0.25rem;
           padding-bottom: 0.25rem;
           margin-left: 0;
-          transition: all 0.2s ease-in-out;
 
           &:hover {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           }
         }
         a.award.btn {
@@ -916,13 +913,9 @@ footer.sticky-bottom {
           color: white;
           font-weight: bold;
           text-transform: none;
-          border-color: var(--global-theme-color);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           &:hover {
-            background-color: var(--global-hover-color);
-            border-color: var(--global-hover-color);
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            border-color: var(--global-theme-color);
           }
         }
         a.journal {
@@ -930,13 +923,9 @@ footer.sticky-bottom {
           color: white;
           font-weight: bold;
           text-transform: none;
-          border-color: #00369f;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           &:hover {
-            background-color: #002570;
-            border-color: #002570;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            border-color: var(--global-theme-color);
           }
         }
         a.preprint {
@@ -944,13 +933,9 @@ footer.sticky-bottom {
           color: white;
           font-weight: bold;
           text-transform: none;
-          border-color: #228B22;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           &:hover {
-            background-color: #1a6b1a;
-            border-color: #1a6b1a;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            border-color: var(--global-theme-color);
           }
         }
       }
