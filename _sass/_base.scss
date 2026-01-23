@@ -259,6 +259,20 @@ ul.task-list input[type="checkbox"] {
     }
   }
 
+  .contact-icons {
+    font-size: 1.4rem;
+
+    a {
+      color: var(--global-text-color);
+      margin-right: 0.5rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--global-theme-color);
+      }
+    }
+  }
+
   img {
     max-width: 100%;
     height: auto;
