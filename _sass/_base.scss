@@ -303,9 +303,9 @@ ul.task-list input[type="checkbox"] {
 .news,
 .events {
   th {
-    color: var(--global-accent-color);
-    font-weight: 600;
-    font-style: normal;
+    color: var(--global-text-color-light);
+    font-weight: 500;
+    font-style: italic;
     white-space: nowrap;
   }
 
@@ -896,9 +896,8 @@ footer.sticky-bottom {
         }
 
         > em {
-          border-bottom: 2px solid var(--global-accent-color);
+          border-bottom: 1px solid;
           font-style: normal;
-          font-weight: 600;
         }
 
         > span.more-authors {
@@ -944,39 +943,39 @@ footer.sticky-bottom {
           color: var(--global-highlight-color);
         }
         a.conference {
-          background: #0891b2;
+          background: #4338ca;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
             background: white;
-            border: 1px solid #0891b2;
-            color: #0891b2;
+            border: 1px solid #4338ca;
+            color: #4338ca;
           }
         }
         a.journal {
-          background: #7c3aed;
+          background: #9f1239;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
             background: white;
-            border: 1px solid #7c3aed;
-            color: #7c3aed;
+            border: 1px solid #9f1239;
+            color: #9f1239;
           }
         }
         a.preprint {
-          background: #228B22;
+          background: #0f766e;
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
             background: white;
-            border: 1px solid #228B22;
-            color: #228B22;
+            border: 1px solid #0f766e;
+            color: #0f766e;
           }
         }
       }
