@@ -19,6 +19,8 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
+Jump to: [News](#news) · [Events](#events) · [Selected Works](#selected-works)
+
 I am an Assistant Professor in [Industrial Engineering and Operations Research (IEOR)](https://ieor.columbia.edu) at [Columbia University](https://ieor.columbia.edu).
 
 
@@ -32,6 +34,4 @@ V&eacute;gh</a>, funded by his <a href="https://erc.europa.eu/" target="_blank">
 I also hold a Bachelor's and Master's degree in Mathematics from the [University of Bonn](https://www.uni-bonn.de/en/university/), where I was supervised by <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
 
 My current research interests are focused on the areas of algorithms, optimization, and game theory.
-
-Jump to: [News](#news) · [Events](#events) · [Selected Works](#selected-works)
 
