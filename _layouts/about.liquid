@@ -35,6 +35,9 @@ layout: default
         {% if page.profile.more_info %}
           <div class="more-info">{{ page.profile.more_info }}</div>
         {% endif %}
+        {% if page.social %}
+          <div class="contact-icons mt-2">{% social_links %}</div>
+        {% endif %}
       </div>
     {% endif %}
 
@@ -73,15 +76,6 @@ layout: default
         <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Works</a>
       </h2>
       {% include selected_papers.liquid %}
-    {% endif %}
-
-    <!-- Social -->
-    {% if page.social %}
-      <div class="social">
-        <div class="contact-icons">{% social_links %}</div>
-
-        <div class="contact-note">{{ site.contact_note }}</div>
-      </div>
     {% endif %}
 
     {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
