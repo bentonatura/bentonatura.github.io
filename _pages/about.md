@@ -9,7 +9,6 @@ profile:
   image: columbia_photo_shoot/20240912_Dini_2190.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>bn2392@columbia.edu</p>
     <p>304 Mudd, 500 W 120th St</p>
     <p>New York, NY 10027</p>
 
