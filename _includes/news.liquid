@@ -10,8 +10,8 @@
     <div class="table-responsive">
       <table class="table table-sm table-borderless">
         {% for item in news limit: news_limit %}
-          <tr {% if forloop.index > 5 and news_size > 5 %}class="news-hidden" style="display: none;"{% endif %}>
-            <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
+          <tr {% if forloop.index > 6 and news_size > 6 %}class="news-hidden" style="display: none;"{% endif %}>
+            <th scope="row" style="width: 15%">{{ item.date | date: '%b %Y' }}</th>
             <td>
               {% if item.inline %}
                 {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
@@ -23,7 +23,7 @@
         {% endfor %}
       </table>
     </div>
-    {% if news_size > 5 %}
+    {% if news_size > 6 %}
       <div class="text-center mt-2">
         <button class="btn btn-link show-more-btn" data-target="news" onclick="toggleShowMore(this, 'news-hidden')">
           Show more <i class="ti ti-chevron-down"></i>

@@ -750,6 +750,15 @@ footer.sticky-bottom {
 .publications {
   margin-top: 2rem;
 
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .abbr:first-child {
+    padding-left: 0;
+  }
+
   h1 {
     color: var(--global-theme-color);
     font-size: 2rem;
@@ -766,8 +775,16 @@ footer.sticky-bottom {
     }
   }
 
+  h2.year {
+    color: var(--global-text-color);
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
   h2.bibliography {
-    color: var(--global-divider-color);
+    color: var(--global-text-color);
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;

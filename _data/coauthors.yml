@@ -8,11 +8,11 @@ dadush:
 
 vegh:
   - firstname: ["László A.", "Laszlo A."]
-    url: https://personal.lse.ac.uk/veghl/
+    url: https://www.laszlovegh.eu
 
 koh:
   - firstname: ["Zhuan Khye"]
-    url: https://personal.lse.ac.uk/kohz3/
+    url: https://zhuankoh.github.io/
 
 loho:
   - firstname: ["Georg"]
@@ -36,7 +36,7 @@ allamigeon:
 
 jiang:
   - firstname: ["Shunhua"]
-    url: https://www.cs.columbia.edu/~jiangsh/
+    url: https://shunhuajiang.github.io/
 
 weinstein:
   - firstname: ["Omri"]
@@ -48,7 +48,7 @@ huiberts:
 
 neuwohner:
   - firstname: ["Meike"]
-    url: https://www.hcm.uni-bonn.de/people/phd-students/profile/meike-neuwohner/
+    url: https://meike-neuwohner.de/
 
 daboul:
   - firstname: ["Siad"]
