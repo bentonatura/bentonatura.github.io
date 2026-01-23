@@ -129,6 +129,16 @@ html[data-theme="dark"] {
   .only-dark {
     display: block;
   }
+
+  .arsenal-icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+
+    &:hover {
+      filter: none;
+      opacity: 1;
+    }
+  }
 }
 
 html[data-theme-setting="dark"] {
