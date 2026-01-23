@@ -72,11 +72,14 @@ table.table a {
 }
 
 blockquote {
-  background: var(--global-bg-color);
-  border-left: 5px solid var(--global-theme-color);
+  background: var(--global-code-bg-color);
+  border-left: 4px solid var(--global-theme-color);
+  border-radius: 0 8px 8px 0;
   margin: 1.5em 0;
-  padding: 1em;
-  font-size: 1.2rem;
+  padding: 1.25em 1.5em;
+  font-size: 1.15rem;
+  font-style: italic;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 
   p {
     margin-bottom: 0;
@@ -187,11 +190,14 @@ ul.task-list input[type="checkbox"] {
 .card {
   background-color: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
-  border-radius: 8px;
-  transition: border-color 0.2s ease;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 
   &:hover {
     border-color: var(--global-theme-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
   }
 
   .card-img {
@@ -201,6 +207,7 @@ ul.task-list input[type="checkbox"] {
 
   .card-title {
     color: var(--global-text-color);
+    font-weight: 600;
   }
 
   .card-body {
@@ -238,6 +245,12 @@ ul.task-list input[type="checkbox"] {
   img {
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
@@ -291,13 +304,27 @@ ul.task-list input[type="checkbox"] {
 .events {
   th {
     color: var(--global-text-color-light);
-    font-weight: normal;
+    font-weight: 500;
     font-style: italic;
+    white-space: nowrap;
+  }
+
+  tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--global-code-bg-color);
+    }
   }
 
   .news-title,
   .events-title {
+    font-weight: 500;
     transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--global-hover-color);
+    }
   }
 }
 
@@ -794,10 +821,24 @@ footer.sticky-bottom {
 
   h2.bibliography {
     color: var(--global-text-color);
-    border-top: 1px solid var(--global-divider-color);
+    border-top: 2px solid var(--global-divider-color);
     padding-top: 1rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     text-align: right;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--global-theme-color);
+    }
   }
 
   ol.bibliography {
@@ -806,13 +847,16 @@ footer.sticky-bottom {
     margin-top: 0;
 
     li {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
+      margin-bottom: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border-left: 3px solid transparent;
+      transition: background-color 0.25s ease, border-left-color 0.25s ease, box-shadow 0.25s ease;
 
       &:hover {
         background-color: var(--global-code-bg-color);
+        border-left-color: var(--global-theme-color);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       }
 
       .preview {
@@ -826,8 +870,9 @@ footer.sticky-bottom {
           background-color: var(--global-theme-color);
           margin-bottom: 0.5rem;
           color: var(--global-card-bg-color) !important;
-          border-radius: 4px;
-          font-weight: 500;
+          border-radius: 6px;
+          font-weight: 600;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
           a {
             color: white;
@@ -845,7 +890,9 @@ footer.sticky-bottom {
       }
 
       .title {
-        font-weight: bolder;
+        font-weight: 700;
+        font-size: 1.1em;
+        line-height: 1.4;
       }
 
       .author {
@@ -882,56 +929,70 @@ footer.sticky-bottom {
       }
 
       .links {
+        margin-top: 0.75rem;
+
         a.btn {
           color: var(--global-text-color);
           border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 0.25rem;
-          padding-bottom: 0.25rem;
+          padding: 0.35rem 1rem;
           margin-left: 0;
-          border-radius: 4px;
-          transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+          margin-right: 0.25rem;
+          margin-bottom: 0.25rem;
+          border-radius: 6px;
+          font-weight: 500;
+          transition: all 0.2s ease;
 
           &:hover {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
           }
         }
         a.award.btn {
           border-color: var(--global-highlight-color);
+          color: var(--global-highlight-color);
         }
         a.conference {
-          background-color: var(--global-theme-color);
+          background: linear-gradient(135deg, var(--global-theme-color), var(--global-hover-color));
           color: white;
-          font-weight: bold;
+          font-weight: 600;
           text-transform: none;
+          border: none;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
           &:hover {
-            background-color: white;
-            border-color: var(--global-theme-color);
+            background: white;
+            border: 1px solid var(--global-theme-color);
             color: var(--global-theme-color);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
           }
         }
         a.journal {
-          background-color: #00369f;
+          background: linear-gradient(135deg, #00369f, #0047cc);
           color: white;
-          font-weight: bold;
+          font-weight: 600;
           text-transform: none;
+          border: none;
+          box-shadow: 0 2px 8px rgba(0, 54, 159, 0.3);
           &:hover {
-            background-color: white;
-            border-color: #00369f;
+            background: white;
+            border: 1px solid #00369f;
             color: #00369f;
+            box-shadow: 0 4px 12px rgba(0, 54, 159, 0.2);
           }
         }
         a.preprint {
-          background-color: #228B22;
+          background: linear-gradient(135deg, #228B22, #2ea82e);
           color: white;
-          font-weight: bold;
+          font-weight: 600;
           text-transform: none;
+          border: none;
+          box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
           &:hover {
-            background-color: white;
-            border-color: #228B22;
+            background: white;
+            border: 1px solid #228B22;
             color: #228B22;
+            box-shadow: 0 4px 12px rgba(34, 139, 34, 0.2);
           }
         }
       }
