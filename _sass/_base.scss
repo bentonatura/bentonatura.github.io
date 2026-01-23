@@ -4,12 +4,26 @@
 
 // Typography
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'EB Garamond', 'Palatino Linotype', Palatino, Georgia, serif;
   font-weight: 400;
   font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--global-theme-color);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--global-theme-color);
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -594,11 +608,12 @@ ul.task-list input[type="checkbox"] {
 footer.fixed-bottom {
   background-color: var(--global-footer-bg-color);
   font-size: 0.75rem;
+  border-top: 2px solid var(--global-theme-color);
 
   .container {
     color: var(--global-footer-text-color);
-    padding-top: 9px;
-    padding-bottom: 8px;
+    padding-top: 12px;
+    padding-bottom: 10px;
     text-align: center;
   }
 
@@ -614,7 +629,7 @@ footer.fixed-bottom {
 }
 
 footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
+  border-top: 2px solid var(--global-theme-color);
   padding-top: 40px;
   padding-bottom: 40px;
   font-size: 0.9rem;
@@ -963,39 +978,39 @@ footer.sticky-bottom {
           color: var(--global-highlight-color);
         }
         a.conference {
-          background: #4338ca;
+          background: var(--global-conference-color);
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
-            background: white;
-            border: 1px solid #4338ca;
-            color: #4338ca;
+            background: var(--global-bg-color);
+            border: 1px solid var(--global-conference-color);
+            color: var(--global-conference-color);
           }
         }
         a.journal {
-          background: #9f1239;
+          background: var(--global-journal-color);
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
-            background: white;
-            border: 1px solid #9f1239;
-            color: #9f1239;
+            background: var(--global-bg-color);
+            border: 1px solid var(--global-journal-color);
+            color: var(--global-journal-color);
           }
         }
         a.preprint {
-          background: #0f766e;
+          background: var(--global-preprint-color);
           color: white;
           font-weight: 600;
           text-transform: none;
           border: none;
           &:hover {
-            background: white;
-            border: 1px solid #0f766e;
-            color: #0f766e;
+            background: var(--global-bg-color);
+            border: 1px solid var(--global-preprint-color);
+            color: var(--global-preprint-color);
           }
         }
       }

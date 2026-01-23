@@ -14,6 +14,9 @@
   --global-hover-color: #{$blue-color-dark};
   --global-hover-text-color: #{$white-color};
   --global-accent-color: #059669;
+  --global-conference-color: #4338ca;
+  --global-journal-color: #9f1239;
+  --global-preprint-color: #0f766e;
   --global-footer-bg-color: #{$grey-900};
   --global-footer-text-color: #{$grey-color-light};
   --global-footer-link-color: #{$white-color};
@@ -87,6 +90,9 @@ html[data-theme="dark"] {
   --global-hover-color: #93c5fd;
   --global-hover-text-color: #{$grey-color-dark};
   --global-accent-color: #34d399;
+  --global-conference-color: #818cf8;
+  --global-journal-color: #fb7185;
+  --global-preprint-color: #2dd4bf;
   --global-footer-bg-color: #27272a;
   --global-footer-text-color: #a1a1aa;
   --global-footer-link-color: #e5e7eb;
