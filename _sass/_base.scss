@@ -73,6 +73,15 @@ table.table a {
     text-decoration: underline;
   }
 
+  &.accent {
+    color: var(--global-accent-color);
+
+    &:hover {
+      color: var(--global-accent-color);
+      opacity: 0.8;
+    }
+  }
+
   &:hover:after :not(.nav-item.dropdown) {
     width: 100%;
   }
@@ -314,9 +323,8 @@ ul.task-list input[type="checkbox"] {
 .news,
 .events {
   th {
-    color: var(--global-text-color-light);
-    font-weight: normal;
-    font-style: italic;
+    color: var(--global-accent-color);
+    font-weight: 500;
     white-space: nowrap;
   }
 
