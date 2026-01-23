@@ -131,10 +131,12 @@ html[data-theme="dark"] {
   }
 
   .arsenal-icon {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(3%) saturate(182%) hue-rotate(185deg) brightness(97%) contrast(93%);
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
 
     &:hover {
       filter: none;
+      opacity: 1;
     }
   }
 }
