@@ -16,7 +16,7 @@ profile:
 news: true  # includes a list of news items
 events: true # includes a list of upcoming events
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 ---
 
 Jump to: [News](#news) ✦ [Events](#events) ✦ [Selected Works](#selected-works)
