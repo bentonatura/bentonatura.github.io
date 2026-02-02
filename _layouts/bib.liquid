@@ -190,7 +190,7 @@
 
     <!-- Links/Buttons -->
     <div class="links">
-      {% if entry.conference %}
+      {% if entry.conference and entry.conference != blank %}
         <a class="conference btn btn-sm z-depth-0" role="button">{{ entry.conference }}{% if entry.conference_year %} {{ entry.conference_year }}{% endif %}</a>
       {% endif %}
       {% if entry.journal %}
