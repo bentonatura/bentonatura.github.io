@@ -294,12 +294,16 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-.profile.float-right {
-  margin-left: 1rem;
+.profile.float-sm-right {
+  @media (min-width: 576px) {
+    margin-left: 1rem;
+  }
 }
 
-.profile.float-left {
-  margin-right: 1rem;
+.profile.float-sm-left {
+  @media (min-width: 576px) {
+    margin-right: 1rem;
+  }
 }
 
 @media (min-width: 576px) {
@@ -317,7 +321,6 @@ ul.task-list input[type="checkbox"] {
 
 @media (max-width: 575px) {
   .profile {
-    float: none !important;
     width: 100%;
     margin: 0 auto 1rem auto;
     text-align: center;
