@@ -4,7 +4,7 @@ title: Teaching
 permalink: /teaching/
 description:
 nav: true
-nav_order: 2
+nav_order: 7
 display_categories: [Spring 2026, Spring 2025]
 horizontal: false
 ---
