@@ -16,7 +16,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I am an Assistant Professor in [Industrial Engineering and Operations Research](https://ieor.columbia.edu) at [Columbia University](https://www.columbia.edu). My research sits at the intersection of continuous and discrete optimization. On the continuous side, I develop algorithms for linear, quadratic, and semidefinite programming, with a particular emphasis on strongly polynomial methods for linear programming and network optimization. On the discrete side, I work on combinatorial optimization and approximation algorithms.
+I am an Assistant Professor in [Industrial Engineering and Operations Research](https://ieor.columbia.edu) at [Columbia University](https://www.columbia.edu). My research sits at the intersection of continuous and discrete optimization. On the continuous side, I develop algorithms for linear, quadratic, and semidefinite programming, with a particular emphasis on strongly polynomial methods for network optimization and more general structured linear programs. On the discrete side, I work on combinatorial optimization and approximation algorithms.
 
 Feel free to reach out if you'd like to chat about research or potential collaborations.
 
