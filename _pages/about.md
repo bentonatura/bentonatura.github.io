@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Assistant Professor | <a href='https://ieor.columbia.edu'>Columbia University</a>.
+subtitle: Assistant Professor · <a href='https://ieor.columbia.edu'>Columbia University</a>
 
 profile:
   align: right
@@ -17,8 +17,6 @@ events: true # includes a list of upcoming events
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
-
-Jump to: [News](#news) ✦ [Events](#events) ✦ [Selected Works](#selected-works)
 
 I am an Assistant Professor in [Industrial Engineering and Operations Research (IEOR)](https://ieor.columbia.edu) at [Columbia University](https://ieor.columbia.edu). My research interests lie in algorithms, optimization, and game theory.
 

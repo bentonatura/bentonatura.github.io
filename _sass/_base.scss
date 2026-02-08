@@ -370,6 +370,47 @@ details.about-more {
   }
 }
 
+.desc-sep {
+  margin: 0 0.45rem;
+  color: var(--global-text-color-light);
+  font-size: 0.85em;
+  letter-spacing: -0.05em;
+}
+
+.desc-nav {
+  a {
+    color: var(--global-theme-color);
+    text-decoration: none;
+    margin: 0 0.2rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  a + a::before {
+    content: "·";
+    color: var(--global-text-color-light);
+    margin-right: 0.4rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+
+.homepage-section-heading {
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+
+  a {
+    color: var(--global-text-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+}
+
 .post-description {
   margin-bottom: 2rem;
   font-size: 0.875rem;
