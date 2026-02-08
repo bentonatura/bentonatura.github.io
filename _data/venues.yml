@@ -1,17 +1,42 @@
 "Submitted":
   color: "#228B22"
-"SIAM Journal on Computing":
-  # url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
 
-"Mathematical Programming":
-  color: "#00369f"
-
-"Surveys in Combinatorics":
-  color: "#00369f"
-
-"Mathematics of Operations Research":
-  color: "#00369f"
-
+# Conferences
 "FOCS":
-  # url: https://journals.aps.org/
+  url: https://ieee-focs.org
+  color: "#00369f"
+"STOC":
+  url: https://acm-stoc.org
+  color: "#00369f"
+"ESA":
+  url: https://algo-conference.org/esa/
+  color: "#00369f"
+"ICALP":
+  url: https://eatcs.org/index.php/international-colloquium
+  color: "#00369f"
+"IPCO":
+  url: https://www.mathopt.org/?nav=ipco
+  color: "#00369f"
+"ICCAD":
+  url: https://iccad.com
+  color: "#00369f"
+
+# Journals
+"SIAM Journal on Computing":
+  url: https://epubs.siam.org/journal/smjcat
+  color: "#00369f"
+"Mathematical Programming":
+  url: https://www.springer.com/journal/10107
+  color: "#00369f"
+"Mathematics of Operations Research":
+  url: https://pubsonline.informs.org/journal/moor
+  color: "#00369f"
+"Surveys in Combinatorics":
+  url: https://www.cambridge.org/core/books/surveys-in-combinatorics-2022/4D505506023DBCBAE9FD7D8ABCADAA84
+  color: "#00369f"
+"Algorithmica":
+  url: https://www.springer.com/journal/453
+  color: "#00369f"
+"ACM Transactions on Design Automation of Electronic Systems":
+  url: https://dl.acm.org/journal/todaes
+  color: "#00369f"

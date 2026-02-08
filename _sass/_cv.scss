@@ -151,6 +151,19 @@ td.list-group-link {
 }
 
 /*****************************
+ * CV date badge styles
+ *****************************/
+
+.date-badge {
+  background-color: transparent !important;
+  color: var(--global-theme-color) !important;
+  font-size: 0.75rem;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  white-space: nowrap;
+}
+
+/*****************************
  * CV TOC styles
  *****************************/
 

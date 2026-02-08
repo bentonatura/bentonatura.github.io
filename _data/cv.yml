@@ -1,97 +1,119 @@
-- title: General Information
-  type: map
+- title: Research Interests
+  type: list
   contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+    - "Algorithms, optimization, and game theory. Specific interests include linear programming, interior point methods, convex optimization, combinatorial optimization, and circuit geometry of polytopes."
+
+- title: Positions
+  type: time_table
+  contents:
+    - title: Assistant Professor in Industrial Engineering & Operations Research (IEOR)
+      institution: Columbia University, New York City, NY
+      year: since 2024
+    - title: Beerman Postdoctoral Fellow
+      institution: Georgia Institute of Technology, Atlanta, GA
+      year: 2022 - 2024
+      description:
+        - Joint affiliations with ISyE and the College of Computing.
+    - title: Postdoctoral Research Fellow
+      institution: University of California, Berkeley, CA
+      year: Fall 2023
+      description:
+        - "Long Term Participant, program on <em>Data Structures and Optimization for Fast Algorithms</em> at the Simons Institute."
+    - title: Postdoctoral Fellow
+      institution: Brown University (ICERM), Providence, RI
+      year: Spring 2023
+      description:
+        - "Program: <em>Discrete Optimization: Mathematics, Algorithms, and Computation</em>."
+
+- title: Industry & Other
+  type: time_table
+  icon: fa-solid fa-briefcase
+  contents:
+    - title: Visiting Associate
+      institution: The Boston Consulting Group, Munich, Germany
+      year: 2018
+    - title: Junior Consultant
+      institution: TNG Technology Consulting, Munich, Germany
+      year: 2018
+    - title: Research Assistant
+      institution: Research Institute for Discrete Mathematics, Bonn, Germany
+      year: 2014 - 2017
+      icon: fa-solid fa-flask
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD in Mathematics
+      institution: London School of Economics and Political Science, London, UK
+      year: 2018 - 2022
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - "Supervisor: László Végh."
+        - "Thesis: <em>Exact Linear Programming: Circuits, Curvature, and Diameter</em>."
+    - title: MSc in Mathematics
+      institution: University of Bonn, Bonn, Germany
+      year: 2012 - 2017
       description:
-        - Description 1.
-        - Description 2.
+        - "Thesis: <em>Algorithms for Routing and Buffer Insertion</em>. GPA: 4.0/4.0."
 
-- title: Experience
+- title: Honors & Awards
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Richard Rado Prize
+      institution: German Mathematical Society, TU Berlin
+      year: Oct 2024
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+        - Biennial prize for the best dissertation in Discrete Mathematics.
+    - title: Runner-Up for The Doctoral Award
+      institution: The Operational Research Society (UK)
+      year: Oct 2023
+    - title: PhD Prize
+      institution: Department of Mathematics, London School of Economics
+      year: Jul 2023
+    - title: Dodu Prize &mdash; Best Talk of a Young Researcher
+      institution: SMAI-MODE, Université Paris-Saclay
+      year: Sep 2020
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Teaching
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Course Instructor
+      institution: Columbia University
+      year: 2025 - 2026
+      description:
+        - Advanced Optimization (IEOR 3609), Spring 2025, 2026
+        - Convex Optimization (EEOR 6616), Spring 2026
+        - Fast Algorithms for Linear Programs (IEOR 8100), Spring 2025
+    - title: Teaching Assistant
+      institution: London School of Economics
+      year: 2018 - 2022
+      description:
+        - "Reinforcement Learning &mdash; TA & joint course development, 2022"
+        - "Foundations of Machine Learning &mdash; TA & joint course development, 2021, 2022"
+        - Algorithms and Programming, 2020
+        - Programming in C++, 2019
+        - Operational Research Methods, 2019
+        - Further Mathematical Methods, 2018
+    - title: Teaching Assistant
+      institution: University of Bonn
+      year: 2013 - 2016
+      description:
+        - Combinatorics, Graphs and Matroids, 2016
+        - Calculus, 2013
 
-- title: Honors and Awards
+
+- title: Service
   type: time_table
   contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - title: Seminar Organization
+      institution: Co-organizer, IEOR-DRO Seminar, Columbia University
+      year: since 2025
+    - title: PhD Admissions Committee
+      institution: IEOR Department, Columbia University
+      year: 2025, 2026
+    - title: Program Committees
+      institution: SODA 2025
+    - title: Reviewing
+      year:
+      description:
+        - "Conferences: FOCS, ICALP, IPCO, ISAAC, SODA, STOC."
+        - "Journals: Discrete Optimization, Journal of the ACM, Mathematics of Operations Research, Networks, SIAM Journal on Optimization."

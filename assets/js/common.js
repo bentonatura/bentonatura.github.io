@@ -5,6 +5,12 @@ $(document).ready(function () {
     $(this).parent().parent().find(".award.hidden.open").toggleClass("open");
     $(this).parent().parent().find(".bibtex.hidden.open").toggleClass("open");
   });
+  $(".abstract-toggle").click(function () {
+    $(this).parent().find(".abstract.hidden").toggleClass("open");
+    $(this).parent().find(".award.hidden.open").toggleClass("open");
+    $(this).parent().find(".bibtex.hidden.open").toggleClass("open");
+    $(this).find(".abstract-chevron").toggleClass("open");
+  });
   $("a.award").click(function () {
     $(this).parent().parent().find(".abstract.hidden.open").toggleClass("open");
     $(this).parent().parent().find(".award.hidden").toggleClass("open");
@@ -16,6 +22,9 @@ $(document).ready(function () {
     $(this).parent().parent().find(".bibtex.hidden").toggleClass("open");
   });
   $("a").removeClass("waves-effect waves-light");
+
+  // open profile social/contact links in new tabs
+  $(".contact-icons a").attr("target", "_blank").attr("rel", "noopener noreferrer");
 
   // bootstrap-toc
   if ($("#toc-sidebar").length) {
@@ -38,7 +47,7 @@ $(document).ready(function () {
   cssLink.rel = "stylesheet";
   cssLink.type = "text/css";
 
-  let jupyterTheme = determineComputedTheme();
+  let jupyterTheme = typeof determineComputedTheme !== "undefined" ? determineComputedTheme() : "light";
 
   $(".jupyter-notebook-iframe-container iframe").each(function () {
     $(this).contents().find("head").append(cssLink);

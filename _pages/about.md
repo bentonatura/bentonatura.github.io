@@ -20,19 +20,15 @@ social: true # includes social icons at the bottom of the page
 
 Jump to: [News](#news) ✦ [Events](#events) ✦ [Selected Works](#selected-works)
 
-I am an Assistant Professor in [Industrial Engineering and Operations Research (IEOR)](https://ieor.columbia.edu) at [Columbia University](https://ieor.columbia.edu).
+I am an Assistant Professor in [Industrial Engineering and Operations Research (IEOR)](https://ieor.columbia.edu) at [Columbia University](https://ieor.columbia.edu). My research interests lie in algorithms, optimization, and game theory.
 
-
-From 2022 to 2024 I spent two years as a Postdoctoral Researcher at [Georgia Tech](https://www.isye.gatech.edu).
-In Fall 2023, I was a PostDoc at the [Simons Institute](https://simons.berkeley.edu/homepage) at UC Berkeley for a program in [Data Structures and Optimization for Fast Algorithms](https://simons.berkeley.edu/programs/data-structures-optimization-fast-algorithms). In Spring 2023, I was a PostDoc at [ICERM](https://icerm.brown.edu) at Brown University for a program in [Discrete Optimization](https://icerm.brown.edu/programs/sp-s23/).
-
-I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under the supervision of <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute;
-V&eacute;gh</a>, funded by his <a href="https://erc.europa.eu/" target="_blank">ERC</a> grant <a href="http://personal.lse.ac.uk/veghl/scaleopt.html" target="_blank">ScaleOpt</a>.
-
-
-I also hold a Bachelor's and Master's degree in Mathematics from the [University of Bonn](https://www.uni-bonn.de/en/university/), where I was supervised by <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
-
-My current research interests are focused on the areas of algorithms, optimization, and game theory.
+Previously, I was a postdoctoral fellow at [Georgia Tech](https://www.isye.gatech.edu) (2022--2024), the [Simons Institute](https://simons.berkeley.edu/homepage) at UC Berkeley ([Data Structures and Optimization for Fast Algorithms](https://simons.berkeley.edu/programs/data-structures-optimization-fast-algorithms), Fall 2023), and [ICERM](https://icerm.brown.edu) at Brown University ([Discrete Optimization](https://icerm.brown.edu/programs/sp-s23/), Spring 2023).
 
 Feel free to reach out if you'd like to chat about research or potential collaborations.
+
+<details class="about-more" markdown="1"><summary>Background & Education <i class="fa-solid fa-chevron-down about-chevron"></i></summary>
+
+I received my PhD in the <a href="http://www.lse.ac.uk/Mathematics" target="_blank">Department of Mathematics</a> at the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a>, supervised by <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute; V&eacute;gh</a> and funded by his <a href="https://erc.europa.eu/" target="_blank">ERC</a> grant <a href="http://personal.lse.ac.uk/veghl/scaleopt.html" target="_blank">ScaleOpt</a>. I also hold a Bachelor's and Master's degree in Mathematics from the <a href="https://www.uni-bonn.de/en/university/" target="_blank">University of Bonn</a>, where I was supervised by <a href="http://www.or.uni-bonn.de/~held/Stephan_Held.html" target="_blank">Stephan Held</a> and <a href="http://www.or.uni-bonn.de/~vygen/" target="_blank">Jens Vygen</a>.
+
+</details>
 

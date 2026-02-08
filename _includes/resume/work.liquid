@@ -4,9 +4,11 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2 text-center date-column">
-          {% if content.startDate %}
-            {% assign startDate = content.startDate | split: '-' | slice: 0, 2 | join: '.' %}
-            {% assign endDate = content.endDate | split: '-' | slice: 0, 2 | join: '.' | default: 'Present' %}
+          {% if content.dateDisplay %}
+            {% assign date = content.dateDisplay %}
+          {% elsif content.startDate %}
+            {% assign startDate = content.startDate | split: '-' | first %}
+            {% assign endDate = content.endDate | split: '-' | first | default: 'Present' %}
             {% assign date = startDate | append: ' - ' %}
             {% assign date = date | append: endDate %}
           {% else %}
@@ -16,7 +18,7 @@
             <tbody>
               <tr>
                 <td>
-                  <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px"> {{ date }} </span>
+                  <span class="badge font-weight-bold light-color-dark align-middle date-badge" style="min-width: 75px"> {{ date }} </span>
                 </td>
               </tr>
               {% if content.location %}
@@ -34,17 +36,21 @@
         </div>
         <div class="col-xs-10 col-sm-10 col-md-10 mt-2 mt-md-0">
           <h6 class="title font-weight-bold ml-1 ml-md-4">
-            <a href="{{ content.url }}">{{ content.position }}</a>
+            {% if content.url %}<a href="{{ content.url }}">{{ content.position }}</a>{% else %}{{ content.position }}{% endif %}
           </h6>
           <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">{{ content.name }}</h6>
-          <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic">{{ content.summary }}</h6>
-          <ul class="items">
-            {% for item in content.highlights %}
-              <li>
-                <span class="item">{{ item }}</span>
-              </li>
-            {% endfor %}
-          </ul>
+          {% if content.summary and content.summary != '' %}
+            <p class="ml-1 ml-md-4 mb-0" style="font-size: 0.85rem; color: var(--global-text-color-light)">{{ content.summary }}</p>
+          {% endif %}
+          {% if content.highlights.size > 0 %}
+            <ul class="items">
+              {% for item in content.highlights %}
+                <li>
+                  <span class="item">{{ item }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
     </li>

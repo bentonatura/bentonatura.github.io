@@ -3,15 +3,39 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2 text-center date-column">
-          {% if content.date %} {% assign date = content.date | split: '-' | join: '.' %} {% else %} {% assign date = '' %} {% endif %}
-          <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px"> {{ date }} </span>
+          {% if content.date %}
+            {% assign date_parts = content.date | split: '-' %}
+            {% assign year = date_parts[0] %}
+            {% assign month_num = date_parts[1] | plus: 0 %}
+            {% case month_num %}
+              {% when 1 %}{% assign month = 'Jan' %}
+              {% when 2 %}{% assign month = 'Feb' %}
+              {% when 3 %}{% assign month = 'Mar' %}
+              {% when 4 %}{% assign month = 'Apr' %}
+              {% when 5 %}{% assign month = 'May' %}
+              {% when 6 %}{% assign month = 'Jun' %}
+              {% when 7 %}{% assign month = 'Jul' %}
+              {% when 8 %}{% assign month = 'Aug' %}
+              {% when 9 %}{% assign month = 'Sep' %}
+              {% when 10 %}{% assign month = 'Oct' %}
+              {% when 11 %}{% assign month = 'Nov' %}
+              {% when 12 %}{% assign month = 'Dec' %}
+              {% else %}{% assign month = '' %}
+            {% endcase %}
+            {% assign date = month | append: ' ' | append: year %}
+          {% else %}
+            {% assign date = '' %}
+          {% endif %}
+          <span class="badge font-weight-bold light-color-dark align-middle date-badge" style="min-width: 75px"> {{ date }} </span>
         </div>
         <div class="col-xs-10 col-sm-10 col-md-10 mt-2 mt-md-0">
           <h6 class="title font-weight-bold ml-1 ml-md-4">
-            <a href="{{ content.url }}">{{ content.title }}</a>
+            {% if content.url %}<a href="{{ content.url }}">{{ content.title }}</a>{% else %}{{ content.title }}{% endif %}
           </h6>
           <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem">{{ content.awarder }}</h6>
-          <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic">{{ content.summary }}</h6>
+          {% if content.summary and content.summary != '' %}
+            <p class="ml-1 ml-md-4 mb-0" style="font-size: 0.85rem; color: var(--global-text-color-light)">{{ content.summary }}</p>
+          {% endif %}
         </div>
       </div>
     </li>
