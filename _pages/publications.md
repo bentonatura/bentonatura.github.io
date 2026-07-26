@@ -3,16 +3,14 @@ layout: page
 permalink: /publications/
 title: Publications
 description:
-years: [2026, 2025, 2024, 2023, 2022, 2020]
 nav: true
 nav_order: 3
 ---
 <!-- _pages/publications.md -->
 
-<div class="publications">
+{%- capture pub_count -%}{% bibliography_count -f papers %}{%- endcapture -%}
+<div class="publications enumerated" style="counter-reset: pub-counter {{ pub_count | strip | plus: 1 }};">
 
-{%- for y in page.years %}
-  {% bibliography -f papers -q @*[year={{y}}]* %}
-{% endfor %}
+{% bibliography -f papers --group_by none %}
 
 </div>
