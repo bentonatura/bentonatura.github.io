@@ -280,6 +280,7 @@ ul.task-list input[type="checkbox"] {
   .contact-icons {
     font-size: 1.6rem;
     margin-top: 0.6rem;
+    white-space: nowrap; // keep all icons (incl. the Arsenal logo) on one line
 
     a {
       color: var(--global-text-color);
@@ -310,6 +311,11 @@ ul.task-list input[type="checkbox"] {
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  // Round + shadow the profile photo only — not the inline Arsenal logo,
+  // which is also an <img> inside .profile.
+  img:not(.arsenal-icon) {
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
