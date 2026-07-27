@@ -5,7 +5,7 @@ permalink: /teaching/
 description:
 nav: true
 nav_order: 7
-display_categories: [Spring 2026, Spring 2025]
+display_categories: [Spring 2027, Spring 2026, Spring 2025]
 horizontal: false
 ---
 

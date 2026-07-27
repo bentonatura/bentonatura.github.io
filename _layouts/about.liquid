@@ -11,7 +11,7 @@ layout: default
         {{ site.title }}
       {% endif %}
     </h1>
-    <p class="desc">{{ page.subtitle }}{% if page.news or page.events or page.selected_papers %}<span class="desc-sep">//</span><span class="desc-nav">{% if page.news %}<a href="#news">News</a>{% endif %}{% if page.events %}<a href="#events">Events</a>{% endif %}{% if page.selected_papers %}<a href="#selected-works">Selected Works</a>{% endif %}</span>{% endif %}</p>
+    <p class="desc">{{ page.subtitle }}{% if page.news or page.events or page.selected_papers %}<span class="desc-sep" aria-hidden="true"></span><span class="desc-nav">{% if page.news %}<a href="#news">News</a>{% endif %}{% if page.events %}<a href="#events">Events</a>{% endif %}{% if page.selected_papers %}<a href="#selected-works">Selected Works</a>{% endif %}</span>{% endif %}</p>
   </header>
 
   <article>
@@ -33,7 +33,27 @@ layout: default
           %}
         {% endif %}
         {% if page.social %}
-          <div class="contact-icons mt-2 mb-2">{% social_links %}<img src="{{ '/assets/img/arsenal.svg' | relative_url }}" alt="Arsenal FC" class="arsenal-icon"></div>
+          <div class="contact-icons mt-2 mb-2">{% social_links %}<img src="{{ '/assets/img/arsenal.svg' | relative_url }}" alt="Arsenal FC" title="Arsenal FC" class="arsenal-icon"></div>
+          <script>
+            // The jekyll-socials gem derives tooltips from the data key
+            // ("Scholar userid", "Cv pdf", …); relabel them to clean names by icon type.
+            (function () {
+              var labels = {
+                'fa-envelope': 'Email', 'ai-cv': 'CV', 'fa-linkedin': 'LinkedIn',
+                'ai-google-scholar': 'Google Scholar', 'ai-dblp': 'DBLP', 'ai-orcid': 'ORCID',
+                'ai-arxiv': 'arXiv', 'ai-semantic-scholar': 'Semantic Scholar', 'ai-inspire': 'INSPIRE-HEP',
+                'fa-github': 'GitHub', 'fa-x-twitter': 'X', 'fa-mastodon': 'Mastodon',
+                'fa-bluesky': 'Bluesky', 'fa-youtube': 'YouTube', 'fa-google-scholar': 'Google Scholar'
+              };
+              document.querySelectorAll('.contact-icons a').forEach(function (a) {
+                var icon = a.querySelector('i');
+                if (!icon) return;
+                var label = null;
+                icon.classList.forEach(function (c) { if (labels[c]) label = labels[c]; });
+                if (label) { a.setAttribute('title', label); a.setAttribute('aria-label', label); }
+              });
+            })();
+          </script>
         {% endif %}
         {% if page.profile.more_info %}
           <div class="more-info">{{ page.profile.more_info }}</div>

@@ -222,6 +222,23 @@ ul.task-list input[type="checkbox"] {
     padding-top: 1.25rem;
   }
 
+  // Uniform cover image across all cards: crop every thumbnail to the same
+  // aspect ratio so rows line up regardless of the source image's dimensions.
+  figure {
+    margin: 0;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+  }
+
   .card-title {
     color: var(--global-text-color);
     font-weight: 600;
@@ -261,11 +278,12 @@ ul.task-list input[type="checkbox"] {
   }
 
   .contact-icons {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    margin-top: 0.6rem;
 
     a {
       color: var(--global-text-color);
-      margin-right: 0.5rem;
+      margin-right: 0.85rem;
       transition: color 0.2s ease;
 
       &:hover {
@@ -292,6 +310,8 @@ ul.task-list input[type="checkbox"] {
   img {
     max-width: 100%;
     height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -371,10 +391,12 @@ details.about-more {
 }
 
 .desc-sep {
-  margin: 0 0.45rem;
-  color: var(--global-text-color-light);
-  font-size: 0.85em;
-  letter-spacing: -0.05em;
+  display: inline-block;
+  width: 1px;
+  height: 0.95em;
+  vertical-align: -0.12em;
+  margin: 0 0.7rem;
+  background-color: var(--global-divider-color);
 }
 
 .desc-nav {
@@ -408,6 +430,18 @@ details.about-more {
     &:hover {
       color: var(--global-theme-color);
     }
+  }
+
+  // short accent underline to add a hint of color and tie the section
+  // headings to the site's accent system
+  &::after {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-top: 0.4rem;
+    border-radius: 2px;
+    background-color: var(--global-theme-color);
   }
 }
 
@@ -1096,17 +1130,28 @@ footer.sticky-bottom {
         a.btn {
           color: var(--global-text-color);
           border: 1px solid var(--global-text-color);
-          padding: 0.35rem 1rem;
+          padding: 0.4rem 0.95rem;
           margin-left: 0;
-          margin-right: 0.25rem;
-          margin-bottom: 0.25rem;
+          margin-right: 0.3rem;
+          margin-bottom: 0.3rem;
           border-radius: 6px;
           font-weight: 500;
           transition: all 0.2s ease;
 
+          i {
+            font-size: 1.05em;
+            vertical-align: -0.05em;
+          }
+
+          .btn-label {
+            margin-left: 0.4em;
+            font-weight: 600;
+          }
+
           &:hover {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
+            background-color: var(--global-code-bg-color);
             transform: translateY(-1px);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
           }
@@ -1227,10 +1272,18 @@ footer.sticky-bottom {
   ol.bibliography {
     li {
       counter-increment: pub-counter -1;
+      margin-bottom: 1.15rem; // tighter than the default 1.5rem for a denser list
 
       .abbr {
-        text-align: right;
+        // Right-align the number only in the two-column desktop layout;
+        // on mobile the .abbr stacks above the entry full-width, so keep
+        // the badge on the left instead of floating to the upper right.
+        text-align: left;
         padding-top: 0.15rem;
+
+        @media (min-width: 576px) {
+          text-align: right;
+        }
 
         &::before {
           content: counter(pub-counter);

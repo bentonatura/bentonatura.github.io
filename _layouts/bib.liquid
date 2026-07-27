@@ -2,7 +2,7 @@
 ---
 <div class="row">
   {% if site.enable_publication_thumbnails %}
-    <div class="col col-sm-2 abbr">
+    <div class="col-12 col-sm-2 abbr">
       {%- if entry.abbr -%}
         {%- if site.data.venues[entry.abbr] -%}
           {% assign venue_style = null %}
@@ -46,7 +46,7 @@
   {% endif %}
 
   <!-- Entry bib key -->
-  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
+  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-12 col-sm-8{% else %}col-12 col-sm-10{% endif %}">
     <!-- Title -->
     {% if entry.abstract %}
       <div class="title abstract-toggle" style="cursor: pointer;">{{ entry.title }} <i class="fa-solid fa-chevron-down abstract-chevron"></i></div>
@@ -222,26 +222,26 @@
       <!-- Access -->
       {% if entry.pdf %}
         {% if entry.pdf contains '://' %}
-          <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="fa-solid fa-file-pdf" style="font-size: 1.2em"></i></a>
+          <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="fa-solid fa-file-pdf"></i><span class="btn-label">PDF</span></a>
         {% else %}
-          <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="fa-solid fa-file-pdf" style="font-size: 1.2em"></i></a>
+          <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="fa-solid fa-file-pdf"></i><span class="btn-label">PDF</span></a>
         {% endif %}
       {% endif %}
       {% if entry.arxiv %}
-        <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-arxiv" style="font-size: 1.2em"></i></a>
+        <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-arxiv"></i><span class="btn-label">arXiv</span></a>
       {% endif %}
       {% if entry.doi %}
-        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-doi" style="font-size: 1.2em"></i></a>
+        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-doi"></i><span class="btn-label">DOI</span></a>
       {% endif %}
       {% if entry.hal %}
         <a href="https://hal.science/{{ entry.hal }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button">HAL</a>
       {% endif %}
       <!-- Metadata -->
       {% if site.enable_publication_badges.google_scholar and entry.google_scholar_id %}
-        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-google-scholar" style="font-size: 1.2em"></i></a>
+        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}" class="btn btn-sm z-depth-0" target="_blank" rel="noopener noreferrer" role="button"><i class="ai ai-google-scholar"></i><span class="btn-label">Scholar</span></a>
       {% endif %}
       {% if entry.bibtex_show %}
-        <a class="bibtex btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-quote-right" style="font-size: 1.2em"></i></a>
+        <a class="bibtex btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-quote-right"></i><span class="btn-label">Cite</span></a>
       {% endif %}
       {% comment %}Abstract toggled via title click{% endcomment %}
       <!-- Supplementary -->
