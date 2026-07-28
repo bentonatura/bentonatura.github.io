@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ecedfb"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#4338ca" stroke-opacity="0.06" stroke-width="1.5"/>
+    </pattern>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="14"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#4338ca" fill-opacity="0.5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+  <g stroke="#4338ca" stroke-opacity="0.45" stroke-width="4" marker-end="url(#ar)">
+    <line x1="1050" y1="800" x2="930" y2="700"/><line x1="1080" y1="720" x2="960" y2="620"/>
+  </g>
+  <polygon points="600,150 900,320 940,590 700,780 360,760 220,520 320,250"
+    fill="#4338ca" fill-opacity="0.08" stroke="#4338ca" stroke-opacity="0.4" stroke-width="3"/>
+  <polyline points="700,780 940,590 900,320 600,150 320,250"
+    fill="none" stroke="#4338ca" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#ffffff" stroke="#4338ca" stroke-width="4">
+    <circle cx="600" cy="150" r="11"/><circle cx="900" cy="320" r="11"/><circle cx="940" cy="590" r="11"/>
+    <circle cx="700" cy="780" r="11"/><circle cx="360" cy="760" r="11"/><circle cx="220" cy="520" r="11"/>
+  </g>
+  <circle cx="320" cy="250" r="40" fill="#4338ca" fill-opacity="0.18" filter="url(#soft)"/>
+  <circle cx="320" cy="250" r="17" fill="#4338ca"/>
+</svg>

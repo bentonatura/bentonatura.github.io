@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="1" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e6f1ef"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0f766e" stroke-opacity="0.06" stroke-width="1.5"/>
+    </pattern>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+  <g transform="rotate(24 600 450)" fill="none" stroke="#0f766e">
+    <ellipse cx="600" cy="450" rx="360" ry="270" stroke-opacity="0.18" stroke-width="3"/>
+    <ellipse cx="600" cy="450" rx="290" ry="215" stroke-opacity="0.24" stroke-width="3"/>
+    <ellipse cx="600" cy="450" rx="220" ry="162" stroke-opacity="0.30" stroke-width="3"/>
+    <ellipse cx="600" cy="450" rx="150" ry="110" stroke-opacity="0.38" stroke-width="3"/>
+    <ellipse cx="600" cy="450" rx="82"  ry="60"  stroke-opacity="0.5"  stroke-width="3"/>
+  </g>
+  <polyline points="965,700 740,560 700,470 640,510 612,458 600,450"
+    fill="none" stroke="#0f766e" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#ffffff" stroke="#0f766e" stroke-width="4">
+    <circle cx="965" cy="700" r="10"/><circle cx="740" cy="560" r="9"/><circle cx="700" cy="470" r="9"/>
+    <circle cx="640" cy="510" r="9"/><circle cx="612" cy="458" r="9"/>
+  </g>
+  <circle cx="600" cy="450" r="38" fill="#0f766e" fill-opacity="0.2" filter="url(#soft)"/>
+  <circle cx="600" cy="450" r="16" fill="#0f766e"/>
+</svg>

@@ -8,10 +8,11 @@
   {% endif %}
       <div class="card hoverable">
         {% if teaching.img %}
-          {% include figure.liquid
-            path=teaching.img
-            alt="teaching thumbnail"
-          %}
+          {% comment %} Course covers are lightweight vector SVGs — render them
+          directly (eager, no responsive/lazy pipeline) so they appear instantly. {% endcomment %}
+          <figure class="card-cover">
+            <img src="{{ teaching.img | relative_url }}" alt="{{ teaching.title }} thumbnail" loading="eager" decoding="async">
+          </figure>
         {% endif %}
         <div class="card-body">
           <h2 class="card-title">{{ teaching.title }}</h2>
