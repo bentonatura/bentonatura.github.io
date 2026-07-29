@@ -798,6 +798,26 @@ footer.sticky-bottom {
   }
 }
 
+// Zulip sponsorship acknowledgment (footer)
+.zulip-ack {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85em;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .zulip-logo {
+    width: 1.05em;
+    height: 1.05em;
+    vertical-align: -0.2em;
+    margin-right: 0.35em;
+  }
+}
+
 // CV
 
 .cv {
