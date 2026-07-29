@@ -798,12 +798,12 @@ footer.sticky-bottom {
   }
 }
 
-// Zulip sponsorship acknowledgment (footer)
+// Zulip sponsorship acknowledgment (footer) — inline with the copyright on
+// wide screens; wraps to its own line only when the footer text runs out of room.
 .zulip-ack {
-  display: block;
-  margin-top: 0.6rem;
-  font-size: 0.85em;
+  margin-left: 0.5rem;
   opacity: 0.85;
+  white-space: nowrap; // keep the logo + phrase together as one wrapping unit
   transition: opacity 0.2s ease;
 
   &:hover {
