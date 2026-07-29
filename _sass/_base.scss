@@ -278,13 +278,16 @@ ul.task-list input[type="checkbox"] {
   }
 
   .contact-icons {
-    font-size: 1.6rem;
+    // Size the row to fit within the photo column (which shrinks to its
+    // 200px min-width in the floated layout), so the icons never overflow
+    // past the picture or wrap the last one onto a new line.
+    font-size: 1.35rem;
     margin-top: 0.6rem;
     white-space: nowrap; // keep all icons (incl. the Arsenal logo) on one line
 
     a {
       color: var(--global-text-color);
-      margin-right: 0.85rem;
+      margin-right: 0.5rem;
       transition: color 0.2s ease;
 
       &:hover {
