@@ -3,16 +3,18 @@ layout: null
 permalink: /genflow/
 sitemap: false
 ---
+{%- assign target = '/assets/pdf/genflow.pdf' | relative_url -%}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Redirecting…</title>
+    <title>genflow.pdf</title>
+    <script>location.replace("{{ target }}");</script>
+    <meta http-equiv="refresh" content="0; url={{ target }}">
     <link rel="canonical" href="{{ '/assets/pdf/genflow.pdf' | absolute_url }}">
-    <meta http-equiv="refresh" content="0; url={{ '/assets/pdf/genflow.pdf' | relative_url }}">
     <meta name="robots" content="noindex">
   </head>
   <body>
-    <p>Redirecting to <a href="{{ '/assets/pdf/genflow.pdf' | relative_url }}">the paper (PDF)</a>…</p>
+    <noscript><a href="{{ target }}">genflow.pdf</a></noscript>
   </body>
 </html>
