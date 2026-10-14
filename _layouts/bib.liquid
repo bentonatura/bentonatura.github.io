@@ -156,7 +156,7 @@
     {% assign proceedings = 'inproceedings,incollection' | split: ',' %}
     {% assign thesis = 'thesis,mastersthesis,phdthesis' | split: ',' %}
     {% comment %} Skip periodical line for conference/journal papers since buttons show venue+year {% endcomment %}
-    {% unless entry.conference or entry.journal %}
+    {% unless entry.conference or entry.journal or entry.preprint %}
       {% if entry.type == 'article' %}
         {% capture entrytype %}<em>{{ entry.journal }}</em>{% endcapture %}
       {% elsif proceedings contains entry.type %}
