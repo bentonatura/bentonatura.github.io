@@ -133,6 +133,13 @@ strong {
   color: var(--global-text-color);
 }
 
+// ...but rendered math and everything inside paper titles follow the colour
+// of their surroundings, e.g. the blue of a hovered title
+.katex span,
+.publications .title span {
+  color: inherit;
+}
+
 hr {
   border-top: 1px solid var(--global-divider-color);
 }
@@ -1501,6 +1508,7 @@ footer.sticky-bottom {
 
         .title-end {
           white-space: nowrap;
+          color: inherit; // follow the title's hover colour (a global rule colours spans)
         }
 
         .abstract-chevron {
