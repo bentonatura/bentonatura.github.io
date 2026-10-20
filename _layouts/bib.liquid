@@ -179,15 +179,18 @@
       {% if entry.location %}
         {% capture entrytype %}{{ entrytype }}{{ ", " }}{{ entry.location }}{% endcapture %}
       {% endif -%}
-      {% if entry.additional_info %}
-        {% capture entrytype %}{{ entrytype }}{{ entry.additional_info | markdownify | remove: '<p>' | remove: '</p>' }}{% endcapture %}
-      {% endif %}
       {% assign entrytype_text = entrytype | strip_html | strip %}
       {% capture periodical %}{{ entrytype }}{% if entrytype_text != "" and entryyear != "" %}, {% endif %}{{ entrymonth }}{{ entryyear }}{% endcapture %}
       <div class="periodical">
         {{ periodical | strip }}
       </div>
     {% endunless %}
+    {% comment %} Shown for all entries, e.g. to cross-reference related versions of a paper {% endcomment %}
+    {% if entry.additional_info %}
+      <div class="periodical">
+        {{ entry.additional_info | markdownify | remove: '<p>' | remove: '</p>' | strip }}
+      </div>
+    {% endif %}
     <div class="periodical">
       {{ entry.note | strip }}
     </div>

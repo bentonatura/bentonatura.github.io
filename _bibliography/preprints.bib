@@ -11,3 +11,20 @@
   primaryClass={cs.DS},
   url={https://arxiv.org/abs/2610.18828},
 }
+
+@misc{dadush2026slcstronglypolynomialtime,
+  bibtex_show={true},
+  author = {Dadush, Daniel and Koh, Zhuan Khye and Natura, Bento and Olver, Neil and Végh, László A.},
+  title = {Solving Classes of Linear Programs with Strongly Polynomial Straight Line Complexity in Strongly Polynomial Time},
+  abstract = {Recently, Allamigeon, Dadush, Loho, Natura, and Végh (ADLNV, SICOMP 2025) introduced an interior point method for linear programs whose number of iterations is bounded by the so-called straight line complexity (SLC) of the instance. This yields a strongly polynomial bound on the number of iterations of the corresponding interior point algorithm for broad classes of linear programs. In particular, in the companion paper we give a strongly polynomial straight line complexity bound for two-variable-per-inequality linear programs. However, in order to obtain a strongly polynomial algorithm for these classes, one also needs to address two important technical issues: initialization and bit-complexity bounds. Standard IPM initialization techniques either require numerical estimates that cannot be obtained in the strongly polynomial model, or involve modifying the instance in ways that do not preserve the geometry of the original LP, potentially affecting the SLC.
+<br>
+In this work, we present an initialization framework for interior point methods for linear programming, along with a rounding procedure that ensures the continued feasibility of the IPM. We develop a multistage scheme in which each stage can be initialized in strongly polynomial time given the output of the previous stage. Additionally, we address the challenge of controlling the bit complexity of each iterate throughout the algorithm. To this end, we show that it is possible to represent iterates as low-complexity convex combinations of vertices and extreme rays. Our combinatorial rounding step is independent of the algorithm in ADLNV 2025, and can be applied more broadly in the context of path-following methods.},
+  year = {2026},
+  preprint = {Preprint},
+  additional_info = {Full version of the initialization and bit-complexity part of our [STOC 2024 paper](/publications/#min-cost-gen-flow).},
+  eprint={2610.26073},
+  arxiv={2610.26073},
+  archivePrefix={arXiv},
+  primaryClass={math.OC},
+  url={https://arxiv.org/abs/2610.26073},
+}
