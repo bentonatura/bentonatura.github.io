@@ -1,0 +1,17 @@
+{% comment %}
+  Illustration for the 404 page: an infeasible system. Two parallel
+  constraints whose feasible sides (hatched) point away from each other, so
+  no point satisfies both. Styles in _sass/_base.scss (.infeasible).
+{% endcomment %}
+<svg class="header-art infeasible" viewBox="0 0 440 140" preserveAspectRatio="xMaxYMid meet" role="img" aria-label="Two constraints with no common feasible point">
+  <defs>
+    <pattern id="inf-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <polygon class="inf-side" points="40,50 420,24 420,0 40,0"/>
+  <polygon class="inf-side" points="40,116 420,90 420,140 40,140"/>
+  <line class="inf-constraint" x1="40" y1="50" x2="420" y2="24" pathLength="1"/>
+  <line class="inf-constraint" x1="40" y1="116" x2="420" y2="90" pathLength="1" style="animation-delay: 0.9s"/>
+  <text class="inf-empty" x="230" y="83">∅</text>
+</svg>

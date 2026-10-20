@@ -28,6 +28,47 @@ html {
   scroll-behavior: smooth;
 }
 
+// Links in running text (bio, events, course pages): a thin underline set
+// slightly below the baseline, in a light tint of the link colour; on hover it
+// darkens and thickens. Navigation, paper titles and buttons are unaffected.
+.about-copy a,
+.events td a,
+.news td a,
+.course-page article p a,
+.course-page article td a,
+.publications .periodical a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, text-decoration-thickness 0.2s ease;
+
+  &:hover {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+  }
+}
+
+// Line breaking: headings and paper titles split into even lines instead of
+// leaving a lone word; running text avoids one-word last lines. Browsers
+// without support simply break lines as before.
+h1,
+h2,
+h3,
+.post-title,
+.publications .title {
+  text-wrap: balance;
+}
+
+p,
+li,
+td,
+.post-description,
+.publications .author,
+.publications .periodical {
+  text-wrap: pretty;
+}
+
 // Cross-fade between pages (View Transitions API; browsers without it just
 // navigate as before). The navigation bar and footer stay in place.
 @view-transition {
@@ -526,6 +567,13 @@ details.events-archive {
   grid-column: 1;
   max-width: 690px;
 
+  // the bio's closing invitation, marked with the same accent bar as the title line
+  .about-closing {
+    margin-top: 1.4rem;
+    padding-left: 0.9rem;
+    border-left: 4px solid var(--global-soft-accent-color);
+  }
+
   > :last-child {
     margin-bottom: 0;
   }
@@ -569,9 +617,15 @@ details.events-archive {
     border-radius: 10px;
   }
 
+  // larger icons, spread to about two thirds of the photo's width
   .contact-icons {
     margin-top: 0.9rem;
     margin-bottom: 0;
+    font-size: 1.6rem;
+
+    a {
+      margin: 0 0.45rem;
+    }
   }
 }
 
@@ -773,18 +827,30 @@ details.events-archive {
 
 .news,
 .events {
-  // dates in upright small capitals, aligned on the entry's baseline
+  // dates: smaller semibold labels, aligned on the entry's baseline;
+  // compact rows
   th,
   td {
     vertical-align: baseline;
   }
 
+  // beat bootstrap's .table-sm padding
+  table.table {
+    margin-bottom: 0.5rem;
+
+    th,
+    td {
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+  }
+
   th {
-    color: var(--global-text-color-light);
-    font-weight: normal;
-    font-variant-caps: all-small-caps;
-    font-variant-numeric: oldstyle-nums tabular-nums;
-    letter-spacing: 0.08em;
+    color: #374151;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: 0.02em;
     white-space: nowrap;
   }
 
@@ -1787,13 +1853,40 @@ footer.sticky-bottom {
   }
 }
 
+// PDF icon in the top right of each paper; only on Publications/Preprints.
+.publications .entry-pdf {
+  display: none;
+}
+
+.publications.by-year {
+  ol.bibliography li {
+    position: relative;
+
+    .title {
+      padding-right: 2rem; // keep clear of the PDF icon
+    }
+  }
+
+  .entry-pdf {
+    display: block;
+    position: absolute;
+    top: calc(0.85rem - 9.3px); // centred on the title's first line (measured)
+    right: 0.75rem;
+    color: var(--global-text-color-light);
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+}
+
 // The thesis sits below the year groups, labelled "Thesis" in the year column.
 .publications.by-year.thesis {
   margin-top: 0;
-
-  h2.year {
-    font-size: 1.25rem;
-  }
 }
 
 // Publications and Preprints: grouped by year, with the year in a left
@@ -1820,12 +1913,12 @@ footer.sticky-bottom {
     border-top: 1px solid var(--global-theme-color);
     border-bottom: none; // drop the default heading underline
     margin-top: -1px; // the blue segment sits on the group's hairline
-    color: var(--global-theme-color);
-    font-size: 1.6rem;
-    font-weight: 400;
+    // same look as the event dates (dark grey semibold, not link-blue)
+    color: #374151;
+    font-size: 1.3rem;
+    font-weight: 600;
     line-height: 1;
-    font-variant-numeric: oldstyle-nums;
-    opacity: 0.75;
+    font-variant-numeric: lining-nums;
   }
 
   ol.bibliography {
@@ -1870,7 +1963,6 @@ footer.sticky-bottom {
       position: static;
       padding-top: 0.6rem;
       border-top: none;
-      opacity: 1;
     }
 
     h2.year,
@@ -2564,4 +2656,281 @@ mjx-container[jax="CHTML"][display="true"] {
   &.open .about-chevron {
     transform: rotate(180deg);
   }
+}
+
+// Header illustration (page front matter `header_art`), e.g. the animated
+// central path on Publications: placed beside the title like a course cover.
+// The illustration is positioned out of the flow and scaled to the title
+// block's height, so the header (and everything below it) sits exactly
+// where it does on pages without one.
+.has-header-art > .post-header {
+  position: relative;
+
+  .header-art {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+.central-path {
+  color: var(--global-theme-color);
+  overflow: visible;
+
+  .cp-polytope {
+    fill: var(--global-theme-color);
+    fill-opacity: 0.09;
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.65;
+    stroke-width: 2.6;
+    stroke-linejoin: round;
+  }
+
+  .cp-vertices circle {
+    fill: #fff;
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.8;
+    stroke-width: 2.4;
+  }
+
+  .cp-path {
+    fill: none;
+    stroke: var(--global-theme-color);
+    stroke-width: 4.2;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: cp-draw 2.4s cubic-bezier(0.45, 0, 0.25, 1) 0.35s forwards;
+  }
+
+  .cp-iterate {
+    fill: var(--global-theme-color);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cp-pop 0.35s ease-out forwards;
+  }
+
+  .cp-optimum {
+    fill: var(--global-theme-color);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cp-arrive 0.6s ease-out 2.6s both;
+  }
+
+  .cp-glow {
+    opacity: 0;
+    animation: cp-fade 1.2s ease-out 2.6s forwards;
+  }
+}
+
+@keyframes cp-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cp-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cp-arrive {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cp-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+// no animation for visitors who prefer reduced motion: show the final picture
+@media (prefers-reduced-motion: reduce) {
+  .central-path {
+    .cp-path,
+    .cp-iterate,
+    .cp-optimum,
+    .cp-glow {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+
+// Drafting polytope (Preprints header, _includes/drafting_polytope.liquid):
+// construction lines sketch in, edges are inked one by one at pen speed,
+// then the interior fills.
+.drafting-polytope {
+  color: var(--global-theme-color);
+  overflow: visible;
+
+  .dp-guides line {
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.3;
+    stroke-width: 1.4;
+    stroke-dasharray: 0.04 0.03;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    animation: dp-guide 0.7s ease-out forwards;
+  }
+
+  .dp-edges line {
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.85;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation-name: dp-ink;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .dp-vertices circle {
+    fill: #fff;
+    stroke: var(--global-theme-color);
+    stroke-width: 2.4;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cp-pop 0.3s ease-out forwards;
+  }
+
+  .dp-fill {
+    fill: var(--global-theme-color);
+    fill-opacity: 0;
+    animation: dp-fill 0.9s ease-out forwards;
+  }
+}
+
+@keyframes dp-guide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dp-ink {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dp-fill {
+  to {
+    fill-opacity: 0.09;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drafting-polytope {
+    .dp-guides line,
+    .dp-edges line,
+    .dp-vertices circle {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+
+    .dp-fill {
+      animation: none;
+      fill-opacity: 0.09;
+    }
+  }
+}
+
+// Infeasible system (404 header, _includes/infeasible.liquid): the two
+// constraints are inked, then their feasible sides hatch in, then ∅ appears.
+.infeasible {
+  color: var(--global-theme-color);
+  overflow: visible;
+
+  .inf-constraint {
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.85;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: dp-ink 0.8s ease-in-out 0.1s forwards;
+  }
+
+  .inf-side {
+    fill: url(#inf-hatch);
+    opacity: 0;
+    animation: inf-hatch 0.7s ease-out 1.7s forwards;
+  }
+
+  .inf-empty {
+    fill: var(--global-text-color-light);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 42px;
+    text-anchor: middle;
+    opacity: 0;
+    animation: dp-guide 0.6s ease-out 2.3s forwards;
+  }
+}
+
+@keyframes inf-hatch {
+  to {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infeasible {
+    .inf-constraint,
+    .inf-empty {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+
+    .inf-side {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+.notfound-links {
+  font-size: 1.1rem;
+}
+
+// keyboard hints: light outlined keys instead of the theme's dark boxes
+kbd {
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--global-divider-color);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 0.85em;
 }

@@ -10,7 +10,7 @@ layout: default
 
 {% assign is_course = false %}
 {% if page.collection == 'teaching' %}{% assign is_course = true %}{% endif %}
-<div class="post{% if is_course %} course-page{% endif %}">
+<div class="post{% if is_course %} course-page{% endif %}{% if page.header_art %} has-header-art{% endif %}">
   <header class="post-header">
     <div class="post-header-text">
       <h1 class="post-title">{{ page.title }}</h1>
@@ -23,6 +23,9 @@ layout: default
     </div>
     {% if is_course and page.img %}
       <img class="course-cover" src="{{ page.img | relative_url }}" alt="" aria-hidden="true">
+    {% endif %}
+    {% if page.header_art %}
+      {% include {{ page.header_art | append: '.liquid' }} %}
     {% endif %}
   </header>
 

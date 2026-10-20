@@ -1,0 +1,29 @@
+{% comment %}
+  Animated illustration for the Publications header: the central path of an
+  interior point method, drawn from the analytic centre to the optimal vertex.
+  Styles in _sass/_base.scss (.central-path); static with reduced motion.
+{% endcomment %}
+<svg class="header-art central-path" viewBox="0 0 440 140" preserveAspectRatio="xMaxYMid meet" role="img" aria-label="The central path of an interior point method, from the analytic centre of a polytope to its optimal vertex">
+  <defs>
+    <radialGradient id="cp-glow">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <polygon class="cp-polytope" points="214,10 402,44 372,124 124,132 34,70"/>
+  <g class="cp-vertices">
+    <circle cx="214" cy="10" r="5.5"/>
+    <circle cx="372" cy="124" r="5.5"/>
+    <circle cx="124" cy="132" r="5.5"/>
+    <circle cx="34" cy="70" r="5.5"/>
+  </g>
+  <path class="cp-path" pathLength="1" d="M206,82 C270,82 342,68 402,44"/>
+  <circle class="cp-iterate" cx="206.0" cy="82.0" r="5.5" style="animation-delay: 0.35s"/>
+  <circle class="cp-iterate" cx="261.2" cy="78.8" r="5.5" style="animation-delay: 0.94s"/>
+  <circle class="cp-iterate" cx="305.5" cy="72.0" r="5.5" style="animation-delay: 1.40s"/>
+  <circle class="cp-iterate" cx="341.4" cy="63.8" r="5.5" style="animation-delay: 1.78s"/>
+  <circle class="cp-iterate" cx="370.5" cy="55.4" r="5.5" style="animation-delay: 2.09s"/>
+  <circle class="cp-iterate" cx="389.2" cy="48.9" r="5.5" style="animation-delay: 2.30s"/>
+  <circle class="cp-glow" cx="402" cy="44" r="30" fill="url(#cp-glow)"/>
+  <circle class="cp-optimum" cx="402" cy="44" r="8.5"/>
+</svg>

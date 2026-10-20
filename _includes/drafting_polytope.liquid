@@ -1,0 +1,33 @@
+{% comment %}
+  Animated illustration for the Preprints header: a polytope being drafted,
+  first its supporting hyperplanes as construction lines, then its edges
+  inked one by one, then the interior filled. Styles in _sass/_base.scss
+  (.drafting-polytope); static with reduced motion.
+{% endcomment %}
+<svg class="header-art drafting-polytope" viewBox="0 0 440 140" preserveAspectRatio="xMaxYMid meet" role="img" aria-label="A polytope being drafted: construction lines, then edges, then its interior">
+  <polygon class="dp-fill" points="62,92 146,20 300,12 410,60 356,128 132,132" style="animation-delay: 3.30s"/>
+  <g class="dp-guides">
+    <line x1="42.3" y1="108.9" x2="165.7" y2="3.1" pathLength="1" style="animation-delay: 0.00s"/>
+    <line x1="120.0" y1="21.3" x2="326.0" y2="10.7" pathLength="1" style="animation-delay: 0.08s"/>
+    <line x1="276.2" y1="1.6" x2="433.8" y2="70.4" pathLength="1" style="animation-delay: 0.16s"/>
+    <line x1="426.2" y1="39.6" x2="339.8" y2="148.4" pathLength="1" style="animation-delay: 0.24s"/>
+    <line x1="382.0" y1="127.5" x2="106.0" y2="132.5" pathLength="1" style="animation-delay: 0.32s"/>
+    <line x1="154.6" y1="144.9" x2="39.4" y2="79.1" pathLength="1" style="animation-delay: 0.40s"/>
+  </g>
+  <g class="dp-edges">
+    <line x1="62" y1="92" x2="146" y2="20" pathLength="1" style="animation-delay: 0.90s; animation-duration: 0.34s"/>
+    <line x1="146" y1="20" x2="300" y2="12" pathLength="1" style="animation-delay: 1.24s; animation-duration: 0.48s"/>
+    <line x1="300" y1="12" x2="410" y2="60" pathLength="1" style="animation-delay: 1.72s; animation-duration: 0.37s"/>
+    <line x1="410" y1="60" x2="356" y2="128" pathLength="1" style="animation-delay: 2.09s; animation-duration: 0.27s"/>
+    <line x1="356" y1="128" x2="132" y2="132" pathLength="1" style="animation-delay: 2.36s; animation-duration: 0.69s"/>
+    <line x1="132" y1="132" x2="62" y2="92" pathLength="1" style="animation-delay: 3.05s; animation-duration: 0.25s"/>
+  </g>
+  <g class="dp-vertices">
+    <circle cx="62" cy="92" r="5.5" style="animation-delay: 0.90s"/>
+    <circle cx="146" cy="20" r="5.5" style="animation-delay: 1.24s"/>
+    <circle cx="300" cy="12" r="5.5" style="animation-delay: 1.72s"/>
+    <circle cx="410" cy="60" r="5.5" style="animation-delay: 2.09s"/>
+    <circle cx="356" cy="128" r="5.5" style="animation-delay: 2.36s"/>
+    <circle cx="132" cy="132" r="5.5" style="animation-delay: 3.05s"/>
+  </g>
+</svg>

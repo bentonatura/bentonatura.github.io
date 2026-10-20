@@ -5,6 +5,7 @@ title: Publications
 description: Conference and journal papers, and my PhD thesis.
 nav: true
 nav_order: 3
+header_art: central_path # animated illustration, _includes/central_path.liquid
 ---
 <!-- _pages/publications.md -->
 

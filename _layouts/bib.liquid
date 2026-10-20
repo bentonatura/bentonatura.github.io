@@ -128,6 +128,29 @@
       {% assign has_details = true %}
     {% endif %}
 
+    {% comment %}
+      PDF icon (shown on Publications and Preprints): arXiv PDF if there is
+      one, else the PDF hosted here, else the publisher's version via DOI.
+    {% endcomment %}
+    {% assign pdf_link = nil %}
+    {% if entry.arxiv %}
+      {% assign pdf_link = entry.arxiv | prepend: 'https://arxiv.org/pdf/' %}
+      {% assign pdf_link_title = 'PDF on arXiv' %}
+    {% elsif entry.pdf %}
+      {% if entry.pdf contains '://' %}
+        {% assign pdf_link = entry.pdf %}
+      {% else %}
+        {% assign pdf_link = entry.pdf | prepend: '/assets/pdf/' | relative_url %}
+      {% endif %}
+      {% assign pdf_link_title = 'PDF' %}
+    {% elsif entry.doi %}
+      {% assign pdf_link = entry.doi | prepend: 'https://doi.org/' %}
+      {% assign pdf_link_title = 'Publisher version (may require access)' %}
+    {% endif %}
+    {% if pdf_link %}
+      <a class="entry-pdf" href="{{ pdf_link }}" target="_blank" rel="noopener noreferrer" title="{{ pdf_link_title }}" aria-label="{{ pdf_link_title }}"><i class="fa-regular fa-file-pdf"></i></a>
+    {% endif %}
+
     <!-- Title -->
     {% if has_details %}
       {% comment %} keep the last word and the chevron on one line {% endcomment %}
