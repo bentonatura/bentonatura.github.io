@@ -1479,6 +1479,11 @@ footer.sticky-bottom {
       .periodical {
         color: var(--global-text-color-light);
         font-size: 0.95em;
+
+        em {
+          font-style: normal;
+          color: inherit;
+        }
       }
 
       // links at the top of the opened panel, above the abstract
@@ -1761,6 +1766,15 @@ footer.sticky-bottom {
 
   .links.venues:not(:has(a.btn:not(.preprint))) {
     display: none;
+  }
+}
+
+// The thesis sits below the year groups, labelled "Thesis" in the year column.
+.publications.by-year.thesis {
+  margin-top: 0;
+
+  h2.year {
+    font-size: 1.25rem;
   }
 }
 

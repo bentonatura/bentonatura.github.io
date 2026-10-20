@@ -12,6 +12,7 @@ module Jekyll
     SOURCES = {
       "papers.bib" => ["/publications/", "Publications"],
       "preprints.bib" => ["/preprints/", "Preprints"],
+      "thesis.bib" => ["/publications/", "Thesis"],
     }.freeze
 
     def generate(site)
