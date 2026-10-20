@@ -1,4 +1,5 @@
 @inproceedings{natura2026circuitdiameterpolyhedrastrongly,
+  google_scholar_id = {ULOm3_A8WrAC},
   selected={true},
   bibtex_show={true},
   conference = {FOCS},
@@ -18,6 +19,7 @@ The circuit diameter, introduced by Borgwardt, Finhold, and Hemmecke (SIDMA 2015
 }
 
 @inproceedings{trust-region-ipm,
+  google_scholar_id = {YOwf2qJgpHMC},
   selected={true},
   bibtex_show={true},
   conference = {STOC},
@@ -143,6 +145,7 @@ url = {https://doi.org/10.1007/s10107-023-01956-2},
 }
 
 @article{N-fraction-linear-programming,
+  abstract = {We present an accelerated, or 'look-ahead' version of the Newton-Dinkelbach method, a well-known technique for solving fractional and parametric optimization problems. This acceleration halves the Bregman divergence between the current iterate and the optimal solution within every two iterations. Using the Bregman divergence as a potential in conjunction with combinatorial arguments, we obtain strongly polynomial algorithms in three applications domains: (i) For linear fractional combinatorial optimization, we show a convergence bound of $O(m \log m)$ iterations; the previous best bound was $O(m^2 \log m)$ by Wang et al. (2006). (ii) We obtain a strongly polynomial label-correcting algorithm for solving linear feasibility systems with two variables per inequality (2VPI). For a 2VPI system with $n$ variables and $m$ constraints, our algorithm runs in $O(mn)$ iterations. Every iteration takes $O(mn)$ time for general 2VPI systems, and $O(m + n \log n)$ time for the special case of deterministic Markov Decision Processes (DMDPs). This extends and strengthens a previous result by Madani (2002) that showed a weakly polynomial bound for a variant of the Newton-Dinkelbach method for solving DMDPs. (iii) We give a simplified variant of the parametric submodular function minimization result by Goemans et al. (2017).},
   bibtex_show={true},
   google_scholar_id={d1gkVwhDpl0C},
   arxiv = {2004.08634},
@@ -162,6 +165,7 @@ url = {https://doi.org/10.1007/s10107-023-01956-2},
 }
 
 @inbook{N-survey,
+  doi = {10.1017/9781009093927.004},
 bibtex_show={true},
 google_scholar_id={UeHWp8X0CEIC},
 arxiv = {2108.03616},
@@ -181,6 +185,7 @@ author = {Farbod Ekbatani and Bento Natura and László A. Végh},
 }
 
 @article{N-diameter,
+  abstract = {We study the circuit diameter of polyhedra, introduced by Borgwardt, Finhold, and Hemmecke (SIDMA 2015) as a relaxation of the combinatorial diameter. We show that the circuit diameter of a system $\{x \in \mathbb{R}^n: Ax=b, 0\leq x\leq u\}$ for $A \in \mathbb{R}^{m \times n}$ is bounded by $O(m \min\{m, n-m\} \log(m+ κ_A)+n \log n)$, where $κ_A$ is the circuit imbalance measure of the constraint matrix. This yields a strongly polynomial circuit diameter bound if e.g., all entries of $A$ have polynomially bounded encoding length in $n$. Further, we present circuit augmentation algorithms for LPs using the minimum-ratio circuit cancelling rule. Even though the standard minimum-ratio circuit cancelling algorithm is not finite in general, our variant can solve an LP in $O(mn^2\log(n+κ_A))$ augmentation steps.},
   bibtex_show={true},
   google_scholar_id={IjCSPb-OGe4C},
   arxiv = {2111.07913},
@@ -200,6 +205,7 @@ author = {Farbod Ekbatani and Bento Natura and László A. Végh},
 }
 
 @article{jiang_et_al:LIPIcs.ICALP.2022.79,
+  abstract = {We present a faster interior-point method for optimizing sum-of-squares (SOS) polynomials, which are a central tool in polynomial optimization and capture convex programming in the Lasserre hierarchy. Let $p = \sum_i q^2_i$ be an $n$-variate SOS polynomial of degree $2d$. Denoting by $L := \binom{n+d}{d}$ and $U := \binom{n+2d}{2d}$ the dimensions of the vector spaces in which $q_i$'s and $p$ live respectively, our algorithm runs in time $\tilde{O}(LU^{1.87})$. This is polynomially faster than state-of-art SOS and semidefinite programming solvers, which achieve runtime $\tilde{O}(L^{0.5}\min\{U^{2.37}, L^{4.24}\})$. The centerpiece of our algorithm is a dynamic data structure for maintaining the inverse of the Hessian of the SOS barrier function under the polynomial interpolant basis, which efficiently extends to multivariate SOS optimization, and requires maintaining spectral approximations to low-rank perturbations of elementwise (Hadamard) products. This is the main challenge and departure from recent IPM breakthroughs using inverse-maintenance, where low-rank updates to the slack matrix readily imply the same for the Hessian matrix.},
   bibtex_show={true},
   google_scholar_id={zYLM7Y9cAGgC},
   conference = {ICALP},
@@ -237,6 +243,11 @@ author = {Farbod Ekbatani and Bento Natura and László A. Végh},
 }
 
 @article{8942155,
+  abstract = {We propose a new comprehensive solution to global interconnect optimization. Traditional buffering algorithms mostly insert repeaters on a net-by-net basis based on slacks and possibly guided by global wires.
+<br>
+We show how to integrate routing congestion, placement congestion, global timing constraints, power consumption, and additional constraints into a single resource sharing formulation. The core of our algorithm is a new buffered routing subroutine. Given a net and Lagrangean resource prices for routing, timing, placement, and power, it computes a buffered Steiner tree. The resource sharing framework provides a special multiplicative price update for fast convergence.
+<br>
+Our algorithm is fast enough for practical instances. We demonstrate experimentally on 7nm microprocessor units that it significantly improves timing while reducing netlength and power consumption in an industrial design flow. Our implementation scales well under parallelization with up to 128 threads.},
   bibtex_show={true},
   google_scholar_id={u5HHmVD_uO8C},
   conference = {ICCAD},
@@ -256,6 +267,8 @@ author = {Farbod Ekbatani and Bento Natura and László A. Végh},
 
 
 @inproceedings{min-cost-gen-flow,
+  year = {2024},
+  doi = {10.1145/3618260.3649764},
   selected={true},
   bibtex_show={true},
   google_scholar_id={LkGwnXOMwfcC},

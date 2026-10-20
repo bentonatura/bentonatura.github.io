@@ -2,15 +2,16 @@
 layout: about
 title: About
 permalink: /
+cv_pdf: assets/pdf/cv.pdf
 subtitle: Assistant Professor · <a href='https://ieor.columbia.edu'>Columbia University</a>
 
 profile:
   align: right
-  image: columbia_photo_shoot/20240912_Dini_2190.jpg
+  image: columbia_photo_shoot/20240912_Dini_2190_portrait.jpg
   image_circular: false # crops the image to make it circular
   more_info:
 
-news: true  # includes a list of news items
+news: false # includes a list of news items
 events: true # includes a list of upcoming events
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page

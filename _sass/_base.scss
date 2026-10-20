@@ -4,8 +4,53 @@
 
 // Typography
 
+// EB Garamond, self-hosted from the full upstream release
+// (github.com/octaviopardo/EBGaramond12, SIL OFL 1.1, see assets/fonts/OFL.txt).
+// Google Fonts' copy drops OpenType features such as old-style figures
+// (onum) and true small capitals (smcp), which this site uses.
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('../fonts/EBGaramond-wght.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('../fonts/EBGaramond-Italic-wght.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+// Cross-fade between pages (View Transitions API; browsers without it just
+// navigate as before). The navigation bar and footer stay in place.
+@view-transition {
+  navigation: auto;
+}
+
+#navbar {
+  view-transition-name: site-nav;
+}
+
+footer {
+  view-transition-name: site-footer;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 body {
@@ -357,14 +402,15 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-details.about-more {
+details.about-more,
+details.events-archive {
   margin-top: -0.25rem;
   margin-bottom: 0.5rem;
 
   summary {
     cursor: pointer;
     color: var(--global-theme-color);
-    font-size: 0.85rem;
+    font-size: 1rem;
     list-style: none;
     padding: 0.2rem 0;
 
@@ -399,38 +445,25 @@ details.about-more {
   }
 }
 
-.desc-sep {
-  display: inline-block;
-  width: 1px;
-  height: 0.95em;
-  vertical-align: -0.12em;
-  margin: 0 0.7rem;
-  background-color: var(--global-divider-color);
-}
+details.events-archive {
+  margin-top: 0.25rem;
 
-.desc-nav {
-  a {
-    color: var(--global-theme-color);
-    text-decoration: none;
-    margin: 0 0.2rem;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  a + a::before {
-    content: "·";
-    color: var(--global-text-color-light);
-    margin-right: 0.4rem;
-    text-decoration: none;
-    display: inline-block;
+  &[open] summary {
+    margin-bottom: 0.5rem;
   }
 }
 
+// Small-caps label followed by a hairline rule that runs to the right edge.
 .homepage-section-heading {
-  margin-top: 1rem;
-  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 
   a {
     color: var(--global-text-color);
@@ -441,16 +474,278 @@ details.about-more {
     }
   }
 
-  // short accent underline to add a hint of color and tie the section
-  // headings to the site's accent system
+  // Hairline rule with a short accent segment at its start.
   &::after {
     content: "";
-    display: block;
-    width: 2.5rem;
+    flex: 1 1 auto;
     height: 3px;
-    margin-top: 0.4rem;
-    border-radius: 2px;
-    background-color: var(--global-theme-color);
+    background:
+      linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
+      linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+  }
+}
+
+// About page hero: name, title and bio on the left; the photo column on
+// the right runs from the top of the name to the end of the bio.
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  column-gap: clamp(1.5rem, 4vw, 2.5rem);
+  row-gap: 1.4rem;
+  align-items: start;
+  padding: clamp(0.75rem, 2.5vw, 1.75rem) 0 0;
+
+  .post-header {
+    grid-column: 1;
+    margin-bottom: 0;
+  }
+
+  .post-title {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1.02;
+    margin-bottom: 0;
+
+    .first-name {
+      color: var(--global-theme-color);
+    }
+  }
+
+  .desc {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+    padding-left: 0.9rem;
+    border-left: 4px solid var(--global-soft-accent-color);
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+}
+
+.about-copy {
+  grid-column: 1;
+  max-width: 690px;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.about-more-wrap {
+  margin-top: 0.6rem;
+}
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.3rem;
+  color: var(--global-text-color-light);
+  vertical-align: -0.08em; // rest the icon on the baseline of the name
+  transition: color 0.2s ease;
+
+  svg {
+    width: 0.72em;
+    height: 0.72em;
+  }
+
+  &:hover {
+    color: var(--global-theme-color);
+    text-decoration: none;
+  }
+}
+
+.profile.about-profile {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+
+  // The photo is a portrait crop already; cover only trims what the column
+  // height leaves over, keeping the face in view.
+  img:not(.arsenal-icon) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 35%;
+    border-radius: 10px;
+  }
+
+  .contact-icons {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+  }
+}
+
+// Side by side, the text sets the height of the hero and the photo fills
+// whatever space is left above the contact icons.
+@media (min-width: 768px) {
+  .profile.about-profile {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.55rem; // line up with the cap height of the name
+
+    figure {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      margin: 0;
+    }
+
+    img:not(.arsenal-icon) {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      aspect-ratio: auto;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .profile.about-profile {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+// Page headings (Publications, Teaching, course pages, ...): same serif
+// and weight as the name on the homepage, with the accent-bar subtitle.
+.post:not(.about-post) > .post-header {
+  .post-title {
+    font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+    font-weight: 600;
+    line-height: 1.08;
+    margin-bottom: 0;
+  }
+
+  .post-description {
+    margin-top: 0.6rem;
+    padding-left: 0.9rem;
+    border-left: 4px solid var(--global-soft-accent-color);
+    color: var(--global-text-color);
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+}
+
+// Course pages (_teaching): the course illustration beside the title, and
+// headings and tables in the style of the rest of the site.
+.course-page {
+  > .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .course-cover {
+    flex: 0 0 auto;
+    width: 13rem;
+    border-radius: 10px;
+    border: 1px solid var(--global-divider-color);
+
+    @media (max-width: 575px) {
+      display: none;
+    }
+  }
+
+  article {
+    h2 {
+      @extend .homepage-section-heading;
+    }
+
+    h3 {
+      margin: 1.6rem 0 0.4rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    // sections are separated by their headings already
+    hr {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: 1.5rem;
+
+      th,
+      td {
+        padding: 0.35rem 0.75rem 0.35rem 0;
+        font-weight: inherit;
+        vertical-align: baseline;
+      }
+
+      // column headers (schedule, grading): small capitals, like the dates
+      thead th {
+        color: var(--global-text-color-light);
+        font-weight: normal;
+        font-variant-caps: all-small-caps;
+        letter-spacing: 0.08em;
+        border-bottom: 1px solid var(--global-divider-color);
+
+        strong {
+          font-weight: normal;
+        }
+      }
+
+      tbody tr + tr td {
+        border-top: 1px solid var(--global-divider-color);
+      }
+
+      // the course information table: labels in small capitals, and no
+      // empty spacer column
+      &:not(:has(thead)) {
+        tbody tr + tr td {
+          border-top: none;
+        }
+
+        td:first-child {
+          width: 11rem;
+          color: var(--global-text-color-light);
+          font-variant-caps: all-small-caps;
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+
+          strong {
+            font-weight: normal;
+          }
+        }
+
+        // the course files use "| label | | value |": the middle cell is a
+        // spacer holding only a non-breaking space, so :empty can't catch it
+        tr:has(> td:nth-child(3)) > td:nth-child(2) {
+          display: none;
+        }
+
+        // phones: each label above its value
+        @media (max-width: 575px) {
+          tr,
+          td {
+            display: block;
+          }
+
+          td:first-child {
+            width: auto;
+            padding-bottom: 0;
+          }
+
+          td {
+            padding-top: 0.1rem;
+            overflow-wrap: anywhere;
+          }
+
+          tr + tr td:first-child {
+            padding-top: 0.6rem;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -472,10 +767,18 @@ details.about-more {
 
 .news,
 .events {
+  // dates in upright small capitals, aligned on the entry's baseline
+  th,
+  td {
+    vertical-align: baseline;
+  }
+
   th {
     color: var(--global-text-color-light);
     font-weight: normal;
-    font-style: italic;
+    font-variant-caps: all-small-caps;
+    font-variant-numeric: oldstyle-nums tabular-nums;
+    letter-spacing: 0.08em;
     white-space: nowrap;
   }
 
@@ -766,7 +1069,7 @@ details.about-more {
 // Footer
 footer.fixed-bottom {
   background-color: var(--global-footer-bg-color);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   border-top: 2px solid var(--global-theme-color);
 
   .container {
@@ -1033,15 +1336,29 @@ footer.sticky-bottom {
     }
   }
 
+  // Year headings match the homepage section headings.
   h2.bibliography {
-    color: var(--global-text-color);
-    border-top: 2px solid var(--global-divider-color);
-    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
     margin-top: 2.5rem;
-    text-align: right;
-    font-size: 1.75rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    padding-top: 0;
+    border-top: none;
+    color: var(--global-text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-align: left;
+
+    &::after {
+      content: "";
+      flex: 1 1 auto;
+      height: 3px;
+      background:
+        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
+        linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+    }
   }
 
   ol.bibliography {
@@ -1050,8 +1367,8 @@ footer.sticky-bottom {
     margin-top: 0;
 
     li {
-      margin-bottom: 1.5rem;
-      padding: 1.25rem;
+      margin-bottom: 0.35rem; // with the padding: ~34px between papers everywhere
+      padding: 0.75rem 1.25rem;
       border-radius: 12px;
       border-left: 3px solid transparent;
       transition: background-color 0.25s ease, border-left-color 0.25s ease, box-shadow 0.25s ease;
@@ -1060,6 +1377,15 @@ footer.sticky-bottom {
         background-color: var(--global-code-bg-color);
         border-left-color: var(--global-theme-color);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      // the whole card opens the abstract (see assets/js/common.js)
+      &.has-abstract {
+        cursor: pointer;
+
+        .hidden {
+          cursor: auto;
+        }
       }
 
       .preview {
@@ -1101,6 +1427,10 @@ footer.sticky-bottom {
           color: var(--global-theme-color);
         }
 
+        .title-end {
+          white-space: nowrap;
+        }
+
         .abstract-chevron {
           font-size: 0.7em;
           opacity: 0.4;
@@ -1118,18 +1448,14 @@ footer.sticky-bottom {
 
       .author {
         a {
-          border-bottom: 1px dashed var(--global-theme-color);
-          transition: border-bottom-color 0.2s ease;
-
           &:hover {
-            border-bottom-style: solid;
-            text-decoration: none;
+            text-decoration: underline;
           }
         }
 
         > em {
-          border-bottom: 1px solid;
           font-style: normal;
+          font-weight: 600;
         }
 
         > span.more-authors {
@@ -1145,84 +1471,164 @@ footer.sticky-bottom {
       }
 
       .periodical {
-        font-style: italic;
         color: var(--global-text-color-light);
+        font-size: 0.95em;
+      }
+
+      // links at the top of the opened panel, above the abstract
+      div.abstract.hidden .links.actions {
+        margin: 0.6rem 0 0 0.9rem;
+
+        // phones: spaced instead of divided, so a wrapped line never
+        // starts with a divider
+        @media (max-width: 575px) {
+          display: flex;
+          flex-wrap: wrap;
+          column-gap: 1.1rem;
+          row-gap: 0.2rem;
+
+          a.btn + a.btn::before {
+            display: none;
+          }
+        }
+      }
+
+      // BibTeX opened from "Cite", inside the panel
+      div.abstract.hidden .bibtex.hidden {
+        position: relative;
+        font-size: 1em;
+        margin-left: 0.9rem;
+      }
+
+      // long BibTeX lines (author lists) wrap instead of being cut off
+      div.abstract.hidden .bibtex.hidden pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      // labelled Copy button in the top right of the BibTeX block
+      .copy-bibtex {
+        position: absolute;
+        top: 1rem;
+        right: 0.6rem;
+        z-index: 1;
+        padding: 0.1rem 0.5rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--global-bg-color);
+        color: var(--global-text-color-light);
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover,
+        &.copied {
+          color: var(--global-theme-color);
+        }
       }
 
       .links {
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
 
         &+ .links {
           margin-top: 0.1rem;
         }
 
         a.btn {
-          color: var(--global-text-color);
-          border: 1px solid var(--global-text-color);
-          padding: 0.4rem 0.95rem;
-          margin-left: 0;
-          margin-right: 0.3rem;
-          margin-bottom: 0.3rem;
-          border-radius: 6px;
-          font-weight: 500;
-          transition: all 0.2s ease;
+          margin: 0 0 0.3rem;
+          box-shadow: none;
+          transition: color 0.2s ease, background-color 0.2s ease;
+        }
+      }
+
+      // Venue labels: tinted chips in the venue-type color.
+      .links.venues {
+        a.btn {
+          display: inline-block;
+          margin-right: 0.35rem;
+          padding: 0.15rem 0.55rem;
+          border: none;
+          border-radius: 4px;
+          font-size: 0.88rem;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          text-transform: none;
+          line-height: 1.5;
+          cursor: default;
+
+          &[href] {
+            cursor: pointer;
+          }
+        }
+
+        a.conference {
+          color: var(--global-conference-color);
+          background-color: color-mix(in srgb, var(--global-conference-color) 9%, transparent);
+        }
+
+        a.journal {
+          color: var(--global-journal-color);
+          background-color: color-mix(in srgb, var(--global-journal-color) 8%, transparent);
+        }
+
+        a.preprint {
+          color: var(--global-preprint-color);
+          background-color: color-mix(in srgb, var(--global-preprint-color) 9%, transparent);
+        }
+
+        a.award {
+          color: var(--global-highlight-color);
+          background-color: color-mix(in srgb, var(--global-highlight-color) 8%, transparent);
+        }
+
+        a[href]:hover {
+          text-decoration: none;
+          filter: brightness(0.85);
+        }
+      }
+
+      // PDF / arXiv / DOI / ... as small-caps text links separated by hairlines.
+      .links.actions {
+        margin-top: 0.35rem;
+
+        a.btn {
+          padding: 0;
+          border: none;
+          border-radius: 0;
+          background: none;
+          color: var(--global-text-color-light);
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
 
           i {
-            font-size: 1.05em;
+            font-size: 1em;
             vertical-align: -0.05em;
           }
 
           .btn-label {
-            margin-left: 0.4em;
-            font-weight: 600;
+            margin-left: 0.3em;
+            color: inherit;
           }
 
           &:hover {
             color: var(--global-theme-color);
-            border-color: var(--global-theme-color);
-            background-color: var(--global-code-bg-color);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
           }
-        }
-        a.award.btn {
-          border-color: var(--global-highlight-color);
-          color: var(--global-highlight-color);
-        }
-        a.conference {
-          background: var(--global-conference-color);
-          color: white;
-          font-weight: 600;
-          text-transform: none;
-          border: none;
-          &:hover {
-            background: var(--global-bg-color);
-            border: 1px solid var(--global-conference-color);
-            color: var(--global-conference-color);
-          }
-        }
-        a.journal {
-          background: var(--global-journal-color);
-          color: white;
-          font-weight: 600;
-          text-transform: none;
-          border: none;
-          &:hover {
-            background: var(--global-bg-color);
-            border: 1px solid var(--global-journal-color);
-            color: var(--global-journal-color);
-          }
-        }
-        a.preprint {
-          background: var(--global-preprint-color);
-          color: white;
-          font-weight: 600;
-          text-transform: none;
-          border: none;
-          &:hover {
-            background: var(--global-bg-color);
-            border: 1px solid var(--global-preprint-color);
-            color: var(--global-preprint-color);
+
+          + a.btn::before {
+            content: "";
+            display: inline-block;
+            width: 1px;
+            height: 0.8em;
+            margin: 0 0.7rem;
+            vertical-align: -0.05em;
+            background-color: var(--global-divider-color);
           }
         }
       }
@@ -1243,10 +1649,10 @@ footer.sticky-bottom {
       }
 
       .hidden {
-        font-size: 0.875rem;
+        font-size: 0.9em;
         max-height: 0px;
         overflow: hidden;
-        text-align: justify;
+        text-align: left;
         transition-property: 0.15s ease;
         -moz-transition: 0.15s ease;
         -ms-transition: 0.15s ease;
@@ -1254,12 +1660,12 @@ footer.sticky-bottom {
         transition: all 0.15s ease;
 
         p {
-          line-height: 1.4em;
+          line-height: 1.55em;
           margin: 10px;
         }
 
         pre {
-          font-size: 1em;
+          font-size: 0.8em;
           line-height: 1.4em;
           padding: 10px;
         }
@@ -1274,12 +1680,13 @@ footer.sticky-bottom {
         transition: all 0.15s ease;
       }
 
+      // opened abstracts get the same light-blue bar as the page subtitles
       div.abstract.hidden {
-        border: dashed 1px var(--global-bg-color);
-      }
+        border-left: 3px solid var(--global-soft-accent-color);
 
-      div.abstract.hidden.open {
-        border-color: var(--global-text-color);
+        p {
+          margin: 0.6rem 0 0.4rem 0.9rem;
+        }
       }
     }
     div.award.hidden {
@@ -1291,52 +1698,150 @@ footer.sticky-bottom {
   }
 }
 
-// Continuous enumeration for the publications list.
-// Numbers each entry sequentially (newest first) and drops the
-// per-year headers, using the otherwise-empty left column.
-.publications.enumerated {
-  // counter-reset (starting value = paper count + 1) is set inline on the
-  // container in publications.md, so the list counts down from N to 1
-  // with the newest paper on top carrying the highest number.
+// Papers reached via a link or the search (#entry-key) stop below the
+// fixed navigation bar instead of underneath it.
+.publications ol.bibliography [id] {
+  scroll-margin-top: 5rem;
+}
+
+// Lists without thumbnails or numbers (Selected Works, Preprints): drop the
+// empty left column so entries line up with the page's headings.
+.publications.flush {
+  ol.bibliography li {
+    // keep the hover card, but pull it out so the text itself aligns
+    margin-left: calc(-0.75rem - 3px);
+    margin-right: calc(-0.75rem - 3px);
+    padding: 0.75rem calc(0.75rem + 3px) 0.75rem 0.75rem; // + the 3px left border
+
+    .abbr {
+      display: none;
+    }
+
+    .row > [id] {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.all-publications {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+// Selected works on the homepage: only title, authors and venue.
+.publications.compact {
+  margin-top: 0;
+
+  ol.bibliography li {
+    .badges {
+      display: none;
+    }
+  }
+}
+
+// On the Preprints page every entry is a preprint, so the "Preprint" label
+// is redundant; drop it, and the venue row when nothing else is in it.
+.publications.preprints {
+  .links.venues a.preprint {
+    display: none;
+  }
+
+  .links.venues:not(:has(a.btn:not(.preprint))) {
+    display: none;
+  }
+}
+
+// Publications and Preprints: grouped by year, with the year in a left
+// column that stays pinned while its own papers scroll past, and hairlines
+// between papers.
+.publications.by-year {
+  margin-top: 1.5rem;
+
+  .year-group {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    column-gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-top: 1px solid var(--global-divider-color);
+  }
+
+  h2.year {
+    grid-column: 1;
+    align-self: start;
+    position: sticky;
+    top: 4.5rem; // below the fixed navigation bar
+    margin: 0;
+    padding-top: calc(0.6rem + 0.85rem); // level with the first title
+    border-top: 1px solid var(--global-theme-color);
+    border-bottom: none; // drop the default heading underline
+    margin-top: -1px; // the blue segment sits on the group's hairline
+    color: var(--global-theme-color);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+    font-variant-numeric: oldstyle-nums;
+    opacity: 0.75;
+  }
+
   ol.bibliography {
+    grid-column: 2;
+    margin: 0;
+    padding-top: 0.6rem;
+
     li {
-      counter-increment: pub-counter -1;
-      margin-bottom: 1.15rem; // tighter than the default 1.5rem for a denser list
+      margin: 0;
+      padding: 0.85rem 0.75rem;
+      border-radius: 8px;
+      border-left: none;
+
+      + li {
+        border-top: 1px solid var(--global-divider-color);
+        border-radius: 0 0 8px 8px;
+      }
+
+      &:hover {
+        box-shadow: none;
+      }
 
       .abbr {
-        // Right-align the number only in the two-column desktop layout;
-        // on mobile the .abbr stacks above the entry full-width, so keep
-        // the badge on the left instead of floating to the upper right.
-        text-align: left;
-        padding-top: 0.15rem;
-
-        @media (min-width: 576px) {
-          text-align: right;
-        }
-
-        &::before {
-          content: counter(pub-counter);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 2.1rem;
-          height: 2.1rem;
-          padding: 0 0.55rem;
-          border-radius: 999px;
-          background-color: var(--global-code-bg-color);
-          color: var(--global-theme-color);
-          font-weight: 700;
-          font-size: 1rem;
-          line-height: 1;
-          font-variant-numeric: tabular-nums;
-          transition: background-color 0.25s ease, color 0.25s ease;
-        }
+        display: none;
       }
 
-      &:hover .abbr::before {
-        background-color: var(--global-theme-color);
-        color: var(--global-card-bg-color);
+      .row > [id] {
+        flex: 0 0 100%;
+        max-width: 100%;
+        min-width: 0; // the hidden BibTeX block must not widen the column
       }
+    }
+  }
+
+  // phones: the year becomes a heading above its papers
+  @media (max-width: 575px) {
+    .year-group {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    h2.year {
+      position: static;
+      padding-top: 0.6rem;
+      border-top: none;
+      opacity: 1;
+    }
+
+    h2.year,
+    ol.bibliography {
+      grid-column: 1;
+    }
+
+    ol.bibliography {
+      padding-top: 0;
     }
   }
 }
@@ -1429,8 +1934,12 @@ progress {
   /* Positioning */
   position: fixed;
   left: 0;
-  top: 56px;
+  top: 57px; // below the nav-bar, see body.fixed-top-nav in _layout.scss
   z-index: 10;
+
+  @media (min-width: 576px) {
+    top: 62px;
+  }
 
   /* Dimensions */
   width: 100%;
@@ -1977,20 +2486,44 @@ mjx-container[jax="CHTML"][display="true"] {
   overflow-x: auto;
 }
 
-// Show more/less button for news and events
-.show-more-btn {
-  color: var(--global-text-color-light);
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
+// Show more/less button for news and events, styled like the
+// "Background & Education" and "Archive" toggles.
+.show-more-wrap {
+  margin-top: 0.25rem;
+}
 
-  &:hover {
+.show-more-btn.btn {
+  padding: 0.2rem 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  color: var(--global-theme-color);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-transform: none;
+
+  &:hover,
+  &:focus {
     color: var(--global-theme-color);
     text-decoration: none;
+    box-shadow: none;
+    opacity: 0.8;
   }
 
-  i {
-    font-size: 0.75rem;
-    vertical-align: middle;
+  .show-more-label {
+    color: inherit;
+  }
+
+  .about-chevron {
+    font-size: 0.6em;
+    margin-left: 0.15em;
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+
+  &.open .about-chevron {
+    transform: rotate(180deg);
   }
 }

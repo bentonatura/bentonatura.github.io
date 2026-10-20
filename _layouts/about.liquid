@@ -1,67 +1,99 @@
 ---
 layout: default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">
-      {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
-      {% else %}
-        {{ site.title }}
-      {% endif %}
-    </h1>
-    <p class="desc">{{ page.subtitle }}{% if page.news or page.events or page.selected_papers %}<span class="desc-sep" aria-hidden="true"></span><span class="desc-nav">{% if page.news %}<a href="#news">News</a>{% endif %}{% if page.events %}<a href="#events">Events</a>{% endif %}{% if page.selected_papers %}<a href="#selected-works">Selected Works</a>{% endif %}</span>{% endif %}</p>
-  </header>
-
+<div class="post about-post">
   <article>
-    {% if page.profile %}
-      <div class="profile float-sm-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+    <section class="about-hero">
+      <header class="post-header">
+        <h1 class="post-title">
+          {% if site.title == 'blank' %}
+            <span class="first-name">{{ site.first_name }}</span> {{ site.middle_name }}
+            {{ site.last_name }}
           {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1
-      rounded' %}
+            {{ site.title }}
           {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
-      30vw, 95vw"{% endcapture %}
-          {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
-            cache_bust=true
-          %}
-        {% endif %}
-        {% if page.social %}
-          <div class="contact-icons mt-2 mb-2">{% social_links %}<img src="{{ '/assets/img/arsenal.svg' | relative_url }}" alt="Arsenal FC" title="Arsenal FC" class="arsenal-icon"></div>
-          <script>
-            // The jekyll-socials gem derives tooltips from the data key
-            // ("Scholar userid", "Cv pdf", …); relabel them to clean names by icon type.
-            (function () {
-              var labels = {
-                'fa-envelope': 'Email', 'ai-cv': 'CV', 'fa-linkedin': 'LinkedIn',
-                'ai-google-scholar': 'Google Scholar', 'ai-dblp': 'DBLP', 'ai-orcid': 'ORCID',
-                'ai-arxiv': 'arXiv', 'ai-semantic-scholar': 'Semantic Scholar', 'ai-inspire': 'INSPIRE-HEP',
-                'fa-github': 'GitHub', 'fa-x-twitter': 'X', 'fa-mastodon': 'Mastodon',
-                'fa-bluesky': 'Bluesky', 'fa-youtube': 'YouTube', 'fa-google-scholar': 'Google Scholar'
-              };
-              document.querySelectorAll('.contact-icons a').forEach(function (a) {
-                var icon = a.querySelector('i');
-                if (!icon) return;
-                var label = null;
-                icon.classList.forEach(function (c) { if (labels[c]) label = labels[c]; });
-                if (label) { a.setAttribute('title', label); a.setAttribute('aria-label', label); }
-              });
-            })();
-          </script>
-        {% endif %}
-        {% if page.profile.more_info %}
-          <div class="more-info">{{ page.profile.more_info }}</div>
-        {% endif %}
+          {% if page.cv_pdf %}
+            <a href="{{ page.cv_pdf | relative_url }}" class="cv-link" title="CV" aria-label="Download CV">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/>
+                <path d="M11 12.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0"/>
+                <path d="M13 11l1.5 6l1.5 -6"/>
+              </svg>
+            </a>
+          {% endif %}
+        </h1>
+        <p class="desc">{{ page.subtitle }}</p>
+      </header>
+
+      {% comment %}
+        The photo column spans the name and the bio. The collapsible
+        "Background & Education" block is rendered below the hero so that
+        expanding it doesn't stretch the photo.
+      {% endcomment %}
+      {% assign about_parts = content | split: '<details' %}
+      <div class="about-copy clearfix">{{ about_parts | first }}</div>
+
+      {% if page.profile %}
+        <aside class="profile about-profile">
+          {% if page.profile.image %}
+            {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+            {% if page.profile.image_circular %}
+              {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+            {% else %}
+              {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
+            {% endif %}
+            {% capture sizes %}(min-width: 768px) 300px, 320px{% endcapture %}
+            {%
+              include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
+              cache_bust=true
+            %}
+          {% endif %}
+          {% if page.social %}
+            <div class="contact-icons mt-2 mb-2">{% social_links %}<img src="{{ '/assets/img/arsenal.svg' | relative_url }}" alt="Arsenal FC" title="Arsenal FC" class="arsenal-icon"></div>
+            <script>
+              // The jekyll-socials gem derives tooltips from the data key
+              // ("Scholar userid", "Cv pdf", …); relabel them to clean names by icon type.
+              (function () {
+                var labels = {
+                  'fa-envelope': 'Email', 'ai-cv': 'CV', 'fa-linkedin': 'LinkedIn',
+                  'ai-google-scholar': 'Google Scholar', 'ai-dblp': 'DBLP', 'ai-orcid': 'ORCID',
+                  'ai-arxiv': 'arXiv', 'ai-semantic-scholar': 'Semantic Scholar', 'ai-inspire': 'INSPIRE-HEP',
+                  'fa-github': 'GitHub', 'fa-x-twitter': 'X', 'fa-mastodon': 'Mastodon',
+                  'fa-bluesky': 'Bluesky', 'fa-youtube': 'YouTube', 'fa-google-scholar': 'Google Scholar'
+                };
+                document.querySelectorAll('.contact-icons a').forEach(function (a) {
+                  var icon = a.querySelector('i');
+                  if (!icon) return;
+                  var label = null;
+                  icon.classList.forEach(function (c) { if (labels[c]) label = labels[c]; });
+                  if (label) { a.setAttribute('title', label); a.setAttribute('aria-label', label); }
+                });
+              })();
+            </script>
+          {% endif %}
+          {% if page.profile.more_info %}
+            <div class="more-info">{{ page.profile.more_info }}</div>
+          {% endif %}
+        </aside>
+      {% endif %}
+    </section>
+
+    {% if about_parts.size > 1 %}
+      <div class="about-more-wrap">
+        {%- for part in about_parts offset: 1 -%}<details{{ part }}{%- endfor -%}
       </div>
     {% endif %}
 
-    <div class="clearfix">{{ content }}</div>
+    <!-- Selected papers -->
+    {% if page.selected_papers %}
+      <h2 id="selected-works" class="homepage-section-heading">
+        <a href="{{ '/publications/' | relative_url }}">Selected Works</a>
+      </h2>
+      {% include selected_papers.liquid %}
+      <a class="all-publications" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">&rarr;</span></a>
+    {% endif %}
 
     <!-- News -->
     {% assign show_news = false %}
@@ -71,7 +103,7 @@ layout: default
       <h2 id="news" class="homepage-section-heading">
         <a href="{{ '/news/' | relative_url }}">News</a>
       </h2>
-      {% include news.liquid limit=true %}
+      {% include news.liquid limit=true visible=4 %}
     {% endif %}
 
     <!-- Events -->
@@ -88,14 +120,6 @@ layout: default
         <a href="{{ '/blog/' | relative_url }}">Latest Posts</a>
       </h2>
       {% include latest_posts.liquid %}
-    {% endif %}
-
-    <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2 id="selected-works" class="homepage-section-heading">
-        <a href="{{ '/publications/' | relative_url }}">Selected Works</a>
-      </h2>
-      {% include selected_papers.liquid %}
     {% endif %}
 
     {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}

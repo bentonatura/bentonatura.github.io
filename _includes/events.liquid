@@ -32,41 +32,35 @@
         </table>
       </div>
       {% if upcoming_events.size > 5 %}
-        <div class="text-center mt-2">
+        <div class="show-more-wrap">
           <button class="btn btn-link show-more-btn" onclick="toggleShowMore(this, 'upcoming-hidden')">
-            Show more <i class="ti ti-chevron-down"></i>
+            <span class="show-more-label">Show more</span> <i class="fa-solid fa-chevron-down about-chevron"></i>
           </button>
         </div>
       {% endif %}
     {% endif %}
 
     {% if past_events.size > 0 %}
-      <p class="text-muted mb-2 mt-4" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Archive</p>
-      <hr class="mt-0 mb-3">
       {% assign past_sorted = past_events | sort: "date" | reverse %}
-      <div class="table-responsive">
-        <table class="table table-sm table-borderless">
-          {% for item in past_sorted %}
-            <tr {% if forloop.index > 5 and past_events.size > 5 %}class="past-hidden" style="display: none;"{% endif %}>
-              <th scope="row" style="width:15%">{{ item.date | date: "%b %Y" }}</th>
-              <td>
-                {% if item.inline %}
-                  {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-                {% else %}
-                  <a class="events-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
-      {% if past_events.size > 5 %}
-        <div class="text-center mt-2">
-          <button class="btn btn-link show-more-btn" onclick="toggleShowMore(this, 'past-hidden')">
-            Show more <i class="ti ti-chevron-down"></i>
-          </button>
+      <details class="events-archive">
+        <summary>Archive <i class="fa-solid fa-chevron-down about-chevron"></i></summary>
+        <div class="table-responsive">
+          <table class="table table-sm table-borderless">
+            {% for item in past_sorted %}
+              <tr>
+                <th scope="row" style="width:15%">{{ item.date | date: "%b %Y" }}</th>
+                <td>
+                  {% if item.inline %}
+                    {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+                  {% else %}
+                    <a class="events-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
         </div>
-      {% endif %}
+      </details>
     {% endif %}
   {% else %}
     <p>No events at the moment...</p>

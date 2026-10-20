@@ -7,10 +7,11 @@
     {% else %}
       {% assign news_limit = news_size %}
     {% endif %}
+    {% assign news_visible = include.visible | default: 6 %}
     <div class="table-responsive">
       <table class="table table-sm table-borderless">
         {% for item in news limit: news_limit %}
-          <tr {% if forloop.index > 6 and news_size > 6 %}class="news-hidden" style="display: none;"{% endif %}>
+          <tr {% if forloop.index > news_visible and news_size > news_visible %}class="news-hidden" style="display: none;"{% endif %}>
             <th scope="row" style="width: 15%">{{ item.date | date: '%b %Y' }}</th>
             <td>
               {% if item.inline %}
@@ -23,10 +24,10 @@
         {% endfor %}
       </table>
     </div>
-    {% if news_size > 6 %}
-      <div class="text-center mt-2">
+    {% if news_size > news_visible %}
+      <div class="show-more-wrap">
         <button class="btn btn-link show-more-btn" data-target="news" onclick="toggleShowMore(this, 'news-hidden')">
-          Show more <i class="ti ti-chevron-down"></i>
+          <span class="show-more-label">Show more</span> <i class="fa-solid fa-chevron-down about-chevron"></i>
         </button>
       </div>
     {% endif %}

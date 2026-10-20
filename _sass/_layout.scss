@@ -17,9 +17,20 @@ body {
   }
 }
 
+// Space for the fixed nav-bar. These must equal the bar's real height:
+// assets/js/progress-bar.js re-measures it after load and sets the padding,
+// and any difference makes the page jump. With EB Garamond the horizontal
+// (>= 576px) bar is 62px tall, the collapsed one 57px.
 body.fixed-top-nav {
-  // Add some padding for the nav-bar.
   padding-top: 57px;
+
+  @media (min-width: 576px) {
+    padding-top: 62px;
+
+    #navbar {
+      height: 62px;
+    }
+  }
 }
 
 body.sticky-bottom-footer {

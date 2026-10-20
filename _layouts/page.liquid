@@ -8,10 +8,22 @@ layout: default
   </style>
 {% endif %}
 
-<div class="post">
+{% assign is_course = false %}
+{% if page.collection == 'teaching' %}{% assign is_course = true %}{% endif %}
+<div class="post{% if is_course %} course-page{% endif %}">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-description">{{ page.description }}</p>
+    <div class="post-header-text">
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.description and page.description != "" %}
+        <p class="post-description">
+          {{- page.description -}}
+          {%- if is_course and page.category %} · {{ page.category }}{% endif -%}
+        </p>
+      {% endif %}
+    </div>
+    {% if is_course and page.img %}
+      <img class="course-cover" src="{{ page.img | relative_url }}" alt="" aria-hidden="true">
+    {% endif %}
   </header>
 
   <article>

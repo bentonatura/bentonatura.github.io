@@ -1,0 +1,18 @@
+{% comment %}
+  Papers from one bibliography file, grouped by year of first appearance
+  (the conference year if there is one, else the year). Each year is its own
+  block, so the year label stays pinned only while its own papers scroll by.
+  Usage: {% include publications_by_year.liquid file="papers" section="Publications" %}
+{% endcomment %}
+{% assign pubs = site.data.search_publications | where: "section", include.section %}
+{% assign years = pubs | map: "first_year" | uniq | sort | reverse %}
+<div class="publications by-year {{ include.section | downcase }}">
+  {% for y in years %}
+    {% assign group = pubs | where: "first_year", y %}
+    {% capture query %}@*[{% for p in group %}key={{ p.key }}{% unless forloop.last %}||{% endunless %}{% endfor %}]{% endcapture %}
+    <section class="year-group">
+      <h2 class="year">{{ y }}</h2>
+      {% bibliography -f {{ include.file }} -q {{ query }} --group_by none %}
+    </section>
+  {% endfor %}
+</div>

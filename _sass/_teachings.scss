@@ -115,14 +115,28 @@
     margin-bottom: 10px;
   }
 
+  // Semester headings match the homepage section headings.
   h2.category {
-    color: var(--global-text-color);
-    border-bottom: 2px solid var(--global-divider-color);
-    padding-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    text-align: left;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    padding-top: 0;
+    border-bottom: none;
+    color: var(--global-text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      flex: 1 1 auto;
+      height: 3px;
+      background:
+        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
+        linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+    }
   }
 }

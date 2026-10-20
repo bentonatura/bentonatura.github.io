@@ -331,11 +331,7 @@
       item.style.display = isHidden ? 'table-row' : 'none';
     });
 
-    const icon = button.querySelector('i');
-    if (isHidden) {
-      button.innerHTML = 'Show less <i class="ti ti-chevron-up"></i>';
-    } else {
-      button.innerHTML = 'Show more <i class="ti ti-chevron-down"></i>';
-    }
+    button.classList.toggle('open', isHidden);
+    button.querySelector('.show-more-label').textContent = isHidden ? 'Show less' : 'Show more';
   }
 </script>

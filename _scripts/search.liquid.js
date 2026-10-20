@@ -79,7 +79,7 @@ ninja.data = [
     {%- endfor -%}
   {%- endif -%}
   {%- for collection in site.collections -%}
-    {%- if collection.label != 'posts' -%}
+    {%- if collection.label != 'posts' and collection.label != 'news' -%}
       {%- for item in collection.docs -%}
         {
           {%- if item.inline -%}
@@ -100,6 +100,27 @@ ninja.data = [
       {%- endfor -%}
     {%- endif -%}
   {%- endfor -%}
+  {%- for pub in site.data.search_publications -%}
+    {
+      {%- capture pub_description -%}{{ pub.authors }}{% if pub.venue != "" %} · {{ pub.venue }}{% endif %}{%- endcapture -%}
+      id: "pub-{{ pub.key | slugify }}",
+      title: "{{ pub.title | escape }}",
+      description: "{{ pub_description | escape | strip }}",
+      section: "{{ pub.section }}",
+      handler: () => {
+        window.location.href = "{{ pub.url | relative_url }}";
+      },
+    },
+  {%- endfor -%}
+  {
+    id: "cv-pdf",
+    title: "CV",
+    description: "Curriculum vitae (PDF)",
+    section: "Navigation",
+    handler: () => {
+      window.open("{{ '/assets/pdf/cv.pdf' | relative_url }}", "_blank");
+    },
+  },
   {%- if site.socials_in_search -%}
     {%- for social in site.data.socials -%}
       {%- case social[0] -%}

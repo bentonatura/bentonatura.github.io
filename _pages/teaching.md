@@ -2,7 +2,7 @@
 layout: page
 title: Teaching
 permalink: /teaching/
-description:
+description: Courses at Columbia University.
 nav: true
 nav_order: 7
 display_categories: [Spring 2027, Spring 2026, Spring 2025]
