@@ -1,4 +1,14 @@
+{% comment %}
+  Selected works on the homepage: selected preprints first, then selected
+  papers ordered by year of first appearance, as on the Publications page.
+{% endcomment %}
+{% assign pubs = site.data.search_publications | where: "section", "Publications" | where: "selected", "true" %}
+{% assign years = pubs | map: "first_year" | uniq | sort | reverse %}
 <div class="publications flush compact">
   {% bibliography -f preprints --group_by none --query @*[selected=true]* %}
-  {% bibliography --group_by none --query @*[selected=true]* %}
+  {% for y in years %}
+    {% assign group = pubs | where: "first_year", y %}
+    {% capture query %}@*[{% for p in group %}key={{ p.key }}{% unless forloop.last %}||{% endunless %}{% endfor %}]{% endcapture %}
+    {% bibliography -f papers -q {{ query }} --group_by none %}
+  {% endfor %}
 </div>

@@ -299,9 +299,11 @@
         <a class="preprint btn btn-sm z-depth-0" role="button">{{ entry.preprint }}</a>
       {% endif %}
       {% if entry.award %}
-        <a class="award btn btn-sm z-depth-0" role="button">
-          {%- if entry.award_name %}{{ entry.award_name }}{% else %}Awarded{% endif -%}
-        </a>
+        {% comment %} several awards: separate their names with ";" in award_name {% endcomment %}
+        {% assign award_names = entry.award_name | default: 'Awarded' | split: ';' %}
+        {% for award_name in award_names %}
+          <a class="award btn btn-sm z-depth-0" role="button">{{ award_name | strip }}</a>
+        {% endfor %}
       {% endif %}
     </div>
     {% if site.enable_publication_badges %}
@@ -370,7 +372,7 @@
     {% if entry.award %}
       <!-- Hidden Award block -->
       <div class="award hidden d-print-inline">
-        <p>{{ entry.award | markdownify }}</p>
+        <div class="award-text">{{ entry.award | markdownify }}</div>
       </div>
     {% endif %}
 

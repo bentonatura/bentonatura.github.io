@@ -1700,11 +1700,24 @@ footer.sticky-bottom {
         }
       }
     }
+    // award details (opened from an award label): same look as the abstract
+    // panel, with the award color
     div.award.hidden {
-      border: dashed 1px var(--global-bg-color);
-    }
-    div.award.hidden.open {
-      border-color: var(--global-highlight-color);
+      border-left: 3px solid color-mix(in srgb, var(--global-highlight-color) 35%, transparent);
+      text-align: left;
+
+      .award-text {
+        margin: 0.6rem 0 0.4rem 0.9rem;
+
+        ul {
+          margin: 0;
+          padding-left: 1.1rem;
+        }
+
+        li + li {
+          margin-top: 0.2rem;
+        }
+      }
     }
   }
 }
@@ -1749,6 +1762,11 @@ footer.sticky-bottom {
 // Selected works on the homepage: only title, authors and venue.
 .publications.compact {
   margin-top: 0;
+
+  // one list per year of first appearance; no gap between them
+  ol.bibliography {
+    margin-bottom: 0;
+  }
 
   ol.bibliography li {
     .badges {

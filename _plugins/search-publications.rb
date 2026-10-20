@@ -34,6 +34,7 @@ module Jekyll
             "year" => entry.year.to_s,
             # year of first appearance: the conference version if there is one
             "first_year" => (entry[:conference_year] || entry.year).to_s,
+            "selected" => entry[:selected].to_s,
             "url" => "#{page}##{entry.key}",
             "section" => section,
           }
