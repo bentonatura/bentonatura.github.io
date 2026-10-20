@@ -29,6 +29,15 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
+      - name: Install ImageMagick
+        # used by jekyll-imagemagick to create the responsive .webp images
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q imagemagick
+          # newer ImageMagick 7 packages may only provide `magick`
+          command -v convert || sudo ln -s "$(command -v magick)" /usr/local/bin/convert
+          convert -version | head -1
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
