@@ -18,7 +18,7 @@
       <div class="table-responsive">
         <table class="table table-sm table-borderless">
           {% for item in upcoming_sorted %}
-            <tr {% if forloop.index > 5 and upcoming_events.size > 5 %}class="upcoming-hidden" style="display: none;"{% endif %}>
+            <tr>
               <th scope="row" style="width:15%">{{ item.date | date: "%b %Y" }}</th>
               <td>
                 {% if item.inline %}
@@ -31,13 +31,7 @@
           {% endfor %}
         </table>
       </div>
-      {% if upcoming_events.size > 5 %}
-        <div class="show-more-wrap">
-          <button class="btn btn-link show-more-btn" onclick="toggleShowMore(this, 'upcoming-hidden')">
-            <span class="show-more-label">Show more</span> <i class="fa-solid fa-chevron-down about-chevron"></i>
-          </button>
-        </div>
-      {% endif %}
+      {% comment %} all upcoming events are shown; past ones go to the Archive below {% endcomment %}
     {% endif %}
 
     {% if past_events.size > 0 %}
