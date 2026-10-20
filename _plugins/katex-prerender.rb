@@ -45,7 +45,14 @@ module Jekyll
         jobs.zip(rendered).reverse_each do |(i, m), out|
           next if out.nil?
 
-          parts[i] = parts[i][0...m.begin(0)] + out + parts[i][m.end(0)..]
+          # keep punctuation that follows the math on its line ("$\ell_2$-")
+          tail = parts[i][m.end(0)..]
+          glued = tail[/\A[^\s$]+/]
+          if glued
+            out = %(<span style="white-space:nowrap">#{out}#{glued}</span>)
+            tail = tail[glued.length..]
+          end
+          parts[i] = parts[i][0...m.begin(0)] + out + tail
         end
         doc.output = parts.join
       end

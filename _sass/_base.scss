@@ -536,13 +536,17 @@ details.events-archive {
 // About page hero: name, title and bio on the left; the photo column on
 // the right runs from the top of the name to the end of the bio.
 
+// less room under the nav-bar than the mt-5 other pages get
+body.about-page > .container[role="main"] {
+  margin-top: 2rem !important;
+}
+
 .about-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
   column-gap: clamp(1.5rem, 4vw, 2.5rem);
   row-gap: 1.4rem;
   align-items: start;
-  padding: clamp(0.75rem, 2.5vw, 1.75rem) 0 0;
 
   .post-header {
     grid-column: 1;
