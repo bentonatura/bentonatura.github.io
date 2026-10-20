@@ -602,13 +602,19 @@ details.events-archive {
   }
 }
 
+// Narrow screens: one column in the order name and title, photo and
+// contact icons, then the bio.
 @media (max-width: 767px) {
   .about-hero {
     grid-template-columns: 1fr;
   }
 
+  .about-copy {
+    order: 2;
+  }
+
   .profile.about-profile {
-    max-width: 320px;
+    max-width: 260px;
     margin: 0 auto;
   }
 }
