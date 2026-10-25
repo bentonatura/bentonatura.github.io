@@ -19,7 +19,7 @@
         <table class="table table-sm table-borderless">
           {% for item in upcoming_sorted %}
             <tr>
-              <th scope="row" style="width:15%">{{ item.date | date: "%b %Y" }}</th>
+              <th scope="row" style="width:15%">{% include event_date.liquid event=item %}</th>
               <td>
                 {% if item.inline %}
                   {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
@@ -42,7 +42,7 @@
           <table class="table table-sm table-borderless">
             {% for item in past_sorted %}
               <tr>
-                <th scope="row" style="width:15%">{{ item.date | date: "%b %Y" }}</th>
+                <th scope="row" style="width:15%">{% include event_date.liquid event=item %}</th>
                 <td>
                   {% if item.inline %}
                     {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}

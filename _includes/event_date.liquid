@@ -1,0 +1,20 @@
+{% comment %}
+  Date label for an event row. Default "Nov 2026"; with `exact_date: true`
+  "Dec 1, 2026"; with an `end_date` the day range, e.g. "Nov 8–11, 2026" or
+  "Oct 30 – Nov 2, 2026".
+{% endcomment %}
+{%- assign d = include.event.date -%}
+{%- assign e = include.event.end_date -%}
+{%- if e -%}
+  {%- assign start_month = d | date: '%Y%m' -%}
+  {%- assign end_month = e | date: '%Y%m' -%}
+  {%- if start_month == end_month -%}
+    {{ d | date: '%b %-d' }}–{{ e | date: '%-d, %Y' }}
+  {%- else -%}
+    {{ d | date: '%b %-d' }} – {{ e | date: '%b %-d, %Y' }}
+  {%- endif -%}
+{%- elsif include.event.exact_date -%}
+  {{ d | date: '%b %-d, %Y' }}
+{%- else -%}
+  {{ d | date: '%b %Y' }}
+{%- endif -%}

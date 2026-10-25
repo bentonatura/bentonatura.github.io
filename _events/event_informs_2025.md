@@ -1,6 +1,7 @@
 ---
 layout: post
 date: 2025-10-26 07:59:00-0400
+end_date: 2025-10-29
 inline: true
 ---
 

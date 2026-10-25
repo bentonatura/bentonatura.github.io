@@ -1,6 +1,7 @@
 ---
 layout: post
 date: 2026-12-15 07:59:00-0400
+exact_date: true
 inline: true
 ---
 
