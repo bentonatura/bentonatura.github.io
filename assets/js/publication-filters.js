@@ -54,10 +54,9 @@
       link.setAttribute("aria-pressed", active);
       link.title = active ? "Show all publications" : "";
     });
-    if (journalView && filter !== "journals") hideJournalView();
-    if (!journalView && filter === "journals") showJournalView();
-    papers.classList.toggle("pub-hidden", filter === "thesis" || filter === "journals");
-    thesis.classList.toggle("pub-hidden", filter in hasBadge);
+    if (journalView) hideJournalView();
+    // the Conferences filter hides papers without a conference badge; every
+    // other view starts from all papers shown
     papers.querySelectorAll(".year-group").forEach(function (group) {
       let any = false;
       group.querySelectorAll("ol.bibliography > li").forEach(function (paper) {
@@ -67,6 +66,9 @@
       });
       group.classList.toggle("pub-hidden", !any);
     });
+    if (filter === "journals") showJournalView();
+    papers.classList.toggle("pub-hidden", filter === "thesis" || filter === "journals");
+    thesis.classList.toggle("pub-hidden", filter in hasBadge);
   }
 
   function fromHash() {
