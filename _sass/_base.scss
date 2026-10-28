@@ -595,6 +595,7 @@ body.about-page > .container[role="main"] {
   // and stacked on phones the lines are too short to justify without wide
   // gaps, so they stay ragged
   p {
+    line-height: 1.3; // EB Garamond's small x-height looks loose at the default 1.5
     hyphens: auto;
 
     @media (min-width: 992px) {
@@ -651,17 +652,42 @@ body.about-page > .container[role="main"] {
     border-radius: 10px;
   }
 
-  // larger icons, spread to about two thirds of the photo's width; the line
-  // height and bottom margin set the icons' lower edge on the baseline of the
-  // bio's last line beside them
+  // larger icons, evenly spaced: one gap between them, with each icon's own
+  // side space trimmed so the visible gaps come out equal (measured). The
+  // line height and bottom margin set the icons' lower edge on the baseline
+  // of the bio's last line beside them.
   .contact-icons {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1.25rem;
     margin-top: 0.5rem;
-    margin-bottom: 0.25rem;
-    font-size: 1.6rem;
+    margin-bottom: 0.125rem;
+    font-size: 1.8rem;
     line-height: 1;
 
     a {
-      margin: 0 0.45rem;
+      margin: 0;
+    }
+
+    .ai-google-scholar {
+      margin: 0 -0.05em 0 -0.06em;
+    }
+
+    .ai-dblp {
+      margin: 0 -0.035em 0 -0.055em;
+    }
+
+    // The crest SVG keeps its wide canvas (cropping the file was reverted),
+    // so size the box to the crest's own proportions, trim the space left at
+    // its sides and drop it onto the icons' line.
+    .arsenal-icon {
+      height: 1.2em;
+      width: calc(1.2em * 419.627 / 569.7615); // the SVG viewBox's aspect ratio
+      margin: 0 -0.11em 0 -0.12em;
+      vertical-align: 0;
+      position: relative;
+      top: 0.21em;
     }
   }
 }
@@ -1572,7 +1598,7 @@ footer.sticky-bottom {
 
       .periodical {
         color: var(--global-text-color-light);
-        font-size: 0.95em;
+        font-size: 0.9em; // the secondary size, like event dates and abstracts
 
         em {
           font-style: normal;
@@ -1855,7 +1881,9 @@ footer.sticky-bottom {
 
 // Selected works on the homepage: only title, authors and venue.
 .publications.compact {
-  margin-top: 0;
+  // pull the list up by most of the entries' hover padding, so the first title
+  // starts as far below its heading as the first row under Events does
+  margin-top: -0.6rem;
 
   // one list per year of first appearance; no gap between them
   ol.bibliography {

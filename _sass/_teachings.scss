@@ -94,9 +94,10 @@
     }
   }
 
-  // the course name under the number: beat mdb's 0.9rem in its own grey
+  // the course name under the number: beat mdb's 0.9rem in its own grey, at
+  // the site's secondary size (0.9 × body text)
   .card .card-body .card-text {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--global-text-color-light);
   }
 
