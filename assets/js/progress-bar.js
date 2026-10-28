@@ -30,6 +30,12 @@ function progressBarSetup() {
       progressBar.attr({ value: getCurrentScrollPosition() });
     });
     $(window).on("resize", initializeProgressElement);
+    // the page grows and shrinks when abstracts open and close: rescale then too
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(function () {
+        progressBar.attr({ max: getDistanceToScroll(), value: getCurrentScrollPosition() });
+      }).observe(document.body);
+    }
   } else {
     resizeProgressBar();
     $(document).on("scroll", resizeProgressBar);
