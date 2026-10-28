@@ -894,6 +894,31 @@ body.about-page > .container[role="main"] {
   }
 }
 
+// Publications: the subtitle's filter links (assets/js/publication-filters.js)
+.post-description .pub-filter {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+  }
+
+  &.active {
+    color: var(--global-theme-color);
+    text-decoration-color: currentColor;
+  }
+}
+
+.pub-hidden {
+  display: none !important;
+}
+
 // News and Events section styling
 
 .news,
@@ -2048,7 +2073,9 @@ footer.sticky-bottom {
       border-radius: 8px;
       border-left: none;
 
-      + li {
+      // hairline above every paper after the first one shown (a filter on
+      // Publications may hide some)
+      &:not(.pub-hidden) ~ li {
         border-top: 1px solid var(--global-divider-color);
         border-radius: 0 0 8px 8px;
       }

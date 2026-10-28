@@ -313,9 +313,9 @@
       {% endif %}
       {% if entry.journal %}
         {% if site.data.venues[entry.journal].url %}
-          <a class="journal btn btn-sm z-depth-0" href="{{ site.data.venues[entry.journal].url }}" target="_blank" rel="noopener noreferrer" role="button">{{ entry.journal }}{% if entry.journal_year %} {{ entry.journal_year }}{% endif %}</a>
+          <a class="journal btn btn-sm z-depth-0" data-year="{{ entry.journal_year | default: entry.year }}" href="{{ site.data.venues[entry.journal].url }}" target="_blank" rel="noopener noreferrer" role="button">{{ entry.journal }}{% if entry.journal_year %} {{ entry.journal_year }}{% endif %}</a>
         {% else %}
-          <a class="journal btn btn-sm z-depth-0" role="button">{{ entry.journal }}{% if entry.journal_year %} {{ entry.journal_year }}{% endif %}</a>
+          <a class="journal btn btn-sm z-depth-0" data-year="{{ entry.journal_year | default: entry.year }}" role="button">{{ entry.journal }}{% if entry.journal_year %} {{ entry.journal_year }}{% endif %}</a>
         {% endif %}
       {% endif %}
       {% if entry.preprint %}
