@@ -4,7 +4,7 @@ sitemap: false
 title: Events
 permalink: /events/
 description: Talks · Workshops · Conferences
-header_art: tsp_tour # animated illustration, _includes/tsp_tour.liquid
+header_art: travel_routes # animated illustration, _includes/travel_routes.liquid
 ---
 
 {% include events.liquid %}

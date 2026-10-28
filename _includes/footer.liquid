@@ -9,16 +9,21 @@
   {% if site.last_updated %}
     Last updated: {{ 'now' | date: '%B %d, %Y' }}.
   {% endif %}
-  <span class="zulip-ack">
+  <span class="footer-credits">
+    <img src="{{ '/assets/img/saluting-face.svg' | relative_url }}" alt="With thanks to" class="credit-salute">
+    <a
+      href="https://github.com/alshedivat/al-folio"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Thanks to the al-folio theme and its contributors"
+    ><i class="fa-brands fa-github credit-logo" aria-hidden="true"></i>al-folio</a>
+    &middot;
     <a
       href="https://zulip.com/"
       target="_blank"
       rel="noopener noreferrer"
-      title="Thanks to Zulip for sponsoring our team chat"
-    >
-      <img src="{{ '/assets/img/zulip-icon-circle.svg' | relative_url }}" alt="" class="zulip-logo" />
-      Thanks, Zulip
-    </a>
+      title="Thanks to Zulip for its sponsorship"
+    ><img src="{{ '/assets/img/zulip-icon-circle.svg' | relative_url }}" alt="" class="credit-logo zulip-logo">Zulip</a>
   </span>
 {% endcapture %}
 

@@ -1,0 +1,35 @@
+{% comment %}
+  Animated illustration for the Events header: a year of travel, flown leg by
+  leg from the home city through the other cities in no particular order and
+  back home. Styles in _sass/_base.scss (.travel-routes); static with reduced
+  motion.
+{% endcomment %}
+<svg class="header-art travel-routes" viewBox="0 0 440 140" preserveAspectRatio="xMaxYMid meet" role="img" aria-label="Flight routes from a home city through seven other cities and back">
+  <defs>
+    <radialGradient id="tr-glow">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g class="tr-legs">
+    <path d="M40,78 Q114.9,26.0 205,40" pathLength="1" style="animation-delay: 0.60s; animation-duration: 0.32s"/>
+    <path d="M205,40 Q155.7,69.0 140,124" pathLength="1" style="animation-delay: 0.92s; animation-duration: 0.20s"/>
+    <path d="M140,124 Q198.0,37.0 300,14" pathLength="1" style="animation-delay: 1.12s; animation-duration: 0.37s"/>
+    <path d="M300,14 Q258.6,45.0 250,96" pathLength="1" style="animation-delay: 1.49s; animation-duration: 0.18s"/>
+    <path d="M250,96 Q318.7,43.0 405,52" pathLength="1" style="animation-delay: 1.67s; animation-duration: 0.30s"/>
+    <path d="M405,52 Q261.0,-0.8 110,26" pathLength="1" style="animation-delay: 1.98s; animation-duration: 0.55s"/>
+    <path d="M110,26 Q245.2,34.6 352,118" pathLength="1" style="animation-delay: 2.53s; animation-duration: 0.49s"/>
+    <path d="M352,118 Q201.1,58.3 40,78" pathLength="1" style="animation-delay: 3.01s; animation-duration: 0.59s"/>
+  </g>
+  <g class="tr-cities">
+    <circle cx="110" cy="26" r="5.5" style="animation-delay: 0.06s"/>
+    <circle cx="205" cy="40" r="5.5" style="animation-delay: 0.12s"/>
+    <circle cx="300" cy="14" r="5.5" style="animation-delay: 0.18s"/>
+    <circle cx="405" cy="52" r="5.5" style="animation-delay: 0.24s"/>
+    <circle cx="352" cy="118" r="5.5" style="animation-delay: 0.30s"/>
+    <circle cx="250" cy="96" r="5.5" style="animation-delay: 0.36s"/>
+    <circle cx="140" cy="124" r="5.5" style="animation-delay: 0.42s"/>
+  </g>
+  <circle class="tr-glow" cx="40" cy="78" r="30" fill="url(#tr-glow)"/>
+  <circle class="tr-home" cx="40" cy="78" r="8.5"/>
+</svg>

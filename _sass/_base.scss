@@ -1234,38 +1234,58 @@ footer.sticky-bottom {
   }
 }
 
-// Zulip sponsorship acknowledgment (footer): a small hairline pill beside
-// the copyright that brightens on hover; wraps to its own line only when the
-// footer text runs out of room.
-.zulip-ack {
-  margin-left: 0.6rem;
-  white-space: nowrap;
+// Credits beside the copyright (the al-folio theme, Zulip's sponsorship):
+// muted until hovered, the Zulip logo grey until then too; the credits wrap
+// to their own line, as one unit, only when the footer runs out of room.
+.footer-credits {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--global-footer-text-color); // spans default to the body text color
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
 
-  a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    padding: 0.1em 0.7em 0.1em 0.25em;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
+  &:hover {
+    opacity: 1;
+  }
+
+  a,
+  a:hover {
     color: var(--global-footer-text-color);
-    font-size: 0.92em;
-    letter-spacing: 0.01em;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease;
+    text-decoration: none;
+  }
 
-    &:hover {
-      color: var(--global-footer-link-color);
-      border-color: rgba(255, 255, 255, 0.38);
-      background-color: rgba(255, 255, 255, 0.06);
+  a:hover {
+    color: var(--global-footer-link-color);
+
+    .zulip-logo {
+      filter: none;
     }
   }
 
+  .credit-logo {
+    margin-right: 0.25em;
+  }
+
   .zulip-logo {
-    width: 1.15em;
-    height: 1.15em;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    filter: grayscale(1);
+    transition: filter 0.2s ease;
+  }
+
+  // the thank-you: a saluting face (Noto Emoji), grey like the logos until hovered
+  .credit-salute {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.35em;
+    vertical-align: -0.2em;
+    filter: grayscale(1);
+    transition: filter 0.2s ease;
+  }
+
+  &:hover .credit-salute {
+    filter: none;
   }
 }
 
@@ -3012,17 +3032,18 @@ mjx-container[jax="CHTML"][display="true"] {
   }
 }
 
-// Travelling salesman tour (Events header, _includes/tsp_tour.liquid): the
-// cities appear, the tour is inked leg by leg at constant speed, and the home
-// city pulses once the tour closes.
-.tsp-tour {
+// Travel routes (Events header, _includes/travel_routes.liquid): the cities
+// appear, the legs are flown one by one at constant speed as arcs in no
+// particular order, and the home city pulses once the trip returns.
+.travel-routes {
   color: var(--global-theme-color);
   overflow: visible;
 
-  .tsp-legs line {
+  .tr-legs path {
+    fill: none;
     stroke: var(--global-theme-color);
-    stroke-opacity: 0.85;
-    stroke-width: 2.8;
+    stroke-opacity: 0.7;
+    stroke-width: 2.2;
     stroke-linecap: round;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -3031,7 +3052,7 @@ mjx-container[jax="CHTML"][display="true"] {
     animation-fill-mode: forwards;
   }
 
-  .tsp-cities circle {
+  .tr-cities circle {
     fill: #fff;
     stroke: var(--global-theme-color);
     stroke-width: 2.4;
@@ -3041,27 +3062,27 @@ mjx-container[jax="CHTML"][display="true"] {
     animation: cp-pop 0.3s ease-out forwards;
   }
 
-  .tsp-home {
+  .tr-home {
     fill: var(--global-theme-color);
     transform-box: fill-box;
     transform-origin: center;
     animation:
       cp-pop 0.3s ease-out both,
-      cp-arrive 0.6s ease-out 3.03s;
+      cp-arrive 0.6s ease-out 3.6s;
   }
 
-  .tsp-glow {
+  .tr-glow {
     opacity: 0;
-    animation: cp-fade 1.2s ease-out 3.03s forwards;
+    animation: cp-fade 1.2s ease-out 3.6s forwards;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tsp-tour {
-    .tsp-legs line,
-    .tsp-cities circle,
-    .tsp-home,
-    .tsp-glow {
+  .travel-routes {
+    .tr-legs path,
+    .tr-cities circle,
+    .tr-home,
+    .tr-glow {
       animation: none;
       opacity: 1;
       stroke-dashoffset: 0;
