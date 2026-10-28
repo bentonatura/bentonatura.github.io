@@ -678,6 +678,14 @@ body.about-page > .container[role="main"] {
       margin: 0 -0.035em 0 -0.055em;
     }
 
+    .ai-arxiv {
+      margin: 0 -0.052em 0 -0.087em;
+    }
+
+    .ai-orcid {
+      margin: 0 0 0 -0.052em;
+    }
+
     // The crest SVG keeps its wide canvas (cropping the file was reverted),
     // so size the box to the crest's own proportions, trim the space left at
     // its sides and drop it onto the icons' line.
@@ -1226,23 +1234,38 @@ footer.sticky-bottom {
   }
 }
 
-// Zulip sponsorship acknowledgment (footer) — inline with the copyright on
-// wide screens; wraps to its own line only when the footer text runs out of room.
+// Zulip sponsorship acknowledgment (footer): a small hairline pill beside
+// the copyright that brightens on hover; wraps to its own line only when the
+// footer text runs out of room.
 .zulip-ack {
-  margin-left: 0.5rem;
-  opacity: 0.85;
-  white-space: nowrap; // keep the logo + phrase together as one wrapping unit
-  transition: opacity 0.2s ease;
+  margin-left: 0.6rem;
+  white-space: nowrap;
 
-  &:hover {
-    opacity: 1;
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.1em 0.7em 0.1em 0.25em;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: var(--global-footer-text-color);
+    font-size: 0.92em;
+    letter-spacing: 0.01em;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+
+    &:hover {
+      color: var(--global-footer-link-color);
+      border-color: rgba(255, 255, 255, 0.38);
+      background-color: rgba(255, 255, 255, 0.06);
+    }
   }
 
   .zulip-logo {
-    width: 1.05em;
-    height: 1.05em;
-    vertical-align: -0.2em;
-    margin-right: 0.35em;
+    width: 1.15em;
+    height: 1.15em;
   }
 }
 
@@ -1712,8 +1735,8 @@ footer.sticky-bottom {
         }
 
         a.award {
-          color: var(--global-highlight-color);
-          background-color: color-mix(in srgb, var(--global-highlight-color) 8%, transparent);
+          color: var(--global-award-color);
+          background-color: color-mix(in srgb, var(--global-award-color) 8%, transparent);
         }
 
         a[href]:hover {
@@ -1823,7 +1846,7 @@ footer.sticky-bottom {
     // award details (opened from an award label): same look as the abstract
     // panel, with the award color
     div.award.hidden {
-      border-left: 3px solid color-mix(in srgb, var(--global-highlight-color) 35%, transparent);
+      border-left: 3px solid color-mix(in srgb, var(--global-award-color) 35%, transparent);
       text-align: left;
 
       .award-text {
@@ -2985,6 +3008,63 @@ mjx-container[jax="CHTML"][display="true"] {
     .inf-side {
       animation: none;
       opacity: 0.5;
+    }
+  }
+}
+
+// Travelling salesman tour (Events header, _includes/tsp_tour.liquid): the
+// cities appear, the tour is inked leg by leg at constant speed, and the home
+// city pulses once the tour closes.
+.tsp-tour {
+  color: var(--global-theme-color);
+  overflow: visible;
+
+  .tsp-legs line {
+    stroke: var(--global-theme-color);
+    stroke-opacity: 0.85;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation-name: dp-ink;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .tsp-cities circle {
+    fill: #fff;
+    stroke: var(--global-theme-color);
+    stroke-width: 2.4;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cp-pop 0.3s ease-out forwards;
+  }
+
+  .tsp-home {
+    fill: var(--global-theme-color);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation:
+      cp-pop 0.3s ease-out both,
+      cp-arrive 0.6s ease-out 3.03s;
+  }
+
+  .tsp-glow {
+    opacity: 0;
+    animation: cp-fade 1.2s ease-out 3.03s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tsp-tour {
+    .tsp-legs line,
+    .tsp-cities circle,
+    .tsp-home,
+    .tsp-glow {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
     }
   }
 }

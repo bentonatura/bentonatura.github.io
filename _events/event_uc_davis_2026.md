@@ -5,4 +5,4 @@ exact_date: true
 inline: true
 ---
 
-Talk at [UC Davis](https://www.ucdavis.edu), Davis, USA.
+Talk at [UC Davis](https://www.ucdavis.edu), California, USA.

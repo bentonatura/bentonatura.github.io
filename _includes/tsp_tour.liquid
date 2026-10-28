@@ -1,0 +1,34 @@
+{% comment %}
+  Animated illustration for the Events header: a travelling salesman tour
+  through eight cities, inked leg by leg from the home city and back.
+  Styles in _sass/_base.scss (.tsp-tour); static with reduced motion.
+{% endcomment %}
+<svg class="header-art tsp-tour" viewBox="0 0 440 140" preserveAspectRatio="xMaxYMid meet" role="img" aria-label="A travelling salesman tour through eight cities, starting and ending at the home city">
+  <defs>
+    <radialGradient id="tsp-glow">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g class="tsp-legs">
+    <line x1="40" y1="78" x2="110" y2="26" pathLength="1" style="animation-delay: 0.60s; animation-duration: 0.26s"/>
+    <line x1="110" y1="26" x2="205" y2="40" pathLength="1" style="animation-delay: 0.86s; animation-duration: 0.29s"/>
+    <line x1="205" y1="40" x2="300" y2="14" pathLength="1" style="animation-delay: 1.15s; animation-duration: 0.30s"/>
+    <line x1="300" y1="14" x2="405" y2="52" pathLength="1" style="animation-delay: 1.45s; animation-duration: 0.34s"/>
+    <line x1="405" y1="52" x2="352" y2="118" pathLength="1" style="animation-delay: 1.79s; animation-duration: 0.26s"/>
+    <line x1="352" y1="118" x2="250" y2="96" pathLength="1" style="animation-delay: 2.05s; animation-duration: 0.31s"/>
+    <line x1="250" y1="96" x2="140" y2="124" pathLength="1" style="animation-delay: 2.36s; animation-duration: 0.34s"/>
+    <line x1="140" y1="124" x2="40" y2="78" pathLength="1" style="animation-delay: 2.70s; animation-duration: 0.33s"/>
+  </g>
+  <g class="tsp-cities">
+    <circle cx="110" cy="26" r="5.5" style="animation-delay: 0.06s"/>
+    <circle cx="205" cy="40" r="5.5" style="animation-delay: 0.12s"/>
+    <circle cx="300" cy="14" r="5.5" style="animation-delay: 0.18s"/>
+    <circle cx="405" cy="52" r="5.5" style="animation-delay: 0.24s"/>
+    <circle cx="352" cy="118" r="5.5" style="animation-delay: 0.30s"/>
+    <circle cx="250" cy="96" r="5.5" style="animation-delay: 0.36s"/>
+    <circle cx="140" cy="124" r="5.5" style="animation-delay: 0.42s"/>
+  </g>
+  <circle class="tsp-glow" cx="40" cy="78" r="30" fill="url(#tsp-glow)"/>
+  <circle class="tsp-home" cx="40" cy="78" r="8.5"/>
+</svg>
