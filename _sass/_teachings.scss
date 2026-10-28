@@ -94,6 +94,12 @@
     }
   }
 
+  // the course name under the number: beat mdb's 0.9rem in its own grey
+  .card .card-body .card-text {
+    font-size: 1.05rem;
+    color: var(--global-text-color-light);
+  }
+
   .card {
     img {
       width: 100%;
@@ -133,10 +139,10 @@
     &::after {
       content: "";
       flex: 1 1 auto;
-      height: 3px;
+      height: 1px;
       background:
-        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
-        linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left top / 2.5rem 1px no-repeat,
+        linear-gradient(var(--global-divider-color), var(--global-divider-color)) left top / 100% 1px no-repeat;
     }
   }
 }

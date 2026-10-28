@@ -30,7 +30,7 @@ html {
 
 // Links in running text (bio, events, course pages): a thin underline set
 // slightly below the baseline, in a light tint of the link colour; on hover it
-// darkens and thickens. Navigation, paper titles and buttons are unaffected.
+// darkens. Navigation, paper titles and buttons are unaffected.
 .about-copy a,
 .events td a,
 .news td a,
@@ -41,11 +41,10 @@ html {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
-  transition: color 0.2s ease, text-decoration-color 0.2s ease, text-decoration-thickness 0.2s ease;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 
   &:hover {
     text-decoration-color: currentColor;
-    text-decoration-thickness: 2px;
   }
 }
 
@@ -96,10 +95,22 @@ footer {
 
 body {
   font-family: 'EB Garamond', 'Palatino Linotype', Palatino, Georgia, serif;
-  font-weight: 400;
+  // a touch heavier than Regular: EB Garamond's fine strokes look faint on
+  // screens, especially with antialiased smoothing on macOS
+  font-weight: 450;
   font-size: 1.2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+// mdb.min.css sets these to 300 or 400; EB Garamond has no Light, so all of
+// them rendered at 400. Give them the body weight instead.
+.navbar,
+table td,
+.card,
+.card .card-body .card-title,
+.card .card-body .card-text {
+  font-weight: inherit;
 }
 
 ::selection {
@@ -163,7 +174,7 @@ table.table a {
 
   &:hover {
     color: var(--global-hover-color);
-    text-decoration: underline;
+    text-decoration-line: underline; // not the shorthand, which would reset the underline styles set below
   }
 
   &:hover:after :not(.nav-item.dropdown) {
@@ -522,14 +533,15 @@ details.events-archive {
     }
   }
 
-  // Hairline rule with a short accent segment at its start.
+  // A hairline rule with a short accent segment at its start, like the year
+  // rules on Publications.
   &::after {
     content: "";
     flex: 1 1 auto;
-    height: 3px;
+    height: 1px;
     background:
-      linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
-      linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+      linear-gradient(var(--global-theme-color), var(--global-theme-color)) left top / 2.5rem 1px no-repeat,
+      linear-gradient(var(--global-divider-color), var(--global-divider-color)) left top / 100% 1px no-repeat;
   }
 }
 
@@ -543,7 +555,7 @@ body.about-page > .container[role="main"] {
 
 .about-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 330px);
   column-gap: clamp(1.5rem, 4vw, 2.5rem);
   row-gap: 1.4rem;
   align-items: start;
@@ -568,7 +580,7 @@ body.about-page > .container[role="main"] {
     margin-top: 0.7rem;
     margin-bottom: 0;
     padding-left: 0.9rem;
-    border-left: 4px solid var(--global-soft-accent-color);
+    border-left: 2px solid var(--global-soft-accent-color);
     font-size: 1.2rem;
     line-height: 1.5;
   }
@@ -578,11 +590,22 @@ body.about-page > .container[role="main"] {
   grid-column: 1;
   max-width: 690px;
 
-  // the bio's closing invitation, marked with the same accent bar as the title line
+  // set like a newspaper column: justified, with hyphenation (the page is
+  // lang="en") to keep the word spacing even; beside the photo on tablets
+  // and stacked on phones the lines are too short to justify without wide
+  // gaps, so they stay ragged
+  p {
+    hyphens: auto;
+
+    @media (min-width: 992px) {
+      text-align: justify;
+    }
+  }
+
+  // the bio's closing invitation, set apart by the extra space above it
   .about-closing {
+    text-align: left; // a short line; justified, it spreads out when it wraps
     margin-top: 1.4rem;
-    padding-left: 0.9rem;
-    border-left: 4px solid var(--global-soft-accent-color);
   }
 
   > :last-child {
@@ -628,11 +651,14 @@ body.about-page > .container[role="main"] {
     border-radius: 10px;
   }
 
-  // larger icons, spread to about two thirds of the photo's width
+  // larger icons, spread to about two thirds of the photo's width; the line
+  // height and bottom margin set the icons' lower edge on the baseline of the
+  // bio's last line beside them
   .contact-icons {
-    margin-top: 0.9rem;
-    margin-bottom: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
     font-size: 1.6rem;
+    line-height: 1;
 
     a {
       margin: 0 0.45rem;
@@ -697,7 +723,7 @@ body.about-page > .container[role="main"] {
   .post-description {
     margin-top: 0.6rem;
     padding-left: 0.9rem;
-    border-left: 4px solid var(--global-soft-accent-color);
+    border-left: 2px solid var(--global-soft-accent-color);
     color: var(--global-text-color);
     font-size: 1.2rem;
     line-height: 1.5;
@@ -755,13 +781,13 @@ body.about-page > .container[role="main"] {
       // column headers (schedule, grading): small capitals, like the dates
       thead th {
         color: var(--global-text-color-light);
-        font-weight: normal;
+        font-weight: 450;
         font-variant-caps: all-small-caps;
         letter-spacing: 0.08em;
         border-bottom: 1px solid var(--global-divider-color);
 
         strong {
-          font-weight: normal;
+          font-weight: 450;
         }
       }
 
@@ -784,7 +810,7 @@ body.about-page > .container[role="main"] {
           white-space: nowrap;
 
           strong {
-            font-weight: normal;
+            font-weight: 450;
           }
         }
 
@@ -838,7 +864,7 @@ body.about-page > .container[role="main"] {
 
 .news,
 .events {
-  // dates: smaller semibold labels, aligned on the entry's baseline;
+  // dates: quiet grey labels, aligned on the entry's baseline;
   // compact rows
   th,
   td {
@@ -857,9 +883,9 @@ body.about-page > .container[role="main"] {
   }
 
   th {
-    color: #374151;
-    font-size: 0.85em;
-    font-weight: 600;
+    color: var(--global-text-color-light);
+    font-size: 0.9em;
+    font-weight: inherit;
     font-variant-numeric: lining-nums tabular-nums;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -970,7 +996,7 @@ body.about-page > .container[role="main"] {
 
   .navbar-nav .nav-item.active > .nav-link {
     background-color: inherit;
-    font-weight: bolder;
+    font-weight: inherit;
     color: var(--global-theme-color);
 
     &::after {
@@ -1150,7 +1176,8 @@ body.about-page > .container[role="main"] {
 }
 
 // Footer
-footer.fixed-bottom {
+footer.fixed-bottom,
+footer.sticky-bottom {
   background-color: var(--global-footer-bg-color);
   font-size: 0.85rem;
   border-top: 2px solid var(--global-theme-color);
@@ -1170,17 +1197,6 @@ footer.fixed-bottom {
       color: var(--global-theme-color);
       text-decoration: none;
     }
-  }
-}
-
-footer.sticky-bottom {
-  border-top: 2px solid var(--global-theme-color);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  font-size: 0.9rem;
-
-  .container {
-    text-align: center;
   }
 }
 
@@ -1437,10 +1453,10 @@ footer.sticky-bottom {
     &::after {
       content: "";
       flex: 1 1 auto;
-      height: 3px;
+      height: 1px;
       background:
-        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left center / 2.5rem 3px no-repeat,
-        linear-gradient(var(--global-divider-color), var(--global-divider-color)) center / 100% 1px no-repeat;
+        linear-gradient(var(--global-theme-color), var(--global-theme-color)) left top / 2.5rem 1px no-repeat,
+        linear-gradient(var(--global-divider-color), var(--global-divider-color)) left top / 100% 1px no-repeat;
     }
   }
 
@@ -1771,7 +1787,7 @@ footer.sticky-bottom {
 
       // opened abstracts get the same light-blue bar as the page subtitles
       div.abstract.hidden {
-        border-left: 3px solid var(--global-soft-accent-color);
+        border-left: 2px solid var(--global-soft-accent-color);
 
         p {
           margin: 0.6rem 0 0.4rem 0.9rem;
@@ -1908,11 +1924,25 @@ footer.sticky-bottom {
   margin-top: 1.5rem;
 
   .year-group {
+    position: relative;
     display: grid;
     grid-template-columns: 4.5rem minmax(0, 1fr);
     column-gap: 1.25rem;
     margin-bottom: 1.25rem;
     border-top: 1px solid var(--global-divider-color);
+
+    // the blue segment over the year column covers the group's hairline; it
+    // belongs to the group, not the (sticky) year, so it stays on the line
+    // while the year follows the scroll
+    &::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 4.5rem;
+      height: 1px;
+      background: var(--global-theme-color);
+    }
   }
 
   h2.year {
@@ -1922,9 +1952,7 @@ footer.sticky-bottom {
     top: 4.5rem; // below the fixed navigation bar
     margin: 0;
     padding-top: calc(0.6rem + 0.85rem); // level with the first title
-    border-top: 1px solid var(--global-theme-color);
     border-bottom: none; // drop the default heading underline
-    margin-top: -1px; // the blue segment sits on the group's hairline
     // same look as the event dates (dark grey semibold, not link-blue)
     color: #374151;
     font-size: 1.3rem;
@@ -1969,12 +1997,15 @@ footer.sticky-bottom {
   @media (max-width: 575px) {
     .year-group {
       grid-template-columns: minmax(0, 1fr);
+
+      &::before {
+        display: none;
+      }
     }
 
     h2.year {
       position: static;
       padding-top: 0.6rem;
-      border-top: none;
     }
 
     h2.year,
@@ -2642,7 +2673,7 @@ mjx-container[jax="CHTML"][display="true"] {
   color: var(--global-theme-color);
   font-family: inherit;
   font-size: 1rem;
-  font-weight: normal;
+  font-weight: 450;
   letter-spacing: normal;
   text-transform: none;
 

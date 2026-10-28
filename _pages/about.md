@@ -23,4 +23,4 @@ On the continuous side, I develop algorithms for linear, quadratic, and semidefi
 
 Previously, I was a postdoc at <a href="https://www.isye.gatech.edu" target="_blank">Georgia Tech</a>, the <a href="https://simons.berkeley.edu/homepage" target="_blank">Simons Institute</a> at UC Berkeley, and <a href="https://icerm.brown.edu" target="_blank">ICERM</a> at Brown University. I received my PhD from the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute; V&eacute;gh</a>, and my BSc and MSc in Mathematics from the <a href="https://www.uni-bonn.de/en/university/" target="_blank">University of Bonn</a>.
 
-<p class="about-closing">If any of this overlaps with your interests, <a href="mailto:bento.natura@columbia.edu">I’d be glad to hear from you</a>.</p>
+<p class="about-closing">If this overlaps with your interests, <a href="mailto:bento.natura@columbia.edu">I’d be glad to hear from you</a>.</p>

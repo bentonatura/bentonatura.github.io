@@ -22,7 +22,7 @@
   --global-footer-link-color: #{$white-color};
   --global-distill-app-color: #{$grey-color};
   --global-divider-color: rgba(0, 0, 0, 0.1);
-  --global-soft-accent-color: #9bcbeb;
+  --global-soft-accent-color: color-mix(in srgb, var(--global-theme-color) 35%, transparent); // the link underlines' tint
   --global-card-bg-color: #{$white-color};
   --global-highlight-color: #{$red-color-dark};
   --global-back-to-top-bg-color: rgba(
