@@ -1,14 +1,13 @@
 <!-- Metadata, OpenGraph and Schema.org -->
 {% include metadata.liquid %}
 
+<!-- open the CDN connection (KaTeX, jQuery) right away -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
 <!-- Bootstrap & MDB -->
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
-<link
-  rel="stylesheet"
-  href="{{ site.third_party_libraries.mdb.url.css }}"
-  integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
-  crossorigin="anonymous"
->
+<!-- self-hosted (same version) so the deploy can strip its unused rules -->
+<link rel="stylesheet" href="{{ '/assets/css/mdb.min.css' | relative_url | bust_file_cache }}">
 
 {% if page.pretty_table %}
   <!-- Bootstrap Table -->
@@ -24,12 +23,6 @@
 <!-- Fonts & Icons -->
 <link defer rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
 <link defer rel="stylesheet" href="{{ '/assets/css/scholar-icons.css' | relative_url | bust_file_cache }}">
-<link
-  defer
-  rel="stylesheet"
-  type="text/css"
-  href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
->
 <link rel="preload" href="{{ '/assets/fonts/EBGaramond-wght.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 
 {% if site.enable_math %}

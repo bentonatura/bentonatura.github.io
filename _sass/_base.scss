@@ -1845,6 +1845,12 @@ footer.sticky-bottom {
         }
       }
 
+      // collapsed panels skip rendering, so their fonts and math (italic,
+      // KaTeX) only load once a visitor opens one
+      .hidden:not(.open) {
+        content-visibility: hidden;
+      }
+
       .hidden.open {
         max-height: 100em;
         transition-property: 0.15s ease;

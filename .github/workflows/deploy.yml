@@ -47,6 +47,27 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      # The theme ships all of Font Awesome; keep only the icons the site uses
+      # (bin/subset_icon_fonts.py finds them in the built pages).
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Trim icon fonts
+        run: |
+          pip install --quiet fonttools==4.55.6 brotli==1.1.0
+          python bin/subset_icon_fonts.py _site
+
+      # Drop the CSS rules no page uses (most of Bootstrap, MDB and Font Awesome).
+      - name: Strip unused CSS
+        run: >
+          npx --yes purgecss@7.0.2
+          --css "_site/assets/css/*.css"
+          --content "_site/**/*.html" "_site/**/*.js"
+          --skippedContentGlobs "_site/assets/**/*.html"
+          --output _site/assets/css/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
