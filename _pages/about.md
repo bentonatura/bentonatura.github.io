@@ -17,10 +17,10 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I am a mathematician and computer scientist in [Industrial Engineering and Operations Research](https://ieor.columbia.edu) at Columbia, working at the intersection of continuous and discrete optimization.
+I am a mathematician and computer scientist in [Industrial Engineering and Operations Research](https://ieor.columbia.edu) in [Columbia SEAS](https://engineering.columbia.edu), working at the intersection of continuous and discrete optimization.
 
 On the continuous side, I develop algorithms for linear, quadratic, and semidefinite programming, with a particular emphasis on strongly polynomial methods for network optimization and more general structured linear programs. On the discrete side, I work on combinatorial optimization and approximation algorithms.
 
-Previously, I was a postdoc at <a href="https://www.isye.gatech.edu" target="_blank">Georgia Tech</a>, the <a href="https://simons.berkeley.edu/homepage" target="_blank">Simons Institute</a> at UC Berkeley, and <a href="https://icerm.brown.edu" target="_blank">ICERM</a> at Brown University. I received my PhD from the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute; V&eacute;gh</a>, and my BSc and MSc in Mathematics from the <a href="https://www.uni-bonn.de/en/university/" target="_blank">University of Bonn</a>.
+Previously, I was a postdoc at <a href="https://www.isye.gatech.edu" target="_blank">Georgia Tech</a>, the <a href="https://simons.berkeley.edu/homepage" target="_blank">Simons Institute</a> at <a href="https://www.berkeley.edu" target="_blank">UC Berkeley</a>, and <a href="https://icerm.brown.edu" target="_blank">ICERM</a> at <a href="https://www.brown.edu" target="_blank">Brown University</a>. I received my PhD from the <a href="http://lse.ac.uk" target="_blank">London School of Economics</a> under <a href="http://personal.lse.ac.uk/veghl" target="_blank">L&aacute;szl&oacute; V&eacute;gh</a>, and my BSc and MSc in Mathematics from the <a href="https://www.uni-bonn.de/en/university/" target="_blank">University of Bonn</a>.
 
 <p class="about-closing">If this overlaps with your interests, <a href="mailto:bento.natura@columbia.edu">I’d be glad to hear from you</a>.</p>
