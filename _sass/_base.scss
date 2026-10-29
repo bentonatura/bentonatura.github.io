@@ -28,10 +28,14 @@ html {
   scroll-behavior: smooth;
 }
 
-// Links in running text (bio, events, course pages): a thin underline set
-// slightly below the baseline, in a light tint of the link colour; on hover it
-// darkens. Navigation, paper titles and buttons are unaffected.
+// Links in running text (bio, the homepage subtitle, coauthor names, events,
+// course pages): a thin underline set slightly below the baseline, in a light
+// tint of the link colour; on hover it darkens. Colour alone would not tell
+// them from the dark text around them (2.8:1). Navigation, paper titles and
+// buttons are unaffected.
 .about-copy a,
+.about-hero .desc a,
+.publications .author a,
 .events td a,
 .news td a,
 .course-page article p a,
