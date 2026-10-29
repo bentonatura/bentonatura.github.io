@@ -15,6 +15,17 @@
     -->
     {% if site.imagemagick.enabled %}
       {% unless include.avoid_scaling %}
+        {% comment %} optional different image (e.g. another crop) for screens up to 767px {% endcomment %}
+        {% if include.mobile_path %}
+          {% assign mobile_img_path = include.mobile_path | remove: '.jpg' | remove: '.jpeg' | remove: '.png' %}
+          <source
+            class="responsive-img-srcset"
+            media="(max-width: 767px)"
+            srcset="{% for i in site.imagemagick.widths %}{{ mobile_img_path | relative_url }}-{{ i }}.webp {{ i }}w,{% endfor %}"
+            type="image/webp"
+            sizes="100vw"
+          >
+        {% endif %}
         <source
           class="responsive-img-srcset"
           {% if ext == 'gif' or ext == 'jpeg' or ext == 'jpg' or ext == 'png' or ext == 'tiff' %}

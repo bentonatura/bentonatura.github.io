@@ -141,13 +141,13 @@
         </ul>
       </div>
     </div>
+    {% if site.enable_progressbar %}
+      <!-- Scrolling Progress Bar, drawn over the navbar's bottom border -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    {% endif %}
   </nav>
-  {% if site.enable_progressbar %}
-    <!-- Scrolling Progress Bar -->
-    <progress id="progress" value="0">
-      <div class="progress-container">
-        <span class="progress-bar"></span>
-      </div>
-    </progress>
-  {% endif %}
 </header>

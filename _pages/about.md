@@ -8,6 +8,8 @@ subtitle: Assistant Professor · <a href='https://ieor.columbia.edu'>Columbia Un
 profile:
   align: right
   image: columbia_photo_shoot/20240912_Dini_2190_portrait.jpg
+  image_mobile: columbia_photo_shoot/20240912_Dini_2190_wide.jpg # wider crop, full width on phones
+  alt: Bento Natura
   image_circular: false # crops the image to make it circular
   more_info:
 
@@ -17,7 +19,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I am a mathematician and computer scientist in [Industrial Engineering and Operations Research](https://ieor.columbia.edu) in [Columbia SEAS](https://engineering.columbia.edu), working at the intersection of continuous and discrete optimization.
+I am a mathematician and computer scientist at [Columbia Engineering](https://engineering.columbia.edu) ([IEOR](https://ieor.columbia.edu)), working at the intersection of continuous and discrete optimization.
 
 On the continuous side, I develop algorithms for linear, quadratic, and semidefinite programming, with a particular emphasis on strongly polynomial methods for network optimization and more general structured linear programs. On the discrete side, I work on combinatorial optimization and approximation algorithms.
 

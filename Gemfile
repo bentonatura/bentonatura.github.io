@@ -26,6 +26,7 @@ group :jekyll_plugins do
     gem 'jemoji'
 
     gem 'classifier-reborn'  # used for content categorization during the build
+    gem 'text-hyphen'        # soft hyphens for the homepage bio, _plugins/hyphenate.rb
 end
 
 # Gems for development or external data fetching (outside :jekyll_plugins)

@@ -588,18 +588,31 @@ body.about-page > .container[role="main"] {
 
 .about-copy {
   grid-column: 1;
+  min-width: 0; // the unbroken lines assets/js/justify.js measures must not widen the column
   max-width: 690px;
 
-  // set like a newspaper column: justified, with hyphenation (the page is
-  // lang="en") to keep the word spacing even; beside the photo on tablets
-  // and stacked on phones the lines are too short to justify without wide
-  // gaps, so they stay ragged
+  // set like a newspaper column at every width: justified, with hyphenation
+  // (the page is lang="en") to keep the word spacing even; on phones a line
+  // may spread a little, preferred to a ragged edge
   p {
     line-height: 1.3; // EB Garamond's small x-height looks loose at the default 1.5
     hyphens: auto;
+    text-align: justify;
 
-    @media (min-width: 992px) {
-      text-align: justify;
+    // set by assets/js/justify.js, which chooses the line breaks itself
+    // (Knuth–Plass) and widens each line's spaces to the column
+    &.kp-on {
+      white-space: nowrap;
+      text-align: left;
+      hyphens: manual;
+    }
+
+    // its word spans keep the color of the text or link around them (spans
+    // default to the body text color)
+    .kp-word,
+    .kp-space,
+    .kp-hyphen {
+      color: inherit;
     }
   }
 
@@ -738,9 +751,13 @@ body.about-page > .container[role="main"] {
     order: 2;
   }
 
+  // the wider crop (profile.image_mobile) across the full column, at its
+  // own proportions
   .profile.about-profile {
-    max-width: 260px;
-    margin: 0 auto;
+    img:not(.arsenal-icon) {
+      aspect-ratio: 1600 / 1185;
+      object-position: 50% 50%;
+    }
   }
 }
 
@@ -2207,15 +2224,11 @@ html.transition *:after {
 }
 
 progress {
-  /* Positioning */
-  position: fixed;
+  /* Positioning: inside the navbar, over its 1px bottom border, so it
+     follows the border when the phone menu opens */
+  position: absolute;
   left: 0;
-  top: 57px; // below the nav-bar, see body.fixed-top-nav in _layout.scss
-  z-index: 10;
-
-  @media (min-width: 576px) {
-    top: 62px;
-  }
+  bottom: -1px;
 
   /* Dimensions */
   width: 100%;

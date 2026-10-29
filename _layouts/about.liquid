@@ -33,12 +33,16 @@ layout: default
         expanding it doesn't stretch the photo.
       {% endcomment %}
       {% assign about_parts = content | split: '<details' %}
-      <div class="about-copy clearfix">{{ about_parts | first }}</div>
+      <div class="about-copy clearfix">{{ about_parts | first | hyphenate }}</div>
+      <script defer src="{{ '/assets/js/justify.js' | relative_url | bust_file_cache }}"></script>
 
       {% if page.profile %}
         <aside class="profile about-profile">
           {% if page.profile.image %}
             {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+            {% if page.profile.image_mobile %}
+              {% assign profile_mobile_path = page.profile.image_mobile | prepend: 'assets/img/' %}
+            {% endif %}
             {% if page.profile.image_circular %}
               {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
             {% else %}
@@ -46,8 +50,8 @@ layout: default
             {% endif %}
             {% capture sizes %}(min-width: 768px) 330px, 260px{% endcapture %}
             {%
-              include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
-              cache_bust=true
+              include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.alt
+              cache_bust=true mobile_path=profile_mobile_path
             %}
           {% endif %}
           {% if page.social %}
